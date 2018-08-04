@@ -1,0 +1,37 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+FossilSim is an R package by Rachel Warnock, Joëlle Barido-Sottani and Walker Pett to simulate trees under the FBD. We will use FossilSim to generate distributions of trees under the FBD to get a better sense of the parameters.
+
+We will start with the birth and the death. Each person will increase the birth rate by 0.5. Do ten simulations (numbsims). We will keep psi and n constant for right now. When you are done, come up to the board and write down the average number of tips across your ten simulations.
+
+```{r}
+library(FossilSim)
+trees <- sim.fbd.taxa(n=10, numbsim=10, lambda=3, mu=2, psi=2)
+t_t <- 0
+for (i in 1:length(trees)){ 
+  t_t <- t_t + length(trees[[i]]$tip.label)
+}
+t_t/10
+```
+
+Have we discovered something confusing? If we increase the speciation rate without increasing either the number of extant tips or the fossilization rate, what happens to the fossils generated? Each person will now increase the fossil sampling rate by .5. Do ten simulations, and write the average number of tips on the board. 
+
+```{r}
+library(FossilSim)
+trees <- sim.fbd.taxa(n=10, numbsim=10, lambda=3, mu=2, psi=2)
+t_t <- 0
+for (i in 1:length(trees)){ 
+  t_t <- t_t + length(trees[[i]]$tip.label)
+}
+t_t/10
+```
+
+Lastly, let's vary the number of extant tips. Each person add five to the n. Once again, simulate ten trees. Come up to the board and write your average number of tips, minus the number of extant tips. 
+
+When you're done with that, take a look at a couple trees. They look different than we are used to. See if you can construct an idea of what is happenening here.
+
+
+
