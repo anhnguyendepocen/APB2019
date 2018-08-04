@@ -14,4 +14,4 @@
 | Bayesian Phylogeny | 1 - 2:30 | 
 | Break | 2:30 - 2:45 | 
 | Graphical Models | 2:45 - 3:45 | 
-| Bayesian Hands-On. | 3:45 - 5
+| Bayesian Hands-On. | 3:45 - 5 |
