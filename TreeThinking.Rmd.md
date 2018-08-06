@@ -28,10 +28,7 @@ What do we do with a phylogeny?
 
 What do we do with a phylogeny?
 ========================================================
--Taxonomy
-
-
-
+-Trace the origins of structures
 
 ![Ask a Biologist](img/AskABiologist.png)
 
@@ -86,6 +83,7 @@ Tree Terms: Node
 library(phytools)
 tree <- pbtree(n = 5)
 plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+nodelabels()
 ```
 
 ![plot of chunk unnamed-chunk-3](TreeThinking.Rmd-figure/unnamed-chunk-3-1.png)
@@ -125,7 +123,7 @@ nodelabels(cex = 3.5)
 ![plot of chunk unnamed-chunk-6](TreeThinking.Rmd-figure/unnamed-chunk-6-1.png)
 
 ```r
-#rotateNodes(tree, c(8,9))
+#rotateNodes(tree, c(7, 8))
 #plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ```
 
@@ -153,7 +151,9 @@ plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ```
 
 ![plot of chunk unnamed-chunk-8](TreeThinking.Rmd-figure/unnamed-chunk-8-1.png)
-Ingroup: Taxa of interest
+
+Ingroup: Taxa of interest 
+
 Outgroup: Taxon closely related used to root the tree
 
 Tree Terms: Rooting
@@ -174,12 +174,6 @@ How is a tree built?
   - Maximum parsimony
   - Maximum likelihood
   - Bayesian inference
-
-Parsimony
-========================================================
-
-- Not only applied in phylogenetics
-- The simplest explanation for the observed data is the best
 
 Phylogenetic Data
 ========================================================
@@ -276,6 +270,32 @@ Always arranged with rows being taxa and columns corresponding to a character - 
 Phylogenetic Data
 ========================================================
 
+Example character from Brady: 
+
+3. Worker, queen, and male. Specialized, stout setae on
+anterior margin of clypeus: (0) absent; (1) present.
+The presence of these specialized setae is a putative
+synapomorphy of Amblyoponinae (Ward, 1994), including
+Amblyopone and Onychomyrmex.
+![](img/2000px-Front_of_insect_head_diagram.svg.png)
+
+Phylogenetic Data
+========================================================
+
+- How do we know we have a truly discrete state?
+![](img/2000px-Front_of_insect_head_diagram.svg.png)
+
+Phylogenetic Data
+========================================================
+
+How do we know we've captured the relevant character axes? 
+
+![Ask a biologist, Mike Hagelberg](img/butterfly_human_vision.jpg)
+
+
+Phylogenetic Data
+========================================================
+
 
 ```r
 library(ggplot2)
@@ -297,6 +317,12 @@ plot_alignment(char_data, colors, taxon_labels = TRUE) + theme(text = element_te
 
 ![plot of chunk unnamed-chunk-14](TreeThinking.Rmd-figure/unnamed-chunk-14-1.png)
 How do we go from this to a tree?
+
+Parsimony
+========================================================
+
+- Not only applied in phylogenetics
+- The simplest explanation for the observed data is the best
 
 Parsimony
 ========================================================
@@ -340,16 +366,11 @@ output_vector <- generate_tree_vis(sample_df = sample_df, alignment =           
 ```
 
 ```
-Final p-score 4 after  2 nni operations 
-[1] 1 2
-Final p-score 5 after  0 nni operations 
-[1] 2 3
-Final p-score 6 after  0 nni operations 
-[1] 3 4
-Final p-score 6 after  1 nni operations 
-[1] 4 5
-Final p-score 4 after  2 nni operations 
-[1] 5 6
+Final p-score 2 after  0 nni operations 
+Final p-score 2 after  0 nni operations 
+Final p-score 2 after  0 nni operations 
+Final p-score 2 after  1 nni operations 
+Final p-score 2 after  1 nni operations 
 ```
 
 treesiftr
@@ -507,19 +528,16 @@ savetrees from=3 to=3 file=results/tree3.tre;
 ```
 
 
-PAUP: Exporting parsimony trees
+PAUP: Reading in parsimony trees
 ========================================================
 
 
 ```r
-library(gridExtra)
+library(ape)
 tree1 <- read.nexus("results/tree1.tre")
 tree2 <- read.nexus("results/tree2.tre")
 tree3 <- read.nexus("results/tree3.tre")
-plot(tree1)
 ```
-
-![plot of chunk unnamed-chunk-25](TreeThinking.Rmd-figure/unnamed-chunk-25-1.png)
 
 PAUP: What do we do with multiple "best" trees?
 ========================================================
@@ -555,9 +573,9 @@ samples
 ```
 
 ```
- [1]  6 31 36 50  1 53 48 32 56 16 52 51 40 52 20 49 34 51 62 54 10 45  4
-[24] 23 27 30 44  2 61 52 22 61 34 26 41 38 47 61 33 56 39 52 62 55 36 53
-[47] 50 14 30 12 56 60 61 43 57 50 17  7 31 58 34 55
+ [1]  6  8 22 13 11 45 16  6 43 33 43 32 47 60 59 25 14 33  2 18 22 54 25
+[24] 12 21 20 56 43  3 12 10 34 57 25  9 18 22 20 12 53  1 12 20 44 40 22
+[47] 18 12  6 21  3  4 54 55 25 59 48 15 38 25  6 42
 ```
 
 How do we assess confidence in a tree?

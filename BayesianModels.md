@@ -28,8 +28,8 @@ output_vector <- generate_tree_vis(sample_df = sample_df, alignment =           
 ```
 
 ```
-Final p-score 4 after  2 nni operations 
-Final p-score 5 after  0 nni operations 
+Final p-score 2 after  0 nni operations 
+Final p-score 2 after  0 nni operations 
 ```
 
 Dice Rolling Activity: AND
@@ -100,6 +100,9 @@ When one outcome impacts the probability of the next outcome
 - The joint probability: Pr(A,B)
 - The probability of the first event: Pr(A)
 - The probability of the second event given the first: Pr(A|B)
+
+??? 
+Should be noted that this is not that dissimiliar to parsimony, since a change because pruning algorithm
 
 Dice Rolling Activity: Non-Independence 
 ========================================================
@@ -175,6 +178,24 @@ Likelihood: Model expectations
 
 Probabilities for each model will sum to 1
 
+Likelihood: Model expectations  
+========================================================  
+
+| Roll  | Fair Die  | Loaded Die  |
+|---|---|---|
+| 1  | 1/6 |  __2/6__  |
+| 2  |  1/6  |  __1/6__   |
+| 3  |  1/6  |  __1/6__  |
+| 4  |  1/6  | __1/6__   |
+| 5  |  1/6  | __1/6__   |
+| 6  |  1/6  |  __0/6__  |
+
+==1
+
+What would be the probability of rolling 5 sixes under the first model? 
+
+Under the second?
+
 Likelihood: The Mk Model 
 ========================================================  
 
@@ -222,14 +243,7 @@ Likelihood: The Mk Model
 - Assumptions:
   - Equally likely to transition to a state as from it
 
-Likelihood: The Mk Model 
-========================================================  
-
-- The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model
-- Assumptions:
-  - Equally likely to transition to a state as from it
-
-# L = [(1/4)]
+# L = [(1/2)]
 
 Likelihood: The Mk Model 
 ========================================================  
@@ -284,14 +298,23 @@ Likelihood: The Mk Model
 ## - Pr(1 at tip | 0 at node) = (1/2)*1 - e^(-$\mu$*t) 
 ## - Pr(1 at tip | 0 at node) = (1/2)*1 - e^(-2$\beta$*t) 
     
-    
 Likelihood: The Mk Model 
 ========================================================  
+
+Break: treesiftr 6-10  
     
-## - ν = (1/2) $\mu$t = 2$\beta$t
-## - v/2 = $\beta$t
+    
+Likelihood: Branch lengths 
+========================================================  
+## v is the number of substitutions per site    
+## - ν = (1/2) $\mu$*t = 2$\beta$*t
+## - v/2 = $\beta$*t
 
+Likelihood: The Mk Model 
+========================================================  
 
+Break: http://phylo.bio.ku.edu/mephytis/tree-opt.html 
+    
 
 Likelihood: The Mk Model 
 ========================================================  
@@ -325,6 +348,7 @@ Likelihood: The Mk Model
 
 This is just one branch and one character history!!!
 
+
   
 Likelihood: The Mk Model 
 ======================================================== 
@@ -352,78 +376,80 @@ qgamma(quarts, shape=0.5, scale = 10)
 ```
 [1] 0.0000000 0.5076552 2.2746821 6.6165185
 ```
+
+Likelihood: The Mk Model vs. Parsimony
+======================================================== 
+- I hope I've communicated to you that there are a lot of commonalities between parsimony and the most commonly used model for morphology
+
+Likelihood: The Mk Model vs. Parsimony
+======================================================== 
+- Because I published this
+![](img/journal.pone.0109210.g003.png)
+
+
+Likelihood: The Mk Model vs. Parsimony
+======================================================== 
+- You'll notice that parsimony really struggles when the evolutionary rate is high
+![](img/journal.pone.0109210.g003.png)
+
+Likelihood: The Mk Model vs. Parsimony
+======================================================== 
+- That's because of this - parsimony will always try to minimize homoplasy. Likelihood methods can model multiple changes (superimposed changes) along a branch.
+![Parsimony Trees](img/Ptree_enum.png)
+
+A brief note on taxon sampling
+======================================================== 
+![Zwickl Hillis](img/taxonsampling.png)
+![heath hedtke](img/heathhedtke.png)
+
+A brief note on missing data
+======================================================== 
+
+-Paleontological datasets tend to have a lot of missing data
+  - In an analysis I did for Wright, Lloyd and Hillis (2016), I found most datasets falling in the 50-80% range
+  
+A brief note on missing data
+======================================================== 
+- According to some, missing data are no problem.
+
+![](img/wiensMD.png)
+
+
+A brief note on missing data
+======================================================== 
+- According to some, missing data are no problem.
+
+![](img/wiensMD.png)
+
+A brief note on missing data
+======================================================== 
+- According to others, it is
+
+![](img/brownlemmon.png)
+
+A brief note on missing data
+======================================================== 
+- Who is right? 
+
+A brief note on missing data
+======================================================== 
+- Everyone, all at once
+
+![](img/wrightMD.png)
+
+A brief note on missing data
+======================================================== 
+- Everyone, all at once
+
+![](img/wrightMD.png)
+![](img/wrightPMD.png)
+
+
+
 Bayesian Methods
 =========================================================
 
 - Can someone articulate for me a difference between a Bayesian method and a likelihood method?
-
-
-Tree Searching Under ML and Bayesian Analyses
-================================================
-![Parsimony Trees](img/Ptree_enum.png)
-
-- We've covered that it is not practical to brute-force search trees
-- We've covered some heuristics
-- Parsimony heuristics can be simple - we are simply varying the topology
-  - What happens when we need to vary topology, branch lengths and a bunch of model parameters?
-  
-MCMC
-================================================
-## Markov Chain Monte Carlo
-- This sounds intimidating, but let's break it down a little bit
-  - Markov chain: Memoryless process
-  - Monte Carlo: Random proposals
-
-MCMC
-================================================
-## Markov Chain Monte Carlo
-- This sounds intimidating, but let's break it down a little bit
-  - Markov chain: Memoryless process
-  - Monte Carlo: Random proposals
-
-## Put it together: we start with some value for a parameter, and make changes to it stoachstically. Then, we evaluate the likelihood score of that new parameter. If it is good, we keep it. If it is bad, we chuck it. 
-
-MCMC
-================================================
-## Put it together: we start with some value for a parameter, and make changes to it stoachstically. Then, we evaluate the likelihood score of that new parameter. If it is good, we keep it. If it is bad, we chuck it.
-
-- Where does the lack of memory come in? And why is that a good thing?
-
-MCMC
-================================================
-
-```rev
-for (i in 1:nbr){
-    br_lens[i] ~ dnExponential(br_len_lambda)
-    moves[mvi++] = mvScale(br_lens[i]) 
-}
-```
-
-Let's think about this in plain language.
-- Assign a length of each branch (drawn from a gamma)
-- Choose how the parameter will be changed (by scaling)
-
-
-MCMC
-================================================
-
-```rev
-tau ~ dnUniformTopology(names)
-moves[mvi++] = mvNNI(tau, weight=2*nbr)
-phylogeny := treeAssembly(tau, br_lens)
-moves[mvi++] = mvSPR(tau, weight=nbr)
-
-```
-
-Let's think about this in plain language.
-- Build an initial tree
-- Change it via SPR and NNI
-- What is the idea of weight?
-
-MCMC
-================================================
-- Under ML: We use this to try to find a set of parameters that gives us the best model likelihood.
-- Under Bayesian: We use this to obtain a sample of models and parameters that show us the range of solutions for our data
 
 Bayesian Methods
 =========================================================
@@ -478,7 +504,7 @@ Joint Probabilities
 Conditional Probabilities
 =========================================================
 
-![manakins](img/manakins/manakins.001.png)
+![manakins height=4in](img/manakins/manakins.001.png)
 
 - What is the probability that a manakin is yellow-breasted given that it is red-headed?  
 
@@ -623,8 +649,93 @@ In practice
 
 Pr(Data) derived via MCMC
 
+Tree Searching Under ML and Bayesian Analyses
+================================================
+![Parsimony Trees](img/Ptree_enum.png)
+
+- We've covered that it is not practical to brute-force search trees
+- We've covered some heuristics
+- Parsimony heuristics can be simple - we are simply varying the topology
+  - What happens when we need to vary topology, branch lengths and a bunch of model parameters?
+  
+MCMC
+================================================
+## Markov Chain Monte Carlo
+- This sounds intimidating, but let's break it down a little bit
+  - Markov chain: Memoryless process
+  - Monte Carlo: Random proposals
+
+MCMC
+================================================
+## Markov Chain Monte Carlo
+- This sounds intimidating, but let's break it down a little bit
+  - Markov chain: Memoryless process
+  - Monte Carlo: Random proposals
+
+## Put it together: we start with some value for a parameter, and make changes to it stoachstically. Then, we evaluate the likelihood score of that new parameter. If it is good, we keep it. If it is bad, we chuck it. 
+
+MCMC
+================================================
+## Put it together: we start with some value for a parameter, and make changes to it stoachstically. Then, we evaluate the likelihood score of that new parameter. If it is good, we use it to seed future searches. If it is bad, we keep our current value.
+
+- Where does the lack of memory come in? And why is that a good thing?
+
+MCMC
+================================================
+
+```rev
+for (i in 1:nbr){
+    br_lens[i] ~ dnExponential(br_len_lambda)
+    moves[mvi++] = mvScale(br_lens[i]) 
+}
+```
+
+Let's think about this in plain language.
+- Assign a length of each branch (drawn from a gamma)
+- Choose how the parameter will be changed (by scaling)
+
+MCMC
+================================================
+
+```rev
+for (i in 1:nbr){
+    br_lens[i] ~ dnExponential(br_len_lambda)
+    moves[mvi++] = mvScale(br_lens[i]) 
+}
+```
+
+Let's think about this in plain language.
+- Assign a length of each branch (drawn from a gamma)
+- Choose how the parameter will be changed (by scaling)
+- A solution that is good will be hit many times
+
+
+MCMC
+================================================
+
+```rev
+tau ~ dnUniformTopology(names)
+moves[mvi++] = mvNNI(tau, weight=2*nbr)
+phylogeny := treeAssembly(tau, br_lens)
+moves[mvi++] = mvSPR(tau, weight=nbr)
+
+```
+
+Let's think about this in plain language.
+- Build an initial tree
+- Change it via SPR and NNI
+- What is the idea of weight?
+
+MCMC
+================================================
+- Under ML: We use this to try to find a set of parameters that gives us the best model likelihood.
+- Under Bayesian: We use this to obtain a sample of models and parameters that show us the range of solutions for our data
+
+
 Bayes Rule
 =========================================================
+
+Hands On: Rev basics
 
 Hands On: RB_Discrete_morphology, using priors to relax Mk assumptions
 

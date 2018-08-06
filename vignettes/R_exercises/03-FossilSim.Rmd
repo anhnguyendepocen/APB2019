@@ -5,7 +5,8 @@ output: html_notebook
 
 FossilSim is an R package by Rachel Warnock, Joëlle Barido-Sottani and Walker Pett to simulate trees under the FBD. We will use FossilSim to generate distributions of trees under the FBD to get a better sense of the parameters.
 
-We will start with the birth and the death. Each person will increase the birth rate by 0.5. Do ten simulations (numbsims). We will keep psi and n constant for right now. When you are done, come up to the board and write down the average number of tips across your ten simulations.
+## Birth and Death
+We will start with the birth and the death. Each person will increase the birth rate by 0.5. Do ten simulations (numbsims). We will keep psi and n constant for right now. When you are done, come up to the board and write down the average number of tips across your ten simulations. Plot a couple of your trees. Are some of the nodes on this tree different than we are used to?
 
 ```{r}
 library(FossilSim)
@@ -17,7 +18,10 @@ for (i in 1:length(trees)){
 t_t/10
 ```
 
-Have we discovered something confusing? If we increase the speciation rate without increasing either the number of extant tips or the fossilization rate, what happens to the fossils generated? Each person will now increase the fossil sampling rate by .5. Do ten simulations, and write the average number of tips on the board. 
+Have we discovered something confusing? If we increase the speciation rate without increasing either the number of extant tips or the fossilization rate, what happens to the fossils generated? 
+
+## Sampling of Fossils and Extant Taxa
+Each person will now increase the fossil sampling rate by .5. Do ten simulations, and write the average number of tips on the board. 
 
 ```{r}
 library(FossilSim)
