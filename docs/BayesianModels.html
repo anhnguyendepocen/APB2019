@@ -84,7 +84,10 @@
       <a href="articles/RB_Discrete_Morphology/RB_Discrete_Morphology_Tutorial.html">RevBayes Discrete Morphology Tree Estimation</a>
     </li>
     <li>
-      <a href="articles/RB_Total_Evidence/RB_Total_Evidence_Tutorial.html">Total-Evidence Analysis of Fossil and Extant Taxa under the Fossilized Birth-Death Process</a>
+      <a href="articles/RB_Total_Evidence/RB_Total_Evidence_Tutorial.html">RevBayes Total Evidence Tree Estimation</a>
+    </li>
+    <li>
+      <a href="articles/R_exercises/00-installs.html">Installs</a>
     </li>
     <li>
       <a href="articles/R_exercises/01-treesiftr.html">treesifter</a>
@@ -93,7 +96,7 @@
       <a href="articles/R_exercises/02-treesiftr-advanced.html">treesifter advanced</a>
     </li>
     <li>
-      <a href="articles/R_exercises/03-FossilSim.html">R Notebook</a>
+      <a href="articles/R_exercises/03-FossilSim.html">FossilSim FBD Exercise</a>
     </li>
   </ul>
 </li>
@@ -119,7 +122,7 @@
 
 <div id="bayesian-models" class="section level1">
 
-<p>author: April Wright date: 08.09.2018 width: 960 height: 600</p>
+<p>author: April Wright date: 08.09.2018 autosize: true</p>
 </div>
 <div id="dice-rolling-activity-and" class="section level1">
 <h1 class="hasAnchor">
@@ -367,6 +370,52 @@ Final p-score 2 after  0 nni operations </code></pre>
 <p>==1</p>
 <p>Probabilities for each model will sum to 1</p>
 </div>
+<div id="likelihood-model-expectations-3" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-model-expectations-3" class="anchor"></a>Likelihood: Model expectations</h1>
+<table>
+<thead><tr class="header">
+<th>Roll</th>
+<th>Fair Die</th>
+<th>Loaded Die</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1/6</td>
+<td><strong>2/6</strong></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1/6</td>
+<td><strong>1/6</strong></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>1/6</td>
+<td><strong>1/6</strong></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>1/6</td>
+<td><strong>1/6</strong></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>1/6</td>
+<td><strong>1/6</strong></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>1/6</td>
+<td><strong>0/6</strong></td>
+</tr>
+</tbody>
+</table>
+<p>==1</p>
+<p>What would be the probability of rolling 5 sixes under the first model?</p>
+<p>Under the second?</p>
+</div>
 <div id="likelihood-the-mk-model" class="section level1">
 <h1 class="hasAnchor">
 <a href="#likelihood-the-mk-model" class="anchor"></a>Likelihood: The Mk Model</h1>
@@ -439,25 +488,13 @@ Final p-score 2 after  0 nni operations </code></pre>
 </li>
 </ul>
 </div>
-<div id="likelihood-the-mk-model-5" class="section level1">
-<h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-5" class="anchor"></a>Likelihood: The Mk Model</h1>
-<ul>
-<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
-<li>Assumptions:
-<ul>
-<li>Equally likely to transition to a state as from it</li>
-</ul>
-</li>
-</ul>
-</div>
 <div id="l-12" class="section level1">
 <h1 class="hasAnchor">
 <a href="#l-12" class="anchor"></a>L = [(1/2)]</h1>
 </div>
-<div id="likelihood-the-mk-model-6" class="section level1">
+<div id="likelihood-the-mk-model-5" class="section level1">
 <h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-6" class="anchor"></a>Likelihood: The Mk Model</h1>
+<a href="#likelihood-the-mk-model-5" class="anchor"></a>Likelihood: The Mk Model</h1>
 <ul>
 <li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
 <li>Assumptions:
@@ -472,24 +509,24 @@ Final p-score 2 after  0 nni operations </code></pre>
 <a href="#l-1212-12e-2v1" class="anchor"></a>L = [(1/2)(1/2 + (1/2e^(-2v/1)))]</h1>
 <p>in which v is the branch length</p>
 </div>
-<div id="likelihood-the-mk-model-7" class="section level1">
+<div id="likelihood-the-mk-model-6" class="section level1">
 <h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-7" class="anchor"></a>Likelihood: The Mk Model</h1>
+<a href="#likelihood-the-mk-model-6" class="anchor"></a>Likelihood: The Mk Model</h1>
 <ul>
 <li>Where do we get v from? v = substitution rate x time</li>
 </ul>
 </div>
-<div id="likelihood-the-mk-model-8" class="section level1">
+<div id="likelihood-the-mk-model-7" class="section level1">
 <h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-8" class="anchor"></a>Likelihood: The Mk Model</h1>
+<a href="#likelihood-the-mk-model-7" class="anchor"></a>Likelihood: The Mk Model</h1>
 <ul>
 <li>OK, cool</li>
 <li>How do we get the substitution rate?</li>
 </ul>
 </div>
-<div id="likelihood-the-mk-model-9" class="section level1">
+<div id="likelihood-the-mk-model-8" class="section level1">
 <h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-9" class="anchor"></a>Likelihood: The Mk Model</h1>
+<a href="#likelihood-the-mk-model-8" class="anchor"></a>Likelihood: The Mk Model</h1>
 <ul>
 <li>Let’s say we start with a character, 0
 <ul>
@@ -504,25 +541,25 @@ Final p-score 2 after  0 nni operations </code></pre>
 </li>
 </ul>
 </div>
-<div id="likelihood-the-mk-model-10" class="section level1">
+<div id="likelihood-the-mk-model-9" class="section level1">
 <h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-10" class="anchor"></a>Likelihood: The Mk Model</h1>
+<a href="#likelihood-the-mk-model-9" class="anchor"></a>Likelihood: The Mk Model</h1>
 <ul>
 <li>There are only two possibilities for binary data - change or no change</li>
 <li>We often refer to the substitution rate as $\beta$</li>
 <li>The probability that any event happens, where it results in a change or not, is often called $\mu$. $\mu$ for binary data is 2*$\beta$</li>
 </ul>
 </div>
-<div id="likelihood-the-mk-model-11" class="section level1">
+<div id="likelihood-the-mk-model-10" class="section level1">
 <h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-11" class="anchor"></a>Likelihood: The Mk Model</h1>
+<a href="#likelihood-the-mk-model-10" class="anchor"></a>Likelihood: The Mk Model</h1>
 <ul>
 <li>The waiting time between substitutions is Poisson-Distributed</li>
 </ul>
 </div>
-<div id="likelihood-the-mk-model-12" class="section level1">
+<div id="likelihood-the-mk-model-11" class="section level1">
 <h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-12" class="anchor"></a>Likelihood: The Mk Model</h1>
+<a href="#likelihood-the-mk-model-11" class="anchor"></a>Likelihood: The Mk Model</h1>
 <div id="prno-events-on-branch-e-mut" class="section level2">
 <h2 class="hasAnchor">
 <a href="#prno-events-on-branch-e-mut" class="anchor"></a>- Pr(no events on branch) = e^(-$\mu$*t)</h2>
@@ -544,9 +581,18 @@ Final p-score 2 after  0 nni operations </code></pre>
 <a href="#pr1-at-tip-0-at-node-121---e-2betat" class="anchor"></a>- Pr(1 at tip | 0 at node) = (1/2)<em>1 - e^(-2$\beta$</em>t)</h2>
 </div>
 </div>
-<div id="likelihood-the-mk-model-13" class="section level1">
+<div id="likelihood-the-mk-model-12" class="section level1">
 <h1 class="hasAnchor">
-<a href="#likelihood-the-mk-model-13" class="anchor"></a>Likelihood: The Mk Model</h1>
+<a href="#likelihood-the-mk-model-12" class="anchor"></a>Likelihood: The Mk Model</h1>
+<p>Break: treesiftr 6-10</p>
+</div>
+<div id="likelihood-branch-lengths" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-branch-lengths" class="anchor"></a>Likelihood: Branch lengths</h1>
+<div id="v-is-the-number-of-substitutions-per-site" class="section level2">
+<h2 class="hasAnchor">
+<a href="#v-is-the-number-of-substitutions-per-site" class="anchor"></a>v is the number of substitutions per site</h2>
+</div>
 <div id="-12-mut-2betat" class="section level2">
 <h2 class="hasAnchor">
 <a href="#-12-mut-2betat" class="anchor"></a>- ν = (1/2) $\mu$<em>t = 2$\beta$</em>t</h2>
@@ -555,6 +601,11 @@ Final p-score 2 after  0 nni operations </code></pre>
 <h2 class="hasAnchor">
 <a href="#v2-betat" class="anchor"></a>- v/2 = $\beta$*t</h2>
 </div>
+</div>
+<div id="likelihood-the-mk-model-13" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-the-mk-model-13" class="anchor"></a>Likelihood: The Mk Model</h1>
+<p>Break: <a href="http://phylo.bio.ku.edu/mephytis/tree-opt.html" class="uri">http://phylo.bio.ku.edu/mephytis/tree-opt.html</a></p>
 </div>
 <div id="likelihood-the-mk-model-14" class="section level1">
 <h1 class="hasAnchor">
@@ -786,7 +837,7 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="conditional-probabilities" class="section level1">
 <h1 class="hasAnchor">
 <a href="#conditional-probabilities" class="anchor"></a>Conditional Probabilities</h1>
-<p><img src="img/manakins/manakins.001.png" alt="manakins"></p>
+<p><img src="img/manakins/manakins.001.png" alt="manakins height=4in"></p>
 <ul>
 <li>What is the probability that a manakin is yellow-breasted given that it is red-headed?</li>
 </ul>
