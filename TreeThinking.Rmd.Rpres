@@ -59,8 +59,9 @@ plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ```
 Tip: What we are putting on the tree. May be species, individuals, or higher-order taxa.
 May be called terminal node, leaf, one degree node.
+Access in R: tree$tip.label
 
-Tree Terms: Tip
+Tree Terms: branch
 ========================================================
 ```{r}
 library(phytools)
@@ -69,6 +70,7 @@ plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ```
 Branch: What connects the tip to the tree. Can have a variety of units, which we will discuss over the next few days.
 May be called edge.
+Access in R: tree$edge
 
 Tree Terms: Node
 ========================================================
@@ -80,6 +82,20 @@ nodelabels()
 ```
 Node: Where nodes meet, implying a most recent common ancestor.
 May be called vertex, or three-degree node.
+
+Tree Terms: Node
+========================================================
+```{r}
+library(ape)
+tree <- pbtree(n = 5)
+plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+nodelabels(cex=3.5)
+tree$Nnode
+getMRCA(tree, c("t1", "t2"))
+```
+Node: Where nodes meet, implying a most recent common ancestor.
+May be called vertex, or three-degree node.
+
 
 Tree Terms
 ========================================================
@@ -172,6 +188,20 @@ Always arranged with rows being taxa and columns corresponding to a character - 
 
 Phylogenetic Data
 ========================================================
+Text editor - phylo data,  metadata
+
+Phylogenetic Data
+========================================================
+
+
+Phylogenetic Data
+========================================================
+
+DNA data tends to be simple
+
+
+Phylogenetic Data
+========================================================
 
 Example character from Brady: 
 
@@ -228,6 +258,11 @@ Parsimony
 
 ???
 Have them start installs on the next page while we do this.
+
+treesiftr
+========================================================
+
+RStudio --or--Shiny
 
 treesiftr
 ========================================================

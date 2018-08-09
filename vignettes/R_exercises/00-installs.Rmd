@@ -9,10 +9,12 @@ In RStudio:
 ```{r eval=FALSE}
 devtools::install_github("wrightaprilm/treestartr")
 devtools::install_github("wrightaprilm/treesiftr")
+install.packages("alignfigR")
 install.packages("phangorn")
 install.packages("phytools")
 install.packages("ggtree")
 install.packages("ggplot2")
+install.packages("FossilSim")
 ```
 
 In the Unix terminal:

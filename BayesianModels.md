@@ -36,21 +36,10 @@ Dice Rolling Activity: AND
 ========================================================
 
 ```r
-output_vector
-```
-
-```
-[[1]]
+output_vector[[1]]
 ```
 
 ![plot of chunk unnamed-chunk-2](BayesianModels-figure/unnamed-chunk-2-1.png)
-
-```
-
-[[2]]
-```
-
-![plot of chunk unnamed-chunk-2](BayesianModels-figure/unnamed-chunk-2-2.png)
 
 Dice Rolling Activity: OR
 ========================================================
@@ -61,21 +50,10 @@ Dice Rolling Activity: AND
 ========================================================
 
 ```r
-output_vector
-```
-
-```
-[[1]]
+output_vector[[1]]
 ```
 
 ![plot of chunk unnamed-chunk-3](BayesianModels-figure/unnamed-chunk-3-1.png)
-
-```
-
-[[2]]
-```
-
-![plot of chunk unnamed-chunk-3](BayesianModels-figure/unnamed-chunk-3-2.png)
 
 
 Dice Rolling Activity: Independence 
@@ -92,6 +70,7 @@ Assumed to be independent: Probability of events rolling a 1 and rolling a 2 bot
 
 - Do we expect that one dice roll is independent of the one prior to it?
 - Do we assume the probability of observing a 0 state at a tip is independent of state 0 being at its parent node?
+  - Does OR feel right for this situation?
 
 Dice Rolling Activity: Non-Independence 
 ========================================================

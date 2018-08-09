@@ -29,7 +29,7 @@ output_vector <- generate_tree_vis(sample_df = sample_df, alignment =           
 Dice Rolling Activity: AND
 ========================================================
 ```{r}
-output_vector
+output_vector[[1]]
 ```
 
 Dice Rolling Activity: OR
@@ -40,7 +40,7 @@ Explain OR probability rule with dice roll
 Dice Rolling Activity: AND
 ========================================================
 ```{r}
-output_vector
+output_vector[[1]]
 ```
 
 
@@ -58,6 +58,7 @@ Assumed to be independent: Probability of events rolling a 1 and rolling a 2 bot
 
 - Do we expect that one dice roll is independent of the one prior to it?
 - Do we assume the probability of observing a 0 state at a tip is independent of state 0 being at its parent node?
+  - Does OR feel right for this situation?
 
 Dice Rolling Activity: Non-Independence 
 ========================================================

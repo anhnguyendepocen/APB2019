@@ -62,8 +62,9 @@ plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ![plot of chunk unnamed-chunk-1](TreeThinking.Rmd-figure/unnamed-chunk-1-1.png)
 Tip: What we are putting on the tree. May be species, individuals, or higher-order taxa.
 May be called terminal node, leaf, one degree node.
+Access in R: tree$tip.label
 
-Tree Terms: Tip
+Tree Terms: branch
 ========================================================
 
 ```r
@@ -75,6 +76,7 @@ plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ![plot of chunk unnamed-chunk-2](TreeThinking.Rmd-figure/unnamed-chunk-2-1.png)
 Branch: What connects the tip to the tree. Can have a variety of units, which we will discuss over the next few days.
 May be called edge.
+Access in R: tree$edge
 
 Tree Terms: Node
 ========================================================
@@ -90,6 +92,37 @@ nodelabels()
 Node: Where nodes meet, implying a most recent common ancestor.
 May be called vertex, or three-degree node.
 
+Tree Terms: Node
+========================================================
+
+```r
+library(ape)
+tree <- pbtree(n = 5)
+plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+nodelabels(cex=3.5)
+```
+
+![plot of chunk unnamed-chunk-4](TreeThinking.Rmd-figure/unnamed-chunk-4-1.png)
+
+```r
+tree$Nnode
+```
+
+```
+[1] 4
+```
+
+```r
+getMRCA(tree, c("t1", "t2"))
+```
+
+```
+[1] 6
+```
+Node: Where nodes meet, implying a most recent common ancestor.
+May be called vertex, or three-degree node.
+
+
 Tree Terms
 ========================================================
 
@@ -97,7 +130,7 @@ Tree Terms
 plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5, direction = "downwards")
 ```
 
-![plot of chunk unnamed-chunk-4](TreeThinking.Rmd-figure/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](TreeThinking.Rmd-figure/unnamed-chunk-5-1.png)
 
 
 Tree Terms
@@ -108,7 +141,7 @@ Tree Terms
 plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5, type="fan")
 ```
 
-![plot of chunk unnamed-chunk-5](TreeThinking.Rmd-figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-6](TreeThinking.Rmd-figure/unnamed-chunk-6-1.png)
 
 
 Tree Terms: Rotation - reflecting taxa at a node
@@ -120,7 +153,7 @@ plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 nodelabels(cex = 3.5)
 ```
 
-![plot of chunk unnamed-chunk-6](TreeThinking.Rmd-figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-7](TreeThinking.Rmd-figure/unnamed-chunk-7-1.png)
 
 ```r
 #rotateNodes(tree, c(7, 8))
@@ -135,7 +168,7 @@ Tree Terms: Monophyletic - an ancestor and all its descendents
 is.monophyletic(tree, c("t1", "t2"), plot = TRUE, edge.width = 1.5, cex = 3.5, no.margin = TRUE)
 ```
 
-![plot of chunk unnamed-chunk-7](TreeThinking.Rmd-figure/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-8](TreeThinking.Rmd-figure/unnamed-chunk-8-1.png)
 
 ```
 [1] FALSE
@@ -150,7 +183,7 @@ Tree Terms: Rooting
 plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ```
 
-![plot of chunk unnamed-chunk-8](TreeThinking.Rmd-figure/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-9](TreeThinking.Rmd-figure/unnamed-chunk-9-1.png)
 
 Ingroup: Taxa of interest 
 
@@ -165,7 +198,7 @@ unroot_tree <- unroot(tree)
 plot(unroot_tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ```
 
-![plot of chunk unnamed-chunk-9](TreeThinking.Rmd-figure/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-10](TreeThinking.Rmd-figure/unnamed-chunk-10-1.png)
 
 How is a tree built?
 ========================================================
@@ -269,6 +302,20 @@ Always arranged with rows being taxa and columns corresponding to a character - 
 
 Phylogenetic Data
 ========================================================
+Text editor - phylo data,  metadata
+
+Phylogenetic Data
+========================================================
+
+
+Phylogenetic Data
+========================================================
+
+DNA data tends to be simple
+
+
+Phylogenetic Data
+========================================================
 
 Example character from Brady: 
 
@@ -303,7 +350,7 @@ colors <- c("blue", "purple","white")
 plot_alignment(char_data, colors, taxon_labels = TRUE) + theme(text = element_text(size=40))
 ```
 
-![plot of chunk unnamed-chunk-13](TreeThinking.Rmd-figure/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-14](TreeThinking.Rmd-figure/unnamed-chunk-14-1.png)
 
 Phylogenetic Data
 ========================================================
@@ -315,7 +362,7 @@ colors <- c("blue", "purple","white")
 plot_alignment(char_data, colors, taxon_labels = TRUE) + theme(text = element_text(size=40))
 ```
 
-![plot of chunk unnamed-chunk-14](TreeThinking.Rmd-figure/unnamed-chunk-14-1.png)
+![plot of chunk unnamed-chunk-15](TreeThinking.Rmd-figure/unnamed-chunk-15-1.png)
 How do we go from this to a tree?
 
 Parsimony
@@ -331,6 +378,11 @@ Parsimony
 
 ???
 Have them start installs on the next page while we do this.
+
+treesiftr
+========================================================
+
+RStudio --or--Shiny
 
 treesiftr
 ========================================================
@@ -385,35 +437,35 @@ output_vector #sample output - you will get more than this when you run in your 
 [[1]]
 ```
 
-![plot of chunk unnamed-chunk-17](TreeThinking.Rmd-figure/unnamed-chunk-17-1.png)
+![plot of chunk unnamed-chunk-18](TreeThinking.Rmd-figure/unnamed-chunk-18-1.png)
 
 ```
 
 [[2]]
 ```
 
-![plot of chunk unnamed-chunk-17](TreeThinking.Rmd-figure/unnamed-chunk-17-2.png)
+![plot of chunk unnamed-chunk-18](TreeThinking.Rmd-figure/unnamed-chunk-18-2.png)
 
 ```
 
 [[3]]
 ```
 
-![plot of chunk unnamed-chunk-17](TreeThinking.Rmd-figure/unnamed-chunk-17-3.png)
+![plot of chunk unnamed-chunk-18](TreeThinking.Rmd-figure/unnamed-chunk-18-3.png)
 
 ```
 
 [[4]]
 ```
 
-![plot of chunk unnamed-chunk-17](TreeThinking.Rmd-figure/unnamed-chunk-17-4.png)
+![plot of chunk unnamed-chunk-18](TreeThinking.Rmd-figure/unnamed-chunk-18-4.png)
 
 ```
 
 [[5]]
 ```
 
-![plot of chunk unnamed-chunk-17](TreeThinking.Rmd-figure/unnamed-chunk-17-5.png)
+![plot of chunk unnamed-chunk-18](TreeThinking.Rmd-figure/unnamed-chunk-18-5.png)
 
 ???
 Do a couple trees on the board, including the pruning algorithm.
@@ -573,9 +625,9 @@ samples
 ```
 
 ```
- [1]  6  8 22 13 11 45 16  6 43 33 43 32 47 60 59 25 14 33  2 18 22 54 25
-[24] 12 21 20 56 43  3 12 10 34 57 25  9 18 22 20 12 53  1 12 20 44 40 22
-[47] 18 12  6 21  3  4 54 55 25 59 48 15 38 25  6 42
+ [1]  8 23 49 43 27 42 11  5 31  1  9 15 52 57 40 34 38 41 30 31 46 32 37
+[24]  2  4 33 54  4 53  6 39 54 34 11  6 29  4  3 55 44  7  5 23 26 27  1
+[47]  4  3 25 18 19 46 48 40 52 41 24 27 36 53  3 39
 ```
 
 How do we assess confidence in a tree?
@@ -601,7 +653,7 @@ The bootstrap
 plot(tree1)
 ```
 
-![plot of chunk unnamed-chunk-29](TreeThinking.Rmd-figure/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-30](TreeThinking.Rmd-figure/unnamed-chunk-30-1.png)
 
 PAUP: The bootstrap
 ========================================================
@@ -618,7 +670,7 @@ plot(b_tre)
 nodelabels(b_tre$nodelabels)
 ```
 
-![plot of chunk unnamed-chunk-31](TreeThinking.Rmd-figure/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-32](TreeThinking.Rmd-figure/unnamed-chunk-32-1.png)
 
 
 PAUP: The bootstrap
@@ -636,7 +688,7 @@ plot(b_tre)
 nodelabels(b_tre$node.label)
 ```
 
-![plot of chunk unnamed-chunk-33](TreeThinking.Rmd-figure/unnamed-chunk-33-1.png)
+![plot of chunk unnamed-chunk-34](TreeThinking.Rmd-figure/unnamed-chunk-34-1.png)
 "b_tre$nodelabels" what is this construction?
 
 PAUP: The jacknife
@@ -655,7 +707,7 @@ plot(j_tre)
 nodelabels(j_tre$node.label)
 ```
 
-![plot of chunk unnamed-chunk-35](TreeThinking.Rmd-figure/unnamed-chunk-35-1.png)
+![plot of chunk unnamed-chunk-36](TreeThinking.Rmd-figure/unnamed-chunk-36-1.png)
 
 Parsimony: Some of these trees imply homoplasy
 ========================================================
