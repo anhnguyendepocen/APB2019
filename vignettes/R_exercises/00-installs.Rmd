@@ -13,8 +13,10 @@ install.packages("alignfigR")
 install.packages("phangorn")
 install.packages("phytools")
 install.packages("ggtree")
-install.packages("ggplot2")
 install.packages("FossilSim")
+source("https://bioconductor.org/biocLite.R")
+# biocLite("BiocUpgrade") # you may need this
+biocLite("ggtree")
 ```
 
 In the Unix terminal:
