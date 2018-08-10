@@ -17,6 +17,7 @@ install.packages("FossilSim")
 source("https://bioconductor.org/biocLite.R")
 # biocLite("BiocUpgrade") # you may need this
 biocLite("ggtree")
+biocLite("Biostrings")
 ```
 
 In the Unix terminal:

@@ -89,9 +89,9 @@ Dice Rolling Activity: Non-Independence
 When one outcome impacts the probability of the next outcome
 - The joint probability: Pr(A,B)
 - The probability of the first event: Pr(A)
-- The probability of the second event given the first: Pr(A|B)
+- The probability of the second event given the first: Pr(B|A)
 
-## Pr(A,B) = Pr(A)Pr(A|B)
+## Pr(A,B) = Pr(A)Pr(B|A)
 
 Dice Rolling Activity: Non-Independence 
 ========================================================
@@ -334,6 +334,48 @@ Likelihood: The Mk Model
 
 ![Parsimony Trees](img/Ptree_enum.png)
 
+Likelihood: The Mk Model 
+========================================================  
+
+- The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model
+- Assumptions:
+  - Characters are always in one of _k_ states
+  - Equally likely to transition to a state as from it
+  - Changes can occur anywhere along the branch
+  - Characters occur with equal frequency
+
+Likelihood: The Mk Model 
+========================================================  
+
+- The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model
+- Assumptions:
+  - Characters are always in one of _k_ states
+  - Equally likely to transition to a state as from it
+  - Changes can occur anywhere along the branch
+  - Characters occur with equal frequency
+
+# Parsimony - minimmize the number of steps on a tree. Score trees according to their number of steps
+
+Likelihood: The Mk Model 
+========================================================  
+
+- The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model
+- Assumptions:
+  - Characters are always in one of _k_ states
+  - Equally likely to transition to a state as from it
+  - Changes can occur anywhere along the branch
+  - Characters occur with equal frequency
+
+# Parsimony - minimize the number of steps on a tree. Score trees according to their number of steps
+# L = Pr(Data | Tree, Branch lengths, other model parameters)
+
+Likelihood: The Mk Model 
+========================================================  
+
+-Much about the evolutionary process assumed to have generated the data is similar betwen Mk and parsimony 
+
+-But also differences: under parsimony, every single character can have a different tree and length
+
 Likelihood: Gamma-Distributed Rate Heterogeneity
 ======================================================== 
 
@@ -342,19 +384,24 @@ Likelihood: Gamma-Distributed Rate Heterogeneity
 
 
 ```r
-curve(dgamma(x, shape = 0.5, scale = 10))
+library(dplyr)
+dat <- data.frame(draws = c(rgamma(n = 500, shape = 2, scale = 10),rgamma(n = 500, shape = .5, scale = 10)))
+
+d2 <- dat %>%  summarize(lower = quantile(dat$draws, probs = .25), middle = quantile(dat$draws, probs = .5), seventyfive = quantile(dat$draws, probs = .75), upper = quantile(dat$draws, probs = .99))
+
+ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercept = lower)) + geom_vline(data = d2, aes(xintercept = middle)) +geom_vline(data = d2, aes(xintercept = seventyfive)) +geom_vline(data = d2, aes(xintercept = upper)) 
 ```
 
 ![plot of chunk unnamed-chunk-5](BayesianModels-figure/unnamed-chunk-5-1.png)
 
-```r
-quarts <- c(0, .25, .5, .75)
-qgamma(quarts, shape=0.5, scale = 10)
-```
+## Less spread == evolutionary rates among characters *more* similar
 
-```
-[1] 0.0000000 0.5076552 2.2746821 6.6165185
-```
+
+Likelihood: Gamma-Distributed Rate Heterogeneity
+========================================================
+
+![](img/AIC.png)
+
 
 Likelihood: The Mk Model vs. Parsimony
 ======================================================== 
@@ -374,7 +421,12 @@ Likelihood: The Mk Model vs. Parsimony
 Likelihood: The Mk Model vs. Parsimony
 ======================================================== 
 - That's because of this - parsimony will always try to minimize homoplasy. Likelihood methods can model multiple changes (superimposed changes) along a branch.
+
 ![Parsimony Trees](img/Ptree_enum.png)
+
+Long-Branch Attraction
+======================================================== 
+![](img/felsenstein-zone-tree.png)
 
 A brief note on taxon sampling
 ======================================================== 
@@ -440,19 +492,6 @@ Priors
 =========================================================
 ## Priors reflect _prior_ knowledge or work about a problem
 
-Priors
-=========================================================
-## Priors reflect _prior_ knowledge or work about a problem
-
-We, for example, know that it is not incredibly likely to have super long branch lengths. Let's look at that branch length prior again:
-
-
-```rev
-for (i in 1:nbr){
-    br_lens[i] ~ dnExponential(br_len_lambda)
-    moves[mvi++] = mvScale(br_lens[i]) 
-}
-```
 
 Priors
 =========================================================
@@ -561,62 +600,86 @@ Marginal Probabilities
 
 ## This is a marginal probability
 
-# Pr(R|Y) = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
+## Pr(Y) = Pr(Y, R) + Pr(Y, B)
 
+
+Marginal Probabilities
+=========================================================
+
+![manakins](img/manakins/manakins.001.png)
+
+- What is the probability that a manakin is yellow-breasted? 4/7
+
+## This is a marginal probability
+
+## Pr(Y) = Pr(Y, R) + Pr(Y, B)
+
+## We'll be coming back to this in a moment
 
 Bayes Rule
 =========================================================
-## $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
 
-Simplifies to: 
+How do we calculate joint probabilities in a Bayesian context:
+
+# Pr(R|Y) Pr(Y) = Pr(Y|R) Pr( R )
+
+Bayes Rule
+=========================================================
+
+# If we divide byth sides by Pr(Y), we can simplify the statement 
+
+# $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
+
+# Simplifies to: 
 
 # Pr(R|Y) = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
 
 Bayes Rule
 =========================================================
-## $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
+# $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
 
-Simplifies to: 
+# Simplifies to: 
 
 # _Pr(R|Y)_ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
 
-- Posterior Probability of red-headedness
+# Posterior Probability of red-headedness
+
 Bayes Rule
 =========================================================
-## $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
+# $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
 
-Simplifies to: 
+#Simplifies to: 
 
 # Pr(R|Y) = $\frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}$
 
-- Likelihood of Red-headed given Yellow-breasted
+# Likelihood of Red-headed given Yellow-breasted
 
 Bayes Rule
 =========================================================
-## $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
+# $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
 
-Simplifies to: 
+# Simplifies to: 
 
 # Pr(R|Y) = $\frac{(Pr(Y | R)  Pr( R ))}{Pr(Y)}$
 
-- Marginal likelihood of being yellow-breasted
+# Marginal likelihood of being yellow-breasted
 
 
 Bayes Rule
 =========================================================
-## $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
+# $\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$
 
-Simplifies to: 
+# Simplifies to: 
 
 # Pr(R|Y) = $\frac{(Pr(Y | R)  Pr( R ))}{Pr(Y)}$
 
-- Prior probability of red-headedness
+# Prior probability of red-headedness
 
 Priors
 =========================================================
 ## Priors reflect _prior_ knowledge or work about a problem
 
-A prior can always be overcome by strong evidence
+# A prior can always be overcome by strong evidence
 
 Bayes Rule
 =========================================================
@@ -624,9 +687,9 @@ In practice
 
 # Pr(Model Hypothesis | Data) = 
 
-## $\frac{(Pr(Data | Model Hypothesis)  Pr( Model Hypothesis ))}{Pr(Data)}$
+# $\frac{(Pr(Data | Model Hypothesis)  Pr( Model Hypothesis ))}{Pr(Data)}$
 
-Pr(Data) derived via MCMC
+# Pr(Data) derived via heuristics
 
 Tree Searching Under ML and Bayesian Analyses
 ================================================
@@ -719,4 +782,17 @@ Hands On: Rev basics
 Hands On: RB_Discrete_morphology, using priors to relax Mk assumptions
 
 Hands On: RB_Discrete_morphology, analyzing the output
+Priors
+=========================================================
+## Priors reflect _prior_ knowledge or work about a problem
+
+We, for example, know that it is not incredibly likely to have super long branch lengths. Let's look at that branch length prior again:
+
+
+```rev
+for (i in 1:nbr){
+    br_lens[i] ~ dnExponential(br_len_lambda)
+    moves[mvi++] = mvScale(br_lens[i]) 
+}
+```
 

@@ -60,6 +60,14 @@ plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ```
 
 ![plot of chunk unnamed-chunk-1](TreeThinking.Rmd-figure/unnamed-chunk-1-1.png)
+
+```r
+tree$tip.label
+```
+
+```
+[1] "t1" "t4" "t5" "t3" "t2"
+```
 Tip: What we are putting on the tree. May be species, individuals, or higher-order taxa.
 May be called terminal node, leaf, one degree node.
 Access in R: tree$tip.label
@@ -70,10 +78,21 @@ Tree Terms: branch
 ```r
 library(phytools)
 tree <- pbtree(n = 5)
-plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+tree$edge
 ```
 
-![plot of chunk unnamed-chunk-2](TreeThinking.Rmd-figure/unnamed-chunk-2-1.png)
+```
+     [,1] [,2]
+[1,]    6    1
+[2,]    6    7
+[3,]    7    8
+[4,]    8    2
+[5,]    8    3
+[6,]    7    9
+[7,]    9    4
+[8,]    9    5
+```
 Branch: What connects the tip to the tree. Can have a variety of units, which we will discuss over the next few days.
 May be called edge.
 Access in R: tree$edge
@@ -98,13 +117,8 @@ Tree Terms: Node
 ```r
 library(ape)
 tree <- pbtree(n = 5)
-plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
-nodelabels(cex=3.5)
-```
-
-![plot of chunk unnamed-chunk-4](TreeThinking.Rmd-figure/unnamed-chunk-4-1.png)
-
-```r
+#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+#nodelabels(cex=3.5)
 tree$Nnode
 ```
 
@@ -117,7 +131,7 @@ getMRCA(tree, c("t1", "t2"))
 ```
 
 ```
-[1] 6
+[1] 7
 ```
 Node: Where nodes meet, implying a most recent common ancestor.
 May be called vertex, or three-degree node.
@@ -156,9 +170,24 @@ nodelabels(cex = 3.5)
 ![plot of chunk unnamed-chunk-7](TreeThinking.Rmd-figure/unnamed-chunk-7-1.png)
 
 ```r
-#rotateNodes(tree, c(7, 8))
-#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+rotateNodes(tree, c(7, 8))
 ```
+
+```
+
+Phylogenetic tree with 5 tips and 4 internal nodes.
+
+Tip labels:
+[1] "t2" "t1" "t4" "t5" "t3"
+
+Rooted; includes branch lengths.
+```
+
+```r
+plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+```
+
+![plot of chunk unnamed-chunk-7](TreeThinking.Rmd-figure/unnamed-chunk-7-2.png)
 
 Tree Terms: Monophyletic - an ancestor and all its descendents
 ========================================================
@@ -171,7 +200,7 @@ is.monophyletic(tree, c("t1", "t2"), plot = TRUE, edge.width = 1.5, cex = 3.5, n
 ![plot of chunk unnamed-chunk-8](TreeThinking.Rmd-figure/unnamed-chunk-8-1.png)
 
 ```
-[1] FALSE
+[1] TRUE
 ```
 
 Tree Terms: Rooting
@@ -589,7 +618,10 @@ library(ape)
 tree1 <- read.nexus("results/tree1.tre")
 tree2 <- read.nexus("results/tree2.tre")
 tree3 <- read.nexus("results/tree3.tre")
+plot(tree1)
 ```
+
+![plot of chunk unnamed-chunk-26](TreeThinking.Rmd-figure/unnamed-chunk-26-1.png)
 
 PAUP: What do we do with multiple "best" trees?
 ========================================================
@@ -625,9 +657,9 @@ samples
 ```
 
 ```
- [1]  8 23 49 43 27 42 11  5 31  1  9 15 52 57 40 34 38 41 30 31 46 32 37
-[24]  2  4 33 54  4 53  6 39 54 34 11  6 29  4  3 55 44  7  5 23 26 27  1
-[47]  4  3 25 18 19 46 48 40 52 41 24 27 36 53  3 39
+ [1] 51 20 50 49 24  6 59  2 44 55 34 27  1  3 44 23 19 49 12 26  3 62 13
+[24] 40 31 45 30 25 30 23 38 30  5 39 20  4 29 48 36 26  6 44 49 27 10 31
+[47] 15 24 51 49 23  1 60 17 43 49 26 41 13 60 21 25
 ```
 
 How do we assess confidence in a tree?
@@ -665,9 +697,9 @@ savetrees from=1 to=1 savebootp=nodelabels file=results/bootstrap.tre;
 ```
 
 ```r
-b_tre <- read.nexus("results/bootstrap.tre")
+b_tre <- read.nexus("results/trees.tre")
 plot(b_tre)
-nodelabels(b_tre$nodelabels)
+nodelabels(b_tre$node.label, cex = 3.5)
 ```
 
 ![plot of chunk unnamed-chunk-32](TreeThinking.Rmd-figure/unnamed-chunk-32-1.png)

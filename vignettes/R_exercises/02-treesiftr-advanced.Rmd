@@ -87,8 +87,7 @@ output_vector
 6.  Do all characters with the same parsimony score have the same likelihood score? You can add the likelihood score to the visualization like so:
 
 ```{r message=FALSE}
-output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears,
-                            p_score = TRUE, l_score = TRUE)
+output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears, pscore = TRUE, lscore = TRUE)
 output_vector
 ```
 

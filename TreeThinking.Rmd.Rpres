@@ -56,6 +56,7 @@ Tree Terms: Tip
 library(phytools)
 tree <- pbtree(n = 5)
 plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+tree$tip.label
 ```
 Tip: What we are putting on the tree. May be species, individuals, or higher-order taxa.
 May be called terminal node, leaf, one degree node.
@@ -66,7 +67,8 @@ Tree Terms: branch
 ```{r}
 library(phytools)
 tree <- pbtree(n = 5)
-plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+tree$edge
 ```
 Branch: What connects the tip to the tree. Can have a variety of units, which we will discuss over the next few days.
 May be called edge.
@@ -88,8 +90,8 @@ Tree Terms: Node
 ```{r}
 library(ape)
 tree <- pbtree(n = 5)
-plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
-nodelabels(cex=3.5)
+#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+#nodelabels(cex=3.5)
 tree$Nnode
 getMRCA(tree, c("t1", "t2"))
 ```
@@ -118,8 +120,8 @@ Tree Terms: Rotation - reflecting taxa at a node
 ```{r}
 plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 nodelabels(cex = 3.5)
-#rotateNodes(tree, c(7, 8))
-#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+rotateNodes(tree, c(7, 8))
+plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 ```
 
 Tree Terms: Monophyletic - an ancestor and all its descendents
@@ -407,6 +409,7 @@ library(ape)
 tree1 <- read.nexus("results/tree1.tre")
 tree2 <- read.nexus("results/tree2.tre")
 tree3 <- read.nexus("results/tree3.tre")
+plot(tree1)
 
 ```
 
@@ -470,9 +473,9 @@ bootstrap nreps=100 search=heuristic /addseq=random;
 savetrees from=1 to=1 savebootp=nodelabels file=results/bootstrap.tre;
 ```
 ```{r fig.width = 24, fig.height = 12}
-b_tre <- read.nexus("results/bootstrap.tre")
+b_tre <- read.nexus("results/trees.tre")
 plot(b_tre)
-nodelabels(b_tre$nodelabels)
+nodelabels(b_tre$node.label, cex = 3.5)
 ```
 
 

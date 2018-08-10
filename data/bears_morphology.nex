@@ -27,4 +27,13 @@ BEGIN DATA;
 
 END;
 
+begin assumptions;
+ usertype my_ctype stepmatrix=2
+     0 1
+ [0] . 1
+ [1] 0 .
+
+ ;
+end;
+
 
