@@ -360,12 +360,24 @@ Likelihood: The Mk Model
 Likelihood: Gamma-Distributed Rate Heterogeneity
 ======================================================== 
 
+```{r}
+library(dplyr)
+dat <- data.frame(draws = c(rgamma(n = 500, shape = 2, scale = 18),rgamma(n = 500, shape = .5, scale = 10)))
+
+d2 <- dat %>%  summarize(lower = quantile(dat$draws, probs = .25), middle = quantile(dat$draws, probs = .5), seventyfive = quantile(dat$draws, probs = .75), upper = quantile(dat$draws, probs = .99))
+
+ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercept = lower)) + geom_vline(data = d2, aes(xintercept = middle)) +geom_vline(data = d2, aes(xintercept = seventyfive)) +geom_vline(data = d2, aes(xintercept = upper)) 
+```
+
+Likelihood: Gamma-Distributed Rate Heterogeneity
+======================================================== 
+
 - Do you think all characters evolve at the same rate?
 - Clarke and Middleton 2008 had a very nice exploration of this in birds
 
 ```{r}
 library(dplyr)
-dat <- data.frame(draws = c(rgamma(n = 500, shape = 2, scale = 10),rgamma(n = 500, shape = .5, scale = 10)))
+dat <- data.frame(draws = c(rgamma(n = 500, shape = 6, scale = 10),rgamma(n = 500, shape = .5, scale = 10)))
 
 d2 <- dat %>%  summarize(lower = quantile(dat$draws, probs = .25), middle = quantile(dat$draws, probs = .5), seventyfive = quantile(dat$draws, probs = .75), upper = quantile(dat$draws, probs = .99))
 
@@ -661,7 +673,7 @@ Priors
 
 Bayes Rule
 =========================================================
-In practice
+# In practice
 
 # Pr(Model Hypothesis | Data) = 
 
@@ -673,24 +685,24 @@ Tree Searching Under ML and Bayesian Analyses
 ================================================
 ![Parsimony Trees](img/Ptree_enum.png)
 
-- We've covered that it is not practical to brute-force search trees
-- We've covered some heuristics
-- Parsimony heuristics can be simple - we are simply varying the topology
-  - What happens when we need to vary topology, branch lengths and a bunch of model parameters?
+## - We've covered that it is not practical to brute-force search trees
+## - We've covered some heuristics
+## - Parsimony heuristics can be simple - we are simply varying the topology
+##  - What happens when we need to vary topology, branch lengths and a bunch of model parameters?
   
 MCMC
 ================================================
 ## Markov Chain Monte Carlo
-- This sounds intimidating, but let's break it down a little bit
-  - Markov chain: Memoryless process
-  - Monte Carlo: Random proposals
+## - This sounds intimidating, but let's break it down a little bit
+##  - Markov chain: Memoryless process
+##  - Monte Carlo: Random proposals
 
 MCMC
 ================================================
 ## Markov Chain Monte Carlo
-- This sounds intimidating, but let's break it down a little bit
-  - Markov chain: Memoryless process
-  - Monte Carlo: Random proposals
+## - This sounds intimidating, but let's break it down a little bit
+##  - Markov chain: Memoryless process
+##  - Monte Carlo: Random proposals
 
 ## Put it together: we start with some value for a parameter, and make changes to it stoachstically. Then, we evaluate the likelihood score of that new parameter. If it is good, we keep it. If it is bad, we chuck it. 
 
