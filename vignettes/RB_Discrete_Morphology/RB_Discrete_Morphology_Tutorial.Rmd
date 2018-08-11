@@ -278,7 +278,7 @@ Create a new constant node called [[`n_taxa`]{}]{} that is equal to the
 number of species in our analysis (18). We will also create a constant
 node of the taxon names. This list will be used to initialize the tree.
 
-    taxa <- morpho.names()
+    names <- morpho.names()
     n_taxa <- morpho.size() 
 
 Next, create a workspace variable called [[`mvi`]{}]{}. This variable is
