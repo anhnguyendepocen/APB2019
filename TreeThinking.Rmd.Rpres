@@ -17,6 +17,8 @@ What do we do with a phylogeny?
 
 ![Skink tree from Wright et al. 2015](img/skinks.png)
 
+Skink tree from Wright et al. 2015
+
 What do we do with a phylogeny?
 ========================================================
 -Tell homology from convergence
@@ -25,12 +27,15 @@ What do we do with a phylogeny?
 ![Dolphin, Alex Vasenin via WikiMedia](img/A_spinner_dolphin_in_the_Red_Sea.jpg)
 ![Dolphin](img/skeleton.jpg)
 
+Dolphin, Alex Vasenin via WikiMedia
 
 What do we do with a phylogeny?
 ========================================================
 -Trace the origins of structures
 
 ![Ask a Biologist](img/AskABiologist.png)
+
+Image via Ask a Biologist
 
 What do we do with a phylogeny?
 ========================================================
@@ -214,6 +219,9 @@ synapomorphy of Amblyoponinae (Ward, 1994), including
 Amblyopone and Onychomyrmex.
 ![](img/2000px-Front_of_insect_head_diagram.svg.png)
 
+
+image via Ask a Biologist
+
 Phylogenetic Data
 ========================================================
 
@@ -227,6 +235,7 @@ How do we know we've captured the relevant character axes?
 
 ![Ask a biologist, Mike Hagelberg](img/butterfly_human_vision.jpg)
 
+image via Ask a biologist, Mike Hagelberg
 
 Phylogenetic Data
 ========================================================
@@ -295,9 +304,6 @@ treesiftr
 output_vector #sample output - you will get more than this when you run in your console
 ```
 
-???
-Do a couple trees on the board, including the pruning algorithm.
-Then allow them to play.
 
 
 Parsimony: Many trees for one character and 4 taxa
@@ -305,8 +311,9 @@ Parsimony: Many trees for one character and 4 taxa
 
 ![Parsimony Trees](img/Ptree_enum.png)
 
-???
 This is one character. Imagine many - enumeration is not possible.Also note that several trees have the same "best" tree
+
+Image via Mark Holder
 
 
 Parsimony: How do we find the most parsimonious tree?
@@ -354,8 +361,6 @@ Parsimony: Enumeration is not possible for more than 12 taxa
 
 ![Parsimony Trees](img/Ptree_enum.png)
 
-???
-This is one character. Imagine many - enumeration is not possible.Also note that several trees have the same "best" tree
 
 PAUP: Heuristic Searches
 ========================================================
@@ -548,4 +553,4 @@ PAUP: Different Step Matrices
 
 - For those of you who are more familiar with likelihood and Bayesian analyses, what does this sound like? 
 
-- We'll pick up this afternoon with Bayesian models
+- We'll pick up tomorrow with Bayesian models

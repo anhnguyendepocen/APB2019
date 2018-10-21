@@ -37,7 +37,7 @@ The Fossilized Birth-Death is a Macroevolutionary Model
 
 
 - Several key parameters
-![](img/fbd_gm_;ambda.png)
+![](img/fbd_gm_lambda.png)
 
 
 The Fossilized Birth-Death is a Macroevolutionary Model
@@ -113,6 +113,8 @@ What if we're interested in time?
 
 ![](img/stigallwright.png)
 
+Stigall and Wright 2017
+
 Why are we interested in time?
 ========================================================
 
@@ -126,7 +128,7 @@ Why are we interested in time?
 - Time might tell us something interesting about natural history
 ![Alan Turner, 2016](img/Crocs.png)
 
-
+Turner, et al. 2016
 
 Why are we interested in time?
 ========================================================
@@ -136,6 +138,7 @@ Why are we interested in time?
 - Time might be required to test hypotheses 
 
 ![Alfaro et al, 2018](img/Alfaro.png)
+Alfaro et al. 2018
 
 Information in a phylogenetic matrix
 ========================================================
@@ -277,6 +280,7 @@ Including Fossils: Calibrations
 
 ![Heath Sys Bio 2012](img/sysbiosys032f01_ht.gif)
 
+Heath 2012
 
 Including Fossils: Calibrations
 ========================================================
@@ -291,11 +295,14 @@ Including Fossils: Calibrations
 
 ![Warnock et al. 2012 Biol Letters](img/F1.large.jpg)
 
+Warnock et al. 2012
 
 Including Fossils: Calibrations
 ========================================================
 
 ![Warnock et al. 2015 Biol Letters](img/F3.large.jpg)
+
+Warnock et al. 2015
 
 Including Fossils: Fossilized Birth-Death
 ========================================================
@@ -303,6 +310,8 @@ Including Fossils: Fossilized Birth-Death
 Include fossils as tips in our analysis
 
 ![](img/tree_plot_with_fossils-eps-converted-to.png)
+
+Heath, 2014
 
 Including Fossils: Fossilized Birth-Death
 ========================================================
