@@ -95,7 +95,10 @@
     
     
 <p>FossilSim is an R package by Rachel Warnock, Joëlle Barido-Sottani and Walker Pett to simulate trees under the FBD. We will use FossilSim to generate distributions of trees under the FBD to get a better sense of the parameters.</p>
-<p>We will start with the birth and the death. Each person will increase the birth rate by 0.5. Do ten simulations (numbsims). We will keep psi and n constant for right now. When you are done, come up to the board and write down the average number of tips across your ten simulations.</p>
+<div id="birth-and-death" class="section level2">
+<h2 class="hasAnchor">
+<a href="#birth-and-death" class="anchor"></a>Birth and Death</h2>
+<p>We will start with the birth and the death. Each person will increase the birth rate by 0.5. Do ten simulations (numbsims). We will keep psi and n constant for right now. When you are done, come up to the board and write down the average number of tips across your ten simulations. Plot a couple of your trees. Are some of the nodes on this tree different than we are used to?</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(FossilSim)</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">trees &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/FossilSim/topics/sim.fbd.taxa">sim.fbd.taxa</a></span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">numbsim=</span><span class="dv">10</span>, <span class="dt">lambda=</span><span class="dv">3</span>, <span class="dt">mu=</span><span class="dv">2</span>, <span class="dt">psi=</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">t_t &lt;-<span class="st"> </span><span class="dv">0</span></a>
@@ -103,21 +106,35 @@
 <a class="sourceLine" id="cb1-5" data-line-number="5">  t_t &lt;-<span class="st"> </span>t_t <span class="op">+</span><span class="st"> </span><span class="kw">length</span>(trees[[i]]<span class="op">$</span>tip.label)</a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">}</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">t_t<span class="op">/</span><span class="dv">10</span></a></code></pre></div>
-<pre><code>## [1] 36</code></pre>
-<p>Have we discovered something confusing? If we increase the speciation rate without increasing either the number of extant tips or the fossilization rate, what happens to the fossils generated? Each person will now increase the fossil sampling rate by .5. Do ten simulations, and write the average number of tips on the board.</p>
+<pre><code>## [1] 29.6</code></pre>
+<p>Have we discovered something confusing? If we increase the speciation rate without increasing either the number of extant tips or the fossilization rate, what happens to the fossils generated?</p>
+</div>
+<div id="sampling-of-fossils-and-extant-taxa" class="section level2">
+<h2 class="hasAnchor">
+<a href="#sampling-of-fossils-and-extant-taxa" class="anchor"></a>Sampling of Fossils and Extant Taxa</h2>
+<p>Each person will now increase the fossil sampling rate by .5. Do ten simulations, and write the average number of tips on the board.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(FossilSim)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">trees &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/FossilSim/topics/sim.fbd.taxa">sim.fbd.taxa</a></span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">numbsim=</span><span class="dv">10</span>, <span class="dt">lambda=</span><span class="dv">3</span>, <span class="dt">mu=</span><span class="dv">2</span>, <span class="dt">psi=</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">trees &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/FossilSim/topics/sim.fbd.taxa">sim.fbd.taxa</a></span>(<span class="dt">n=</span><span class="dv">10</span>, <span class="dt">numbsim=</span><span class="dv">10</span>, <span class="dt">lambda=</span><span class="dv">3</span>, <span class="dt">mu=</span><span class="dv">2</span>, <span class="dt">psi=</span><span class="dv">3</span>)</a>
 <a class="sourceLine" id="cb3-3" data-line-number="3">t_t &lt;-<span class="st"> </span><span class="dv">0</span></a>
 <a class="sourceLine" id="cb3-4" data-line-number="4"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(trees)){ </a>
 <a class="sourceLine" id="cb3-5" data-line-number="5">  t_t &lt;-<span class="st"> </span>t_t <span class="op">+</span><span class="st"> </span><span class="kw">length</span>(trees[[i]]<span class="op">$</span>tip.label)</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">}</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7">t_t<span class="op">/</span><span class="dv">10</span></a></code></pre></div>
-<pre><code>## [1] 32.6</code></pre>
+<pre><code>## [1] 48.2</code></pre>
 <p>Lastly, let’s vary the number of extant tips. Each person add five to the n. Once again, simulate ten trees. Come up to the board and write your average number of tips, minus the number of extant tips.</p>
 <p>When you’re done with that, take a look at a couple trees. They look different than we are used to. See if you can construct an idea of what is happenening here.</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#birth-and-death">Birth and Death</a></li>
+      <li><a href="#sampling-of-fossils-and-extant-taxa">Sampling of Fossils and Extant Taxa</a></li>
+      </ul>
+</div>
       </div>
 
 </div>

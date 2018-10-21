@@ -114,7 +114,7 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Currently, treesiftr can be installed via the devtools <code>install_github</code> function.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"wrightaprilm/treesiftr"</span>)</a></code></pre></div>
-<pre><code>## Skipping install of 'treesiftr' from a github remote, the SHA1 (a28a4bd0) has not changed since last install.
+<pre><code>## Skipping install of 'treesiftr' from a github remote, the SHA1 (ec07434a) has not changed since last install.
 ##   Use `force = TRUE` to force installation</code></pre>
 </div>
 <div id="loading-required-packages" class="section level2">
@@ -141,39 +141,29 @@
 ## 5            5        6        1</code></pre>
 <p>This dataframe dispays the start character (the first character that will be visualized) and stop character (the final character that will be visualized).</p>
 <p>We can then build trees from each subset:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">output_vector &lt;-<span class="st"> </span><span class="kw">generate_tree_vis</span>(<span class="dt">sample_df =</span> sample_df, <span class="dt">alignment =</span>                                         aln_path, <span class="dt">tree =</span> tree, <span class="dt">phy_mat =</span> bears,                                    <span class="dt">pscore =</span> <span class="ot">TRUE</span>, <span class="dt">lscore =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>## Final p-score 2 after  0 nni operations 
-## Final p-score 2 after  0 nni operations 
-## Final p-score 2 after  0 nni operations 
-## Final p-score 2 after  1 nni operations 
-## Final p-score 2 after  1 nni operations</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">output_vector</a></code></pre></div>
-<pre><code>## [[1]]</code></pre>
-<p><img src="02-treesiftr-advanced_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<pre><code>## 
-## [[2]]</code></pre>
-<p><img src="02-treesiftr-advanced_files/figure-html/unnamed-chunk-4-2.png" width="700"></p>
-<pre><code>## 
-## [[3]]</code></pre>
-<p><img src="02-treesiftr-advanced_files/figure-html/unnamed-chunk-4-3.png" width="700"></p>
-<pre><code>## 
-## [[4]]</code></pre>
-<p><img src="02-treesiftr-advanced_files/figure-html/unnamed-chunk-4-4.png" width="700"></p>
-<pre><code>## 
-## [[5]]</code></pre>
-<p><img src="02-treesiftr-advanced_files/figure-html/unnamed-chunk-4-5.png" width="700"></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">output_vector &lt;-<span class="st"> </span><span class="kw">generate_tree_vis</span>(<span class="dt">sample_df =</span> sample_df, <span class="dt">alignment =</span>                                         aln_path, <span class="dt">tree =</span> tree, <span class="dt">phy_mat =</span> bears)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2">output_vector</a></code></pre></div>
 <p>Phangorn requires a starting tree to estimate a parsimony tree. We specify the tree we read in earlier for this purpose. <code>pscore</code> and <code>lscore</code> are optional arguments to view the parsimony and likelihood scores of the estimated trees. Remove these arguments before trying the exercises below.</p>
 </div>
 <div id="questions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#questions" class="anchor"></a>Questions</h2>
 <ol style="list-style-type: decimal">
-<li><p>Visualize characters 1 and 2. What is the parsimony score for this character set. Click “Do you want to print the parsimony score?” in the infterface to check your answer.</p></li>
-<li><p>Visualize characters 2 and 3. What monophyletic group from tree 1 is no longer on this tree? Click below for the answer</p></li>
+<li>Visualize characters 1 and 2. What is the parsimony score for this character set. Add the parismony score to the visual like so:</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">output_vector &lt;-<span class="st"> </span><span class="kw">generate_tree_vis</span>(<span class="dt">sample_df =</span> sample_df, <span class="dt">alignment =</span>                                         aln_path, <span class="dt">tree =</span> tree, <span class="dt">phy_mat =</span> bears,</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">                            <span class="dt">p_score =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">output_vector</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Visualize characters 2 and 3. What monophyletic group from tree 1 is no longer on this tree?</p></li>
 <li><p>What is the parsimony score of the 31-34 character set? Click “Do you want to print the parsimony score?” in the infterface to check your answer.</p></li>
 <li><p>Which character, 8, 9 or 10, represents a reveral?</p></li>
 <li><p>What information would we need to decide if the “1” state possesed by <em>Zaragocyon_daamsi</em> is an autapomorphy?</p></li>
-<li><p>Click the switch that says “Do you want to print the likelihood score under the Mk model?” <em>and</em> the switch that says “Do you want to print the parsimony score?”. Do all characters with the same parsimony score have the same likelihood score?</p></li>
+<li><p>Do all characters with the same parsimony score have the same likelihood score? You can add the likelihood score to the visualization like so:</p></li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">output_vector &lt;-<span class="st"> </span><span class="kw">generate_tree_vis</span>(<span class="dt">sample_df =</span> sample_df, <span class="dt">alignment =</span>                                         aln_path, <span class="dt">tree =</span> tree, <span class="dt">phy_mat =</span> bears, <span class="dt">pscore =</span> <span class="ot">TRUE</span>, <span class="dt">lscore =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">output_vector</a></code></pre></div>
+<ol start="7" style="list-style-type: decimal">
 <li><p>Compare characters 46-49 and 47-50. Why does set 47-50 have a better likelihood than 46-49?</p></li>
 <li><p>What is the relationship between the likelihood score and increasing the number of characters visualized?</p></li>
 <li><p>What is the minimum number adding a character can add to the parsimony score?</p></li>

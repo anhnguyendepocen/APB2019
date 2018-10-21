@@ -149,12 +149,8 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="dice-rolling-activity-and-2" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dice-rolling-activity-and-2" class="anchor"></a>Dice Rolling Activity: AND</h1>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">output_vector</a></code></pre></div>
-<pre><code>[[1]]</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">output_vector[[<span class="dv">1</span>]]</a></code></pre></div>
 <p><img src="BayesianModels-figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
-<pre><code>
-[[2]]</code></pre>
-<p><img src="BayesianModels-figure/unnamed-chunk-2-2.png" alt="plot of chunk unnamed-chunk-2"></p>
 </div>
 <div id="dice-rolling-activity-or" class="section level1">
 <h1 class="hasAnchor">
@@ -164,12 +160,8 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="dice-rolling-activity-and-3" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dice-rolling-activity-and-3" class="anchor"></a>Dice Rolling Activity: AND</h1>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">output_vector</a></code></pre></div>
-<pre><code>[[1]]</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">output_vector[[<span class="dv">1</span>]]</a></code></pre></div>
 <p><img src="BayesianModels-figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"></p>
-<pre><code>
-[[2]]</code></pre>
-<p><img src="BayesianModels-figure/unnamed-chunk-3-2.png" alt="plot of chunk unnamed-chunk-3"></p>
 </div>
 <div id="dice-rolling-activity-independence" class="section level1">
 <h1 class="hasAnchor">
@@ -189,7 +181,11 @@ Final p-score 2 after  0 nni operations </code></pre>
 <a href="#pr12-pr1pr2-1" class="anchor"></a>Pr(1,2) = Pr(1)Pr(2)</h2>
 <ul>
 <li>Do we expect that one dice roll is independent of the one prior to it?</li>
-<li>Do we assume the probability of observing a 0 state at a tip is independent of state 0 being at its parent node?</li>
+<li>Do we assume the probability of observing a 0 state at a tip is independent of state 0 being at its parent node?
+<ul>
+<li>Does OR feel right for this situation?</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -211,17 +207,17 @@ Final p-score 2 after  0 nni operations </code></pre>
 <ul>
 <li>The joint probability: Pr(A,B)</li>
 <li>The probability of the first event: Pr(A)</li>
-<li>The probability of the second event given the first: Pr(A|B)</li>
+<li>The probability of the second event given the first: Pr(B|A)</li>
 </ul>
-<div id="prab-praprab" class="section level2">
+<div id="prab-praprba" class="section level2">
 <h2 class="hasAnchor">
-<a href="#prab-praprab" class="anchor"></a>Pr(A,B) = Pr(A)Pr(A|B)</h2>
+<a href="#prab-praprba" class="anchor"></a>Pr(A,B) = Pr(A)Pr(B|A)</h2>
 </div>
 </div>
 <div id="dice-rolling-activity-non-independence-2" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dice-rolling-activity-non-independence-2" class="anchor"></a>Dice Rolling Activity: Non-Independence</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">output_vector[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">output_vector[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>[[1]]</code></pre>
 <p><img src="BayesianModels-figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
 </div>
@@ -659,18 +655,103 @@ Final p-score 2 after  0 nni operations </code></pre>
 <a href="#likelihood-the-mk-model-17" class="anchor"></a>Likelihood: The Mk Model</h1>
 <p><img src="img/Ptree_enum.png" alt="Parsimony Trees"></p>
 </div>
+<div id="likelihood-the-mk-model-18" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-the-mk-model-18" class="anchor"></a>Likelihood: The Mk Model</h1>
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="likelihood-the-mk-model-19" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-the-mk-model-19" class="anchor"></a>Likelihood: The Mk Model</h1>
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="parsimony---minimmize-the-number-of-steps-on-a-tree--score-trees-according-to-their-number-of-steps" class="section level1">
+<h1 class="hasAnchor">
+<a href="#parsimony---minimmize-the-number-of-steps-on-a-tree--score-trees-according-to-their-number-of-steps" class="anchor"></a>Parsimony - minimmize the number of steps on a tree. Score trees according to their number of steps</h1>
+</div>
+<div id="likelihood-the-mk-model-20" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-the-mk-model-20" class="anchor"></a>Likelihood: The Mk Model</h1>
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="parsimony---minimize-the-number-of-steps-on-a-tree--score-trees-according-to-their-number-of-steps" class="section level1">
+<h1 class="hasAnchor">
+<a href="#parsimony---minimize-the-number-of-steps-on-a-tree--score-trees-according-to-their-number-of-steps" class="anchor"></a>Parsimony - minimize the number of steps on a tree. Score trees according to their number of steps</h1>
+</div>
+<div id="l-prdata-tree-branch-lengths-other-model-parameters" class="section level1">
+<h1 class="hasAnchor">
+<a href="#l-prdata-tree-branch-lengths-other-model-parameters" class="anchor"></a>L = Pr(Data | Tree, Branch lengths, other model parameters)</h1>
+</div>
+<div id="likelihood-the-mk-model-21" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-the-mk-model-21" class="anchor"></a>Likelihood: The Mk Model</h1>
+<p>-Much about the evolutionary process assumed to have generated the data is similar betwen Mk and parsimony</p>
+<p>-But also differences: under parsimony, every single character can have a different tree and length</p>
+</div>
 <div id="likelihood-gamma-distributed-rate-heterogeneity" class="section level1">
 <h1 class="hasAnchor">
 <a href="#likelihood-gamma-distributed-rate-heterogeneity" class="anchor"></a>Likelihood: Gamma-Distributed Rate Heterogeneity</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">draws =</span> <span class="kw">c</span>(<span class="kw">rgamma</span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">scale =</span> <span class="dv">18</span>),<span class="kw">rgamma</span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="fl">.5</span>, <span class="dt">scale =</span> <span class="dv">10</span>)))</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">d2 &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.25</span>), <span class="dt">middle =</span> <span class="kw">quantile</span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.5</span>), <span class="dt">seventyfive =</span> <span class="kw">quantile</span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.75</span>), <span class="dt">upper =</span> <span class="kw">quantile</span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.99</span>))</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">ggplot</a></span>(dat, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">x=</span>draws)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_density">geom_density</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> lower)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> middle)) <span class="op">+</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> seventyfive)) <span class="op">+</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> upper)) </a></code></pre></div>
+<p><img src="BayesianModels-figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
+</div>
+<div id="likelihood-gamma-distributed-rate-heterogeneity-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-gamma-distributed-rate-heterogeneity-1" class="anchor"></a>Likelihood: Gamma-Distributed Rate Heterogeneity</h1>
 <ul>
 <li>Do you think all characters evolve at the same rate?</li>
 <li>Clarke and Middleton 2008 had a very nice exploration of this in birds</li>
 </ul>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">curve</span>(<span class="kw">dgamma</span>(x, <span class="dt">shape =</span> <span class="fl">0.5</span>, <span class="dt">scale =</span> <span class="dv">10</span>))</a></code></pre></div>
-<p><img src="BayesianModels-figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">quarts &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">.25</span>, <span class="fl">.5</span>, <span class="fl">.75</span>)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw">qgamma</span>(quarts, <span class="dt">shape=</span><span class="fl">0.5</span>, <span class="dt">scale =</span> <span class="dv">10</span>)</a></code></pre></div>
-<pre><code>[1] 0.0000000 0.5076552 2.2746821 6.6165185</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">draws =</span> <span class="kw">c</span>(<span class="kw">rgamma</span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="dv">6</span>, <span class="dt">scale =</span> <span class="dv">10</span>),<span class="kw">rgamma</span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="fl">.5</span>, <span class="dt">scale =</span> <span class="dv">10</span>)))</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">d2 &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">lower =</span> <span class="kw">quantile</span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.25</span>), <span class="dt">middle =</span> <span class="kw">quantile</span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.5</span>), <span class="dt">seventyfive =</span> <span class="kw">quantile</span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.75</span>), <span class="dt">upper =</span> <span class="kw">quantile</span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.99</span>))</a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">ggplot</a></span>(dat, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">x=</span>draws)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_density">geom_density</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> lower)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> middle)) <span class="op">+</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> seventyfive)) <span class="op">+</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_abline">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> upper)) </a></code></pre></div>
+<p><img src="BayesianModels-figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
+<div id="less-spread-evolutionary-rates-among-characters-more-similar" class="section level2">
+<h2 class="hasAnchor">
+<a href="#less-spread-evolutionary-rates-among-characters-more-similar" class="anchor"></a>Less spread == evolutionary rates among characters <em>more</em> similar</h2>
+</div>
+</div>
+<div id="likelihood-gamma-distributed-rate-heterogeneity-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-gamma-distributed-rate-heterogeneity-2" class="anchor"></a>Likelihood: Gamma-Distributed Rate Heterogeneity</h1>
+<p><img src="img/AIC.png"></p>
 </div>
 <div id="likelihood-the-mk-model-vs-parsimony" class="section level1">
 <h1 class="hasAnchor">
@@ -686,6 +767,7 @@ Final p-score 2 after  0 nni operations </code></pre>
 <li>Because I published this <img src="img/journal.pone.0109210.g003.png">
 </li>
 </ul>
+<p>Wright and Hillis 2014</p>
 </div>
 <div id="likelihood-the-mk-model-vs-parsimony-2" class="section level1">
 <h1 class="hasAnchor">
@@ -699,9 +781,15 @@ Final p-score 2 after  0 nni operations </code></pre>
 <h1 class="hasAnchor">
 <a href="#likelihood-the-mk-model-vs-parsimony-3" class="anchor"></a>Likelihood: The Mk Model vs. Parsimony</h1>
 <ul>
-<li>That’s because of this - parsimony will always try to minimize homoplasy. Likelihood methods can model multiple changes (superimposed changes) along a branch. <img src="img/Ptree_enum.png" alt="Parsimony Trees">
-</li>
+<li>That’s because of this - parsimony will always try to minimize homoplasy. Likelihood methods can model multiple changes (superimposed changes) along a branch.</li>
 </ul>
+<p><img src="img/Ptree_enum.png" alt="Parsimony Trees"></p>
+</div>
+<div id="long-branch-attraction" class="section level1">
+<h1 class="hasAnchor">
+<a href="#long-branch-attraction" class="anchor"></a>Long-Branch Attraction</h1>
+<p><img src="img/felsenstein-zone-tree.png"></p>
+<p>Felsenstein 1978</p>
 </div>
 <div id="a-brief-note-on-taxon-sampling" class="section level1">
 <h1 class="hasAnchor">
@@ -788,19 +876,6 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="priors-1" class="section level1">
 <h1 class="hasAnchor">
 <a href="#priors-1" class="anchor"></a>Priors</h1>
-<div id="priors-reflect-prior-knowledge-or-work-about-a-problem-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#priors-reflect-prior-knowledge-or-work-about-a-problem-1" class="anchor"></a>Priors reflect <em>prior</em> knowledge or work about a problem</h2>
-<p>We, for example, know that it is not incredibly likely to have super long branch lengths. Let’s look at that branch length prior again:</p>
-<pre class="rev"><code>for (i in 1:nbr){
-    br_lens[i] ~ dnExponential(br_len_lambda)
-    moves[mvi++] = mvScale(br_lens[i]) 
-}</code></pre>
-</div>
-</div>
-<div id="priors-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#priors-2" class="anchor"></a>Priors</h1>
 <p><img src="img/manakins/manakins.001.png" alt="manakins"></p>
 </div>
 <div id="taking-a-step-back" class="section level1">
@@ -943,119 +1018,189 @@ Final p-score 2 after  0 nni operations </code></pre>
 <h2 class="hasAnchor">
 <a href="#this-is-a-marginal-probability-1" class="anchor"></a>This is a marginal probability</h2>
 </div>
+<div id="pry-pry-r-pry-b" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pry-pry-r-pry-b" class="anchor"></a>Pr(Y) = Pr(Y, R) + Pr(Y, B)</h2>
+</div>
+</div>
+<div id="marginal-probabilities-3" class="section level1">
+<h1 class="hasAnchor">
+<a href="#marginal-probabilities-3" class="anchor"></a>Marginal Probabilities</h1>
+<p><img src="img/manakins/manakins.001.png" alt="manakins"></p>
+<ul>
+<li>What is the probability that a manakin is yellow-breasted? 4/7</li>
+</ul>
+<div id="this-is-a-marginal-probability-2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#this-is-a-marginal-probability-2" class="anchor"></a>This is a marginal probability</h2>
+</div>
+<div id="pry-pry-r-pry-b-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#pry-pry-r-pry-b-1" class="anchor"></a>Pr(Y) = Pr(Y, R) + Pr(Y, B)</h2>
+</div>
+<div id="well-be-coming-back-to-this-in-a-moment" class="section level2">
+<h2 class="hasAnchor">
+<a href="#well-be-coming-back-to-this-in-a-moment" class="anchor"></a>We’ll be coming back to this in a moment</h2>
+</div>
+</div>
+<div id="bayes-rule" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bayes-rule" class="anchor"></a>Bayes Rule</h1>
+<p>How do we calculate joint probabilities in a Bayesian context:</p>
+</div>
+<div id="prry-pry-pryr-pr-r" class="section level1">
+<h1 class="hasAnchor">
+<a href="#prry-pry-pryr-pr-r" class="anchor"></a>Pr(R|Y) Pr(Y) = Pr(Y|R) Pr( R )</h1>
+</div>
+<div id="bayes-rule-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bayes-rule-1" class="anchor"></a>Bayes Rule</h1>
+</div>
+<div id="if-we-divide-byth-sides-by-pry-we-can-simplify-the-statement" class="section level1">
+<h1 class="hasAnchor">
+<a href="#if-we-divide-byth-sides-by-pry-we-can-simplify-the-statement" class="anchor"></a>If we divide byth sides by Pr(Y), we can simplify the statement</h1>
+</div>
+<div id="fracprr-yprypry-fracpry-rpr-r-pry-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#fracprr-yprypry-fracpry-rpr-r-pry-1" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
+</div>
+<div id="simplifies-to" class="section level1">
+<h1 class="hasAnchor">
+<a href="#simplifies-to" class="anchor"></a>Simplifies to:</h1>
 </div>
 <div id="prry-fracpry-rpr-r-pry" class="section level1">
 <h1 class="hasAnchor">
 <a href="#prry-fracpry-rpr-r-pry" class="anchor"></a>Pr(R|Y) = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
 </div>
-<div id="bayes-rule" class="section level1">
-<h1 class="hasAnchor">
-<a href="#bayes-rule" class="anchor"></a>Bayes Rule</h1>
-<div id="fracprr-yprypry-fracpry-rpr-r-pry-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fracprr-yprypry-fracpry-rpr-r-pry-1" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h2>
-<p>Simplifies to:</p>
-</div>
-</div>
-<div id="prry-fracpry-rpr-r-pry-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#prry-fracpry-rpr-r-pry-1" class="anchor"></a>Pr(R|Y) = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
-</div>
-<div id="bayes-rule-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#bayes-rule-1" class="anchor"></a>Bayes Rule</h1>
-<div id="fracprr-yprypry-fracpry-rpr-r-pry-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fracprr-yprypry-fracpry-rpr-r-pry-2" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h2>
-<p>Simplifies to:</p>
-</div>
-</div>
-<div id="prry-fracpry-rpr-r-pry-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#prry-fracpry-rpr-r-pry-2" class="anchor"></a><em>Pr(R|Y)</em> = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
-<ul>
-<li>
-<p>Posterior Probability of red-headedness Bayes Rule =========================================================</p>
-<h2 id="fracprr-yprypry-fracpry-rpr-r-pry-3">$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h2>
-</li>
-</ul>
-<p>Simplifies to:</p>
-</div>
-<div id="prry-fracpry-r-pr-r-pry" class="section level1">
-<h1 class="hasAnchor">
-<a href="#prry-fracpry-r-pr-r-pry" class="anchor"></a>Pr(R|Y) = $\frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}$</h1>
-<ul>
-<li>Likelihood of Red-headed given Yellow-breasted</li>
-</ul>
-</div>
 <div id="bayes-rule-2" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bayes-rule-2" class="anchor"></a>Bayes Rule</h1>
-<div id="fracprr-yprypry-fracpry-rpr-r-pry-4" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fracprr-yprypry-fracpry-rpr-r-pry-4" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h2>
-<p>Simplifies to:</p>
 </div>
-</div>
-<div id="prry-fracpry-r-pr-r-pry-1" class="section level1">
+<div id="fracprr-yprypry-fracpry-rpr-r-pry-2" class="section level1">
 <h1 class="hasAnchor">
-<a href="#prry-fracpry-r-pr-r-pry-1" class="anchor"></a>Pr(R|Y) = $\frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}$</h1>
-<ul>
-<li>Marginal likelihood of being yellow-breasted</li>
-</ul>
+<a href="#fracprr-yprypry-fracpry-rpr-r-pry-2" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
+</div>
+<div id="simplifies-to-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#simplifies-to-1" class="anchor"></a>Simplifies to:</h1>
+</div>
+<div id="prry-fracpry-rpr-r-pry-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#prry-fracpry-rpr-r-pry-1" class="anchor"></a><em>Pr(R|Y)</em> = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
+</div>
+<div id="posterior-probability-of-red-headedness" class="section level1">
+<h1 class="hasAnchor">
+<a href="#posterior-probability-of-red-headedness" class="anchor"></a>Posterior Probability of red-headedness</h1>
 </div>
 <div id="bayes-rule-3" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bayes-rule-3" class="anchor"></a>Bayes Rule</h1>
-<div id="fracprr-yprypry-fracpry-rpr-r-pry-5" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fracprr-yprypry-fracpry-rpr-r-pry-5" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h2>
-<p>Simplifies to:</p>
 </div>
-</div>
-<div id="prry-fracpry-r-pr-r-pry-2" class="section level1">
+<div id="fracprr-yprypry-fracpry-rpr-r-pry-3" class="section level1">
 <h1 class="hasAnchor">
-<a href="#prry-fracpry-r-pr-r-pry-2" class="anchor"></a>Pr(R|Y) = $\frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}$</h1>
-<ul>
-<li>Prior probability of red-headedness</li>
-</ul>
+<a href="#fracprr-yprypry-fracpry-rpr-r-pry-3" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
+<p>#Simplifies to:</p>
 </div>
-<div id="priors-3" class="section level1">
+<div id="prry-fracpry-r-pr-r-pry" class="section level1">
 <h1 class="hasAnchor">
-<a href="#priors-3" class="anchor"></a>Priors</h1>
-<div id="priors-reflect-prior-knowledge-or-work-about-a-problem-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#priors-reflect-prior-knowledge-or-work-about-a-problem-2" class="anchor"></a>Priors reflect <em>prior</em> knowledge or work about a problem</h2>
-<p>A prior can always be overcome by strong evidence</p>
+<a href="#prry-fracpry-r-pr-r-pry" class="anchor"></a>Pr(R|Y) = $\frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}$</h1>
 </div>
+<div id="likelihood-of-red-headed-given-yellow-breasted" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-of-red-headed-given-yellow-breasted" class="anchor"></a>Likelihood of Red-headed given Yellow-breasted</h1>
 </div>
 <div id="bayes-rule-4" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bayes-rule-4" class="anchor"></a>Bayes Rule</h1>
-<p>In practice</p>
+</div>
+<div id="fracprr-yprypry-fracpry-rpr-r-pry-4" class="section level1">
+<h1 class="hasAnchor">
+<a href="#fracprr-yprypry-fracpry-rpr-r-pry-4" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
+</div>
+<div id="simplifies-to-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#simplifies-to-2" class="anchor"></a>Simplifies to:</h1>
+</div>
+<div id="prry-fracpry-r-pr-r-pry-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#prry-fracpry-r-pr-r-pry-1" class="anchor"></a>Pr(R|Y) = $\frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}$</h1>
+</div>
+<div id="marginal-likelihood-of-being-yellow-breasted" class="section level1">
+<h1 class="hasAnchor">
+<a href="#marginal-likelihood-of-being-yellow-breasted" class="anchor"></a>Marginal likelihood of being yellow-breasted</h1>
+</div>
+<div id="bayes-rule-5" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bayes-rule-5" class="anchor"></a>Bayes Rule</h1>
+</div>
+<div id="fracprr-yprypry-fracpry-rpr-r-pry-5" class="section level1">
+<h1 class="hasAnchor">
+<a href="#fracprr-yprypry-fracpry-rpr-r-pry-5" class="anchor"></a>$\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}$ = $\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}$</h1>
+</div>
+<div id="simplifies-to-3" class="section level1">
+<h1 class="hasAnchor">
+<a href="#simplifies-to-3" class="anchor"></a>Simplifies to:</h1>
+</div>
+<div id="prry-fracpry-r-pr-r-pry-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#prry-fracpry-r-pr-r-pry-2" class="anchor"></a>Pr(R|Y) = $\frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}$</h1>
+</div>
+<div id="prior-probability-of-red-headedness" class="section level1">
+<h1 class="hasAnchor">
+<a href="#prior-probability-of-red-headedness" class="anchor"></a>Prior probability of red-headedness</h1>
+</div>
+<div id="priors-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#priors-2" class="anchor"></a>Priors</h1>
+<div id="priors-reflect-prior-knowledge-or-work-about-a-problem-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#priors-reflect-prior-knowledge-or-work-about-a-problem-1" class="anchor"></a>Priors reflect <em>prior</em> knowledge or work about a problem</h2>
+</div>
+</div>
+<div id="a-prior-can-always-be-overcome-by-strong-evidence" class="section level1">
+<h1 class="hasAnchor">
+<a href="#a-prior-can-always-be-overcome-by-strong-evidence" class="anchor"></a>A prior can always be overcome by strong evidence</h1>
+</div>
+<div id="bayes-rule-6" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bayes-rule-6" class="anchor"></a>Bayes Rule</h1>
+</div>
+<div id="in-practice" class="section level1">
+<h1 class="hasAnchor">
+<a href="#in-practice" class="anchor"></a>In practice</h1>
 </div>
 <div id="prmodel-hypothesis-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#prmodel-hypothesis-data" class="anchor"></a>Pr(Model Hypothesis | Data) =</h1>
-<div id="fracprdata-model-hypothesis-pr-model-hypothesis-prdata" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fracprdata-model-hypothesis-pr-model-hypothesis-prdata" class="anchor"></a>$\frac{(Pr(Data | Model Hypothesis) Pr( Model Hypothesis ))}{Pr(Data)}$</h2>
-<p>Pr(Data) derived via MCMC</p>
 </div>
+<div id="fracprdata-model-hypothesis-pr-model-hypothesis-prdata" class="section level1">
+<h1 class="hasAnchor">
+<a href="#fracprdata-model-hypothesis-pr-model-hypothesis-prdata" class="anchor"></a>$\frac{(Pr(Data | Model Hypothesis) Pr( Model Hypothesis ))}{Pr(Data)}$</h1>
+</div>
+<div id="prdata-derived-via-heuristics" class="section level1">
+<h1 class="hasAnchor">
+<a href="#prdata-derived-via-heuristics" class="anchor"></a>Pr(Data) derived via heuristics</h1>
 </div>
 <div id="tree-searching-under-ml-and-bayesian-analyses" class="section level1">
 <h1 class="hasAnchor">
 <a href="#tree-searching-under-ml-and-bayesian-analyses" class="anchor"></a>Tree Searching Under ML and Bayesian Analyses</h1>
 <p><img src="img/Ptree_enum.png" alt="Parsimony Trees"></p>
-<ul>
-<li>We’ve covered that it is not practical to brute-force search trees</li>
-<li>We’ve covered some heuristics</li>
-<li>Parsimony heuristics can be simple - we are simply varying the topology
-<ul>
-<li>What happens when we need to vary topology, branch lengths and a bunch of model parameters?</li>
-</ul>
-</li>
-</ul>
+<div id="weve-covered-that-it-is-not-practical-to-brute-force-search-trees" class="section level2">
+<h2 class="hasAnchor">
+<a href="#weve-covered-that-it-is-not-practical-to-brute-force-search-trees" class="anchor"></a>- We’ve covered that it is not practical to brute-force search trees</h2>
+</div>
+<div id="weve-covered-some-heuristics" class="section level2">
+<h2 class="hasAnchor">
+<a href="#weve-covered-some-heuristics" class="anchor"></a>- We’ve covered some heuristics</h2>
+</div>
+<div id="parsimony-heuristics-can-be-simple---we-are-simply-varying-the-topology" class="section level2">
+<h2 class="hasAnchor">
+<a href="#parsimony-heuristics-can-be-simple---we-are-simply-varying-the-topology" class="anchor"></a>- Parsimony heuristics can be simple - we are simply varying the topology</h2>
+</div>
+<div id="what-happens-when-we-need-to-vary-topology-branch-lengths-and-a-bunch-of-model-parameters" class="section level2">
+<h2 class="hasAnchor">
+<a href="#what-happens-when-we-need-to-vary-topology-branch-lengths-and-a-bunch-of-model-parameters" class="anchor"></a>- What happens when we need to vary topology, branch lengths and a bunch of model parameters?</h2>
+</div>
 </div>
 <div id="mcmc" class="section level1">
 <h1 class="hasAnchor">
@@ -1063,14 +1208,18 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="markov-chain-monte-carlo" class="section level2">
 <h2 class="hasAnchor">
 <a href="#markov-chain-monte-carlo" class="anchor"></a>Markov Chain Monte Carlo</h2>
-<ul>
-<li>This sounds intimidating, but let’s break it down a little bit
-<ul>
-<li>Markov chain: Memoryless process</li>
-<li>Monte Carlo: Random proposals</li>
-</ul>
-</li>
-</ul>
+</div>
+<div id="this-sounds-intimidating-but-lets-break-it-down-a-little-bit" class="section level2">
+<h2 class="hasAnchor">
+<a href="#this-sounds-intimidating-but-lets-break-it-down-a-little-bit" class="anchor"></a>- This sounds intimidating, but let’s break it down a little bit</h2>
+</div>
+<div id="markov-chain-memoryless-process" class="section level2">
+<h2 class="hasAnchor">
+<a href="#markov-chain-memoryless-process" class="anchor"></a>- Markov chain: Memoryless process</h2>
+</div>
+<div id="monte-carlo-random-proposals" class="section level2">
+<h2 class="hasAnchor">
+<a href="#monte-carlo-random-proposals" class="anchor"></a>- Monte Carlo: Random proposals</h2>
 </div>
 </div>
 <div id="mcmc-1" class="section level1">
@@ -1079,14 +1228,18 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="markov-chain-monte-carlo-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#markov-chain-monte-carlo-1" class="anchor"></a>Markov Chain Monte Carlo</h2>
-<ul>
-<li>This sounds intimidating, but let’s break it down a little bit
-<ul>
-<li>Markov chain: Memoryless process</li>
-<li>Monte Carlo: Random proposals</li>
-</ul>
-</li>
-</ul>
+</div>
+<div id="this-sounds-intimidating-but-lets-break-it-down-a-little-bit-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#this-sounds-intimidating-but-lets-break-it-down-a-little-bit-1" class="anchor"></a>- This sounds intimidating, but let’s break it down a little bit</h2>
+</div>
+<div id="markov-chain-memoryless-process-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#markov-chain-memoryless-process-1" class="anchor"></a>- Markov chain: Memoryless process</h2>
+</div>
+<div id="monte-carlo-random-proposals-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#monte-carlo-random-proposals-1" class="anchor"></a>- Monte Carlo: Random proposals</h2>
 </div>
 <div id="put-it-together-we-start-with-some-value-for-a-parameter-and-make-changes-to-it-stoachstically--then-we-evaluate-the-likelihood-score-of-that-new-parameter--if-it-is-good-we-keep-it--if-it-is-bad-we-chuck-it-" class="section level2">
 <h2 class="hasAnchor">
@@ -1154,12 +1307,21 @@ moves[mvi++] = mvSPR(tau, weight=nbr)
 <li>Under Bayesian: We use this to obtain a sample of models and parameters that show us the range of solutions for our data</li>
 </ul>
 </div>
-<div id="bayes-rule-5" class="section level1">
+<div id="bayes-rule-7" class="section level1">
 <h1 class="hasAnchor">
-<a href="#bayes-rule-5" class="anchor"></a>Bayes Rule</h1>
+<a href="#bayes-rule-7" class="anchor"></a>Bayes Rule</h1>
 <p>Hands On: Rev basics</p>
 <p>Hands On: RB_Discrete_morphology, using priors to relax Mk assumptions</p>
-<p>Hands On: RB_Discrete_morphology, analyzing the output</p>
+<p>Hands On: RB_Discrete_morphology, analyzing the output Priors =========================================================</p>
+<div id="priors-reflect-prior-knowledge-or-work-about-a-problem-2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#priors-reflect-prior-knowledge-or-work-about-a-problem-2" class="anchor"></a>Priors reflect <em>prior</em> knowledge or work about a problem</h2>
+<p>We, for example, know that it is not incredibly likely to have super long branch lengths. Let’s look at that branch length prior again:</p>
+<pre class="rev"><code>for (i in 1:nbr){
+    br_lens[i] ~ dnExponential(br_len_lambda)
+    moves[mvi++] = mvScale(br_lens[i]) 
+}</code></pre>
+</div>
 </div>
 
 
