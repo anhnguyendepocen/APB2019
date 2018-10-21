@@ -1,0 +1,26 @@
+Package: apb2018
+Type: Package
+Title: Visualizing The Relationship Between Phylogeny and Data
+Version: 0.1.0
+Authors@R: person("April", "Wright", role = c("aut", "cre"),
+	email = "april.wright@selu.edu")
+Description: R package for course materials
+License: MIT + file LICENSE
+Depends:
+	shiny
+Imports:
+    phangorn,
+    ggtree,
+    ggplot2,
+    treesiftr,
+    treestartr,
+    alignfigR
+Suggests:
+    knitr,
+    testthat,
+    rmarkdown,
+    Biostrings,
+    covr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1

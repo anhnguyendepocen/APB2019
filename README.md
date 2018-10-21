@@ -1,5 +1,14 @@
 # APB2017
 
+These materials can be installed as an R package:
+
+```
+devtools::install_github("wrightaprilm/APB2018")
+```
+
+Slides are meant to be rendered in RStudio.
+
+
 # Schedule
 
 ## Day One
