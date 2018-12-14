@@ -1,5 +1,11 @@
 pandoc: 2.2.2.1
 pkgdown: 1.1.0
 pkgdown_sha: ~
-articles: []
+articles:
+  RB_Discrete_Morphology_Tutorial: RB_Discrete_Morphology/RB_Discrete_Morphology_Tutorial.html
+  RB_Total_Evidence_Tutorial: RB_Total_Evidence/RB_Total_Evidence_Tutorial.html
+  00-installs: R_exercises/00-installs.html
+  01-treesiftr: R_exercises/01-treesiftr.html
+  02-treesiftr-advanced: R_exercises/02-treesiftr-advanced.html
+  03-FossilSim: R_exercises/03-FossilSim.html
 
