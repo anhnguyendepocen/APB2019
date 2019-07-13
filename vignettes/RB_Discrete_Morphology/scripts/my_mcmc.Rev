@@ -1,0 +1,24 @@
+morpho <- readDiscreteCharacterData("data/bears_morphology.nex")
+
+taxa <- morpho.names()
+n_taxa <- morpho.size() 
+
+mvi = 1
+
+source("scripts/my_model.Rev")
+
+mymodel = model(phylogeny)
+
+mni = 1
+
+monitors[mni++] = mnModel(filename="results/mk_simple.log", printgen=10)
+
+monitors[mni++] = mnFile(filename="output/mk_simple.trees", printgen=10, phylogeny)
+
+monitors[mni++] = mnScreen(printgen=10)
+
+mymcmc = mcmc(mymodel, monitors, moves)
+
+mymcmc.run(generations=20000)
+
+q()

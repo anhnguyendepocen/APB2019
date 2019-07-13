@@ -450,8 +450,9 @@ instructions given in section Complete MCMC\].
 Begin the [`Rev`]{}script by loading in the list of taxon names from the
 [[`bears_taxa.tsv`]{}]{} file using the [[`readTaxonData()`]{}]{}
 function.
-
+```{rev, engine.path = '/Users/april/software/rb', engine.opts=list(append=TRUE)}
     taxa <- readTaxonData("data/bears_taxa.tsv")
+```
 
 This function reads a tab-delimited file and creates a variable called
 [[`taxa`]{}]{} that is a list of all of the taxon names relevant to this
@@ -469,13 +470,17 @@ characters.
 
 Load the cytochrome-b sequences from file and assign the data matrix to
 a variable called [[`cytb`]{}]{}.
-
-    cytb <- readDiscreteCharacterData("data/bears_cytb.nex") 
-
+```{rev, engine.path = '/Users/april/software/rb', engine.opts=list(append=TRUE)}
+    taxa
+#    cytb <- readDiscreteCharacterData("data/bears_cytb.nex") 
+```
 Next, import the morphological character matrix and assign it to the
 variable [[`morpho`]{}]{}.
 
+```{rev, engine.path = '/Users/april/software/rb',  engine.opts=list(append=TRUE)}
     morpho <- readDiscreteCharacterData("data/bears_morphology.nex")
+```
+
 
 ### Add Missing Taxa 
 
@@ -489,9 +494,10 @@ morphological data partition ([[`morpho`]{}]{}). In order for all the
 taxa to appear on the same tree, they all need to be part of the same
 dataset, as opposed to present in separate datasets. This ensures that
 there is a unified taxon set that contains all of our tips.
-
+```{rev, engine.path = '/Users/april/software/rb',  engine.opts=list(append=TRUE)}
     cytb.addMissingTaxa( taxa )
     morpho.addMissingTaxa( taxa )
+```
 
 ### Create Helper Variables 
 
@@ -504,15 +510,18 @@ to initialize them in the master file.
 Create a new constant node called [[`n_taxa`]{}]{} that is equal to the
 number of species in our analysis (22).
 
+```{rev, engine.path = '/Users/april/software/rb',  engine.opts=list(append=TRUE)}
     n_taxa <- taxa.size() 
+```
 
 Next, create a workspace variable called [[`mvi`]{}]{}. This variable is
 an iterator that will build a vector containing all of the MCMC moves
 used to propose new states for every stochastic node in the model graph.
 Each time a new move is added to the vector, [[`mvi`]{}]{} will be
 incremented by a value of [[`1`]{}]{}.
-
+```{rev, engine.path = '/Users/april/software/rb',  engine.opts=list(append=TRUE)}
     mvi = 1
+```
 
 One important distinction here is that [[`mvi`]{}]{} is part of the
 [`RevBayes`]{}workspace and not the hierarchical model. Thus, we use the

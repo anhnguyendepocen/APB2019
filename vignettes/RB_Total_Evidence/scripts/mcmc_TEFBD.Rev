@@ -12,15 +12,15 @@
 # Reading in the Data #
 #######################
 # Create the full list of taxa (including all fossils and extant species #
-taxa <- readTaxonData("data/bears_taxa.tsv")
+taxa <- readTaxonData("vignettes/RB_Total_Evidence/data/bears_taxa.tsv")
 
 # Import the molecular sequences #
 # this file contains only the taxa for which sequence data are available #
-cytb <- readDiscreteCharacterData("data/bears_cytb.nex")
+cytb <- readDiscreteCharacterData("vignettes/RB_Total_Evidence/data/bears_cytb.nex")
 
 # Import the morphological character matrix #
 # this file contains only the taxa for which morphological characters are available #
-morpho <- readDiscreteCharacterData("data/bears_morphology.nex")
+morpho <- readDiscreteCharacterData("vignettes/RB_Total_Evidence/data/bears_morphology.nex")
 
 # Add the missing taxa to each data partition #
 cytb.addMissingTaxa( taxa )
@@ -32,13 +32,13 @@ n_taxa <- taxa.size()
 
 # Load the model files
 
-source("scripts/model_FBDP_TEFBD.Rev") # FBD tree prior
+source("vignettes/RB_Total_Evidence/scripts/model_FBDP_TEFBD.Rev") # FBD tree prior
 
-source("scripts/model_UExp_TEFBD.Rev") # UExp relaxed clock
+source("vignettes/RB_Total_Evidence/scripts/model_UExp_TEFBD.Rev") # UExp relaxed clock
 
-source("scripts/model_GTRG_TEFBD.Rev") # Molecular substitution model (GTR+G)
+source("vignettes/RB_Total_Evidence/scripts/model_GTRG_TEFBD.Rev") # Molecular substitution model (GTR+G)
 
-source("scripts/model_Morph_TEFBD.Rev") # Morphological character change model
+source("vignettes/RB_Total_Evidence/scripts/model_Morph_TEFBD.Rev") # Morphological character change model
 
 
 ########
@@ -62,7 +62,7 @@ monitors[mni++] = mnScreen(printgen=10, age_extant, num_samp_anc, origin_time)
 mymcmc = mcmc(mymodel, monitors, moves)
 
 # Run the MCMC #
-mymcmc.run(generations=10000)
+#mymcmc.run(generations=10000)
 
 # Quit RevBayes #
 q()

@@ -412,7 +412,7 @@ $(document).ready(function () {
 <h3>Create Helper Variables</h3>
 <p>Before we begin writing the <span><code>Rev</code></span>scripts for each of the model components, we need to instantiate a couple “helper variables” that will be used by downstream parts of our model specification files. These variables will be used in more than one of the module files so it’s best to initialize them in the master file.</p>
 <p>Create a new constant node called <span><span><code>n_taxa</code></span></span> that is equal to the number of species in our analysis (18). We will also create a constant node of the taxon names. This list will be used to initialize the tree.</p>
-<pre><code>taxa &lt;- morpho.names()
+<pre><code>names &lt;- morpho.names()
 n_taxa &lt;- morpho.size() </code></pre>
 <p>Next, create a workspace variable called <span><span><code>mvi</code></span></span>. This variable is an iterator that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time a new move is added to the vector, <span><span><code>mvi</code></span></span> will be incremented by a value of <span><span><code>1</code></span></span>.</p>
 <pre><code>mvi = 1</code></pre>

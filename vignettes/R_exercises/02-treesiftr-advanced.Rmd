@@ -59,8 +59,12 @@ This dataframe dispays the start character (the first character that will be vis
 
 We can then build trees from each subset:
 
-```{r message=FALSE}
-output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears)
+```{r message=FALSE, eval=FALSE}
+output_vector <- generate_tree_vis(sample_df = sample_df,  
+                                   alignment = aln_path, 
+                                   tree = tree, 
+                                   phy_mat = bears)
+
 output_vector
 ```
 
@@ -70,9 +74,12 @@ Phangorn requires a starting tree to estimate a parsimony tree. We specify the t
 
 1. Visualize characters 1 and 2. What is the parsimony score for this character set. Add the parismony score to the visual like so:
 
-```{r message=FALSE}
-output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears,
-                            p_score = TRUE)
+```{r message=FALSE, eval=FALSE}
+output_vector <- generate_tree_vis(sample_df = sample_df,
+                                   alignment = aln_path,    
+                                   tree = tree, 
+                                   phy_mat = bears,
+                                   p_score = TRUE)
 output_vector
 ```
 
@@ -86,8 +93,13 @@ output_vector
 
 6.  Do all characters with the same parsimony score have the same likelihood score? You can add the likelihood score to the visualization like so:
 
-```{r message=FALSE}
-output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears, pscore = TRUE, lscore = TRUE)
+```{r message=FALSE, eval=FALSE}
+output_vector <- generate_tree_vis(sample_df = sample_df,
+                                   alignment = aln_path, 
+                                   tree = tree, 
+                                   phy_mat = bears, 
+                                   pscore = TRUE, 
+                                   lscore = TRUE)
 output_vector
 ```
 

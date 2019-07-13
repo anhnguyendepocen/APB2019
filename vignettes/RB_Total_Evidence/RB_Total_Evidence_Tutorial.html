@@ -254,9 +254,7 @@ h6 {
 </style>
 
 
-</head>
 
-<body>
 
 <style type="text/css">
 .main-container {
@@ -281,22 +279,92 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
 
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -522,21 +590,21 @@ $(document).ready(function () {
 <h3>Load Data Matrices</h3>
 <p><span><code>RevBayes</code></span>uses the function <span><span><code>readDiscreteCharacterData()</code></span></span> to load a data matrix to the workspace from a formatted file. This function can be used for both molecular sequences and discrete morphological characters.</p>
 <p>Load the cytochrome-b sequences from file and assign the data matrix to a variable called <span><span><code>cytb</code></span></span>.</p>
-<pre><code>cytb &lt;- readDiscreteCharacterData(&quot;data/bears_cytb.nex&quot;) </code></pre>
+<pre class="rev"><code>    cytb &lt;- readDiscreteCharacterData(&quot;data/bears_cytb.nex&quot;) </code></pre>
 <p>Next, import the morphological character matrix and assign it to the variable <span><span><code>morpho</code></span></span>.</p>
-<pre><code>morpho &lt;- readDiscreteCharacterData(&quot;data/bears_morphology.nex&quot;)</code></pre>
+<pre class="rev"><code>    morpho &lt;- readDiscreteCharacterData(&quot;data/bears_morphology.nex&quot;)</code></pre>
 </div>
 <div id="add-missing-taxa" class="section level3">
 <h3>Add Missing Taxa</h3>
 <p>In the descriptions of the files in section Data Files, we mentioned that the two data matrices have different numbers of taxa. Thus, we must add any taxa that are not found in the molecular (<span><span><code>cytb</code></span></span>) partition (<span><span><em>i.e.,</em></span></span>are only found in the fossil data) to that data matrix as missing data (with <span><span><code>?</code></span></span> in place of all characters), and do the same with the morphological data partition (<span><span><code>morpho</code></span></span>). In order for all the taxa to appear on the same tree, they all need to be part of the same dataset, as opposed to present in separate datasets. This ensures that there is a unified taxon set that contains all of our tips.</p>
-<pre><code>cytb.addMissingTaxa( taxa )
-morpho.addMissingTaxa( taxa )</code></pre>
+<pre class="rev"><code>    cytb.addMissingTaxa( taxa )
+    morpho.addMissingTaxa( taxa )</code></pre>
 </div>
 <div id="create-helper-variables" class="section level3">
 <h3>Create Helper Variables</h3>
 <p>Before we begin writing the <span><code>Rev</code></span>scripts for each of the model components, we need to instantiate a couple “helper variables” that will be used by downstream parts of our model specification files. These variables will be used in more than one of the module files so it’s best to initialize them in the master file.</p>
 <p>Create a new constant node called <span><span><code>n_taxa</code></span></span> that is equal to the number of species in our analysis (22).</p>
-<pre><code>n_taxa &lt;- taxa.size() </code></pre>
+<pre class="rev"><code>    n_taxa &lt;- taxa.size() </code></pre>
 <p>Next, create a workspace variable called <span><span><code>mvi</code></span></span>. This variable is an iterator that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time a new move is added to the vector, <span><span><code>mvi</code></span></span> will be incremented by a value of <span><span><code>1</code></span></span>.</p>
 <pre><code>mvi = 1</code></pre>
 <p>One important distinction here is that <span><span><code>mvi</code></span></span> is part of the <span><code>RevBayes</code></span>workspace and not the hierarchical model. Thus, we use the workspace assignment operator <span><span><code>=</code></span></span> instead of the constant node assignment <span><span><code>&lt;-</code></span></span>.</p>
@@ -859,13 +927,13 @@ source(&quot;scripts/model_Morph_TEFBD.Rev&quot;)</code></pre>
 <p>Drummond, A.J., M.A. Suchard, D. Xie, and A. Rambaut. 2012. “Bayesian Phylogenetics with Beauti and the Beast 1.7.” <em>Molecular Biology and Evolution</em> 29. SMBE: 1969–73.</p>
 </div>
 <div id="ref-Felsenstein1992">
-<p>Felsenstein, Joseph. 1992. “Phylogenies from Restriction Sites: A Maximum-Likelihood Approach.” <em>Evolution</em> 46 (1). [Society for the Study of Evolution, Wiley]: 159–73. <a href="http://www.jstor.org/stable/2409811" class="uri">http://www.jstor.org/stable/2409811</a>.</p>
+<p>Felsenstein, Joseph. 1992. “Phylogenies from Restriction Sites: A Maximum-Likelihood Approach.” <em>Evolution</em> 46 (1). [Society for the Study of Evolution, Wiley]: 159–73. <a href="http://www.jstor.org/stable/2409811">http://www.jstor.org/stable/2409811</a>.</p>
 </div>
 <div id="ref-foote1996">
 <p>Foote, Michael. 1996. “On the Probability of Ancestors in the Fossil Record.” <em>Paleobiology</em> 22: 141–51.</p>
 </div>
 <div id="ref-Gavryushkina2016">
-<p>Gavryushkina, Alexandra, Tracy A. Heath, Daniel T. Ksepka, Tanja Stadler, David Welch, and Alexei J. Drummond. 2016. “Bayesian Total-Evidence Dating Reveals the Recent Crown Radiation of Penguins.” <em>Systematic Biology</em>. <a href="https://doi.org/10.1093/sysbio/syw060" class="uri">https://doi.org/10.1093/sysbio/syw060</a>.</p>
+<p>Gavryushkina, Alexandra, Tracy A. Heath, Daniel T. Ksepka, Tanja Stadler, David Welch, and Alexei J. Drummond. 2016. “Bayesian Total-Evidence Dating Reveals the Recent Crown Radiation of Penguins.” <em>Systematic Biology</em>. <a href="https://doi.org/10.1093/sysbio/syw060">https://doi.org/10.1093/sysbio/syw060</a>.</p>
 </div>
 <div id="ref-geraads2005">
 <p>Geraads, Denis, Tanju Kaya, Serdar Mayda, and others. 2005. “Late Miocene Large Mammals from Yulafli, Thrace Region, Turkey, and Their Biogeographic Implications.” <em>Acta Palaeontologica Polonica</em> 50 (3): 523–44.</p>
@@ -886,7 +954,7 @@ source(&quot;scripts/model_Morph_TEFBD.Rev&quot;)</code></pre>
 <p>Heizmann, E, L Ginsburg, and C Bulot. 1980. “<em>Prosansanosmilus Peregrinus</em>, Ein Neuer Machairodontider Felidae Aus Dem Miozän Deutschlands Und Frankreichs.” <em>Stuttgarter Beitr. Naturk. B</em> 58: 1–27.</p>
 </div>
 <div id="ref-Hoehna2014b">
-<p>Höhna, Sebastian, Tracy A. Heath, Bastien Boussau, Michael J. Landis, Fredrik Ronquist, and John P. Huelsenbeck. 2014. “Probabilistic Graphical Model Representation in Phylogenetics.” <em>Systematic Biology</em> 63 (5): 753–71. <a href="https://doi.org/10.1093/sysbio/syu039" class="uri">https://doi.org/10.1093/sysbio/syu039</a>.</p>
+<p>Höhna, Sebastian, Tracy A. Heath, Bastien Boussau, Michael J. Landis, Fredrik Ronquist, and John P. Huelsenbeck. 2014. “Probabilistic Graphical Model Representation in Phylogenetics.” <em>Systematic Biology</em> 63 (5): 753–71. <a href="https://doi.org/10.1093/sysbio/syu039">https://doi.org/10.1093/sysbio/syu039</a>.</p>
 </div>
 <div id="ref-Hoehna2017a">
 <p>Höhna, Sebastian, Michael J. Landis, and Tracy A Heath. 2017. “Phylogenetic Inference Using RevBayes.” <em>Current Protocols in Bioinformatics</em>.</p>
@@ -931,7 +999,7 @@ source(&quot;scripts/model_Morph_TEFBD.Rev&quot;)</code></pre>
 <p>Warren, DL, A Geneva, DL Swofford, and R Lanfear. 2016. “Rwty: R We There yet.” <em>A Package for Visualizing MCMC Convergence in Phylogenetics</em>.</p>
 </div>
 <div id="ref-Zhang2016">
-<p>Zhang, Chi, Tanja Stadler, Seraina Klopfstein, Tracy A. Heath, and Fredrik Ronquist. 2016. “Total-Evidence Dating Under the Fossilized Birth-Death Process.” <em>Systematic Biology</em> 65 (2): 228–49. <a href="https://doi.org/10.1093/sysbio/syv080" class="uri">https://doi.org/10.1093/sysbio/syv080</a>.</p>
+<p>Zhang, Chi, Tanja Stadler, Seraina Klopfstein, Tracy A. Heath, and Fredrik Ronquist. 2016. “Total-Evidence Dating Under the Fossilized Birth-Death Process.” <em>Systematic Biology</em> 65 (2): 228–49. <a href="https://doi.org/10.1093/sysbio/syv080">https://doi.org/10.1093/sysbio/syv080</a>.</p>
 </div>
 <div id="ref-Zuckerkandl1962">
 <p>Zuckerkandl, E., and L. Pauling. 1962. “Molecular Disease, Evolution, and Genetic Heterogeneity.” In <em>Horizons in Biochemistry</em>, edited by M. Kasha and B. Pullman, 189–225. Academic Press, New York.</p>

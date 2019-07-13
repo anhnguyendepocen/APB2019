@@ -1,7 +1,7 @@
 Tree Thinking
 ========================================================
 author: April Wright
-date: 08.09.2018
+date: 07.17.2019
 autosize: true
 
 Good Morning!
@@ -21,7 +21,7 @@ Skink tree from Wright et al. 2015
 
 What do we do with a phylogeny?
 ========================================================
--Tell homology from convergence
+- Tell homology from convergence
 
 
 ![Dolphin, Alex Vasenin via WikiMedia](img/A_spinner_dolphin_in_the_Red_Sea.jpg)
@@ -31,7 +31,7 @@ Dolphin, Alex Vasenin via WikiMedia
 
 What do we do with a phylogeny?
 ========================================================
--Trace the origins of structures
+- Trace the origins of structures
 
 ![Ask a Biologist](img/AskABiologist.png)
 
@@ -39,7 +39,7 @@ Image via Ask a Biologist
 
 What do we do with a phylogeny?
 ========================================================
--Taxonomy
+- Taxonomy
 
 
 - Hennig, 1950 Grundzüge einer Theorie der Phylogenetischen Systematik
@@ -47,7 +47,7 @@ What do we do with a phylogeny?
 
 What do we do with a phylogeny?
 ========================================================
--Taxonomy
+- Taxonomy
 
 
 - Hennig, 1950 Grundzüge einer Theorie der Phylogenetischen Systematik
@@ -61,32 +61,27 @@ Tree Terms: Tip
 library(phytools)
 tree <- pbtree(n = 5)
 plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
-tree$tip.label
 ```
+
 Tip: What we are putting on the tree. May be species, individuals, or higher-order taxa.
 May be called terminal node, leaf, one degree node.
-Access in R: tree$tip.label
 
-Tree Terms: branch
+
+Tree Terms: Tip
 ========================================================
 ```{r}
-library(phytools)
-tree <- pbtree(n = 5)
-#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
-tree$edge
+plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+tree$tip.label
 ```
-Branch: What connects the tip to the tree. Can have a variety of units, which we will discuss over the next few days.
-May be called edge.
-Access in R: tree$edge
+Access in R: tree$tip.label
 
 Tree Terms: Node
 ========================================================
 ```{r}
-library(phytools)
-tree <- pbtree(n = 5)
 plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
-nodelabels()
+nodelabels(cex=4)
 ```
+
 Node: Where nodes meet, implying a most recent common ancestor.
 May be called vertex, or three-degree node.
 
@@ -94,14 +89,29 @@ Tree Terms: Node
 ========================================================
 ```{r}
 library(ape)
-tree <- pbtree(n = 5)
-#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
-#nodelabels(cex=3.5)
 tree$Nnode
 getMRCA(tree, c("t1", "t2"))
 ```
-Node: Where nodes meet, implying a most recent common ancestor.
-May be called vertex, or three-degree node.
+
+  
+Tree Terms: branch
+========================================================
+```{r}
+#plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
+tree$edge
+```
+Branch: What connects the tip to the tree. Can have a variety of units, which we will discuss over the next few days.
+May be called edge. 
+Access in R: tree$edge
+
+
+Tree Terms: branch
+========================================================
+```{r}
+library(phytools)
+plotBranchbyTrait(tree,tree$edge.length,method="tips")
+tree$edge.length
+```
 
 
 Tree Terms
@@ -282,8 +292,7 @@ treesiftr
 library(treesiftr)
 aln_path <- "data/bears_fasta.fa"
 bears <- read_alignment(aln_path)
-tree <- read.tree("data/starting_tree.tre")
-
+bear_tree <- multi2di(read.tree("data/starting_tree.tre"))
 sample_df <- generate_sliding(bears, start_char = 1, stop_char = 5, steps = 1)
 print(sample_df)
 ```
@@ -294,7 +303,10 @@ treesiftr
 ```{r fig.width = 24, fig.height = 12}
 library(phangorn)
 library(ggtree)
-output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                        aln_path,tree = tree, phy_mat = bears,                                    pscore = TRUE)
+
+output_vector <- generate_tree_vis(sample_df = sample_df,                                        alignment = aln_path, 
+                                   tree = bear_tree, 
+                                   phy_mat = bears,                                              pscore = TRUE)
 ```
 
 treesiftr
@@ -473,12 +485,16 @@ plot(tree1)
 PAUP: The bootstrap
 ========================================================
 
-```{paup}
+```{paup eval=FALSE}
 bootstrap nreps=100 search=heuristic /addseq=random;
 savetrees from=1 to=1 savebootp=nodelabels file=results/bootstrap.tre;
 ```
+
+PAUP: The bootstrap
+========================================================
+
 ```{r fig.width = 24, fig.height = 12}
-b_tre <- read.nexus("results/trees.tre")
+b_tre <- read.nexus("results/bootstrap.tre")
 plot(b_tre)
 nodelabels(b_tre$node.label, cex = 3.5)
 ```
@@ -487,10 +503,13 @@ nodelabels(b_tre$node.label, cex = 3.5)
 PAUP: The bootstrap
 ========================================================
 
-```{paup}
+```{paup eval=FALSE}
 bootstrap nreps=100 search=heuristic /addseq=random;
 savetrees from=1 to=1 savebootp=nodelabels file=results/bootstrap.tre;
 ```
+
+PAUP: The bootstrap
+========================================================
 ```{r fig.width = 24, fig.height = 12}
 b_tre <- read.nexus("results/bootstrap.tre")
 plot(b_tre)
@@ -501,10 +520,13 @@ nodelabels(b_tre$node.label)
 PAUP: The jacknife
 ========================================================
 Samples without replacement
-```{paup}
+```{paup eval=FALSE}
 jackknife nreps=100 search=heuristic /addseq=random;
 savetrees from=1 to=1 savebootp=nodelabels file=results/jackknife.tre;
 ```
+
+PAUP: The jacknife
+========================================================
 
 ```{r fig.width = 24, fig.height = 12}
 j_tre <- read.nexus("results/jackknife.tre")

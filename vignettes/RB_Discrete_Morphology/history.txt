@@ -1,0 +1,5 @@
+q()
+source("scripts/my_mcmc_discrete_beta.Rev")
+ls(all)
+ls(all=TRUE)
+q()

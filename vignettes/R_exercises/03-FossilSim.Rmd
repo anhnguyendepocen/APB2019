@@ -25,7 +25,7 @@ Each person will now increase the fossil sampling rate by .5. Do ten simulations
 
 ```{r}
 library(FossilSim)
-trees <- sim.fbd.taxa(n=10, numbsim=10, lambda=3, mu=2, psi=2)
+trees <- sim.fbd.taxa(n=10, numbsim=10, lambda=3, mu=2, psi=3)
 t_t <- 0
 for (i in 1:length(trees)){ 
   t_t <- t_t + length(trees[[i]]$tip.label)

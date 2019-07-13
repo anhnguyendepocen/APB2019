@@ -1,0 +1,29 @@
+taxa <- readTaxonData("data/bears_taxa.tsv")
+
+cytb <- readDiscreteCharacterData("data/bears_cytb.nex") 
+
+morpho <- readDiscreteCharacterData("data/bears_morphology.nex")
+
+cytb.addMissingTaxa( taxa )
+morpho.addMissingTaxa( taxa )
+
+n_taxa <- taxa.size() 
+
+mvi = 1
+
+source("scripts/my_fbd_model.Rev")
+source("scripts/my_morphology_model.Rev")
+source("scripts/my_molecular_clock.Rev")
+source("scripts/my_molecular_model.Rev")
+
+mymodel = model(sf)
+
+mni = 1
+
+monitors[mni++] = mnModel(filename="output/prior.log", printgen=10)
+monitors[mni++] = mnFile(filename="output/prior.trees", printgen=10)
+monitors[mni++] = mnScreen(printgen=10, age_extant, num_samp_anc, origin_time)
+
+mymcmc = mcmc(mymodel, monitors, moves)
+mymcmc.run(generations=10000, underPrior = true)
+q()
