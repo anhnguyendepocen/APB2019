@@ -209,7 +209,7 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tree, <span class="dt">cex =</span> <span class="fl">3.5</span>, <span class="dt">no.margin =</span> <span class="ot">TRUE</span>, <span class="dt">edge.width =</span> <span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="TreeThinking.Rmd-figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>tree<span class="op">$</span>tip.label</span></code></pre></div>
-<pre><code>[1] "t1" "t2" "t3" "t4" "t5"</code></pre>
+<pre><code>[1] "t4" "t5" "t1" "t2" "t3"</code></pre>
 <p>Access in R: tree$tip.label</p>
 </div>
 <div id="tree-terms-node" class="section level1">
@@ -227,7 +227,7 @@
 <span id="cb6-2"><a href="#cb6-2"></a>tree<span class="op">$</span>Nnode</span></code></pre></div>
 <pre><code>[1] 4</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/mrca">getMRCA</a></span>(tree, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"t1"</span>, <span class="st">"t2"</span>))</span></code></pre></div>
-<pre><code>[1] 7</code></pre>
+<pre><code>[1] 6</code></pre>
 </div>
 <div id="tree-terms-branch" class="section level1">
 <h1 class="hasAnchor">
@@ -236,10 +236,10 @@
 <span id="cb10-2"><a href="#cb10-2"></a>tree<span class="op">$</span>edge</span></code></pre></div>
 <pre><code>     [,1] [,2]
 [1,]    6    7
-[2,]    7    1
-[3,]    7    8
+[2,]    7    8
+[3,]    8    1
 [4,]    8    2
-[5,]    8    3
+[5,]    7    3
 [6,]    6    9
 [7,]    9    4
 [8,]    9    5</code></pre>
@@ -252,8 +252,8 @@
 <span id="cb12-2"><a href="#cb12-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/plotBranchbyTrait">plotBranchbyTrait</a></span>(tree,tree<span class="op">$</span>edge.length,<span class="dt">method=</span><span class="st">"tips"</span>)</span></code></pre></div>
 <p><img src="TreeThinking.Rmd-figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>tree<span class="op">$</span>edge.length</span></code></pre></div>
-<pre><code>[1] 0.96694509 0.50590324 0.34106081 0.16484243 0.16484243 1.45048014
-[7] 0.02236819 0.02236819</code></pre>
+<pre><code>[1] 0.01070042 1.00622147 0.36177554 0.36177554 1.36799701 0.23368315
+[7] 1.14501427 1.14501427</code></pre>
 </div>
 <div id="tree-terms" class="section level1">
 <h1 class="hasAnchor">
@@ -278,7 +278,7 @@
 Phylogenetic tree with 5 tips and 4 internal nodes.
 
 Tip labels:
-[1] "t3" "t2" "t1" "t4" "t5"
+[1] "t1" "t5" "t4" "t2" "t3"
 
 Rooted; includes branch lengths.</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tree, <span class="dt">cex =</span> <span class="fl">3.5</span>, <span class="dt">no.margin =</span> <span class="ot">TRUE</span>, <span class="dt">edge.width =</span> <span class="fl">1.5</span>)</span></code></pre></div>
@@ -618,161 +618,7 @@ savetrees from=3 to=3 file=results/tree3.tre;
 <div id="paup-reading-in-parsimony-trees" class="section level1">
 <h1 class="hasAnchor">
 <a href="#paup-reading-in-parsimony-trees" class="anchor"></a>PAUP: Reading in parsimony trees</h1>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ape)</span>
-<span id="cb46-2"><a href="#cb46-2"></a>tree1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/read.nexus">read.nexus</a></span>(<span class="st">"results/tree1.tre"</span>)</span>
-<span id="cb46-3"><a href="#cb46-3"></a>tree2 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/read.nexus">read.nexus</a></span>(<span class="st">"results/tree2.tre"</span>)</span>
-<span id="cb46-4"><a href="#cb46-4"></a>tree3 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/read.nexus">read.nexus</a></span>(<span class="st">"results/tree3.tre"</span>)</span>
-<span id="cb46-5"><a href="#cb46-5"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tree1)</span></code></pre></div>
-<p><img src="TreeThinking.Rmd-figure/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"></p>
-</div>
-<div id="paup-what-do-we-do-with-multiple-best-trees" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-what-do-we-do-with-multiple-best-trees" class="anchor"></a>PAUP: What do we do with multiple “best” trees?</h1>
-<p><img src="img/Ptree_enum.png" alt="Parsimony Trees"></p>
-<p>??? This is one character. Imagine many - enumeration is not possible.Also note that several trees have the same “best” tree</p>
-</div>
-<div id="paup-what-do-we-do-with-multiple-best-trees-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-what-do-we-do-with-multiple-best-trees-1" class="anchor"></a>PAUP: What do we do with multiple “best” trees?</h1>
-<ul>
-<li>Typically: Build a consensus tree</li>
-</ul>
-<pre class="paup"><code>  contree all / treefile=Results/contree.tre;
-  help contree</code></pre>
-<ul>
-<li>Please look at:
-<ul>
-<li>Semistrict</li>
-<li>Majority rule</li>
-<li>Adams</li>
-</ul>
-</li>
-</ul>
-</div>
-<div id="how-do-we-assess-confidence-in-a-tree" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-do-we-assess-confidence-in-a-tree" class="anchor"></a>How do we assess confidence in a tree?</h1>
-<ul>
-<li>The bootstrap</li>
-</ul>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1"></a>char_mat &lt;-<span class="st"> </span>phangorn<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/phangorn/topics/phyDat">phyDat</a></span>(char_data, <span class="dt">levels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="st">"?"</span>), <span class="dt">type =</span> <span class="st">"USER"</span>)</span>
-<span id="cb48-2"><a href="#cb48-2"></a>samples &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">62</span>, <span class="dv">62</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb48-3"><a href="#cb48-3"></a>new_mat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(char_mat, <span class="dt">select=</span>samples)</span>
-<span id="cb48-4"><a href="#cb48-4"></a>samples</span></code></pre></div>
-<pre><code> [1] 57 22 47 44 18 28 33 29 22 31 28 10  7 50 22 55 26 41 27  4 42 43 21
-[24]  5 46 30  2 43  5  6 25 26 55 47  2 46 38 15 56  6  1  5 60 33 44 62
-[47] 21 20 33  4 44 31  1 38 48 43 52  8 60 55 47 38</code></pre>
-</div>
-<div id="how-do-we-assess-confidence-in-a-tree-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-do-we-assess-confidence-in-a-tree-1" class="anchor"></a>How do we assess confidence in a tree?</h1>
-<ul>
-<li>The bootstrap samples characters <em>with</em> replacement</li>
-</ul>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1"></a>char_mat &lt;-<span class="st"> </span>phangorn<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/phangorn/topics/phyDat">phyDat</a></span>(char_data, <span class="dt">levels =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="st">"?"</span>), <span class="dt">type =</span> <span class="st">"USER"</span>)</span>
-<span id="cb50-2"><a href="#cb50-2"></a>list_of_mats &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>()</span>
-<span id="cb50-3"><a href="#cb50-3"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">100</span>){</span>
-<span id="cb50-4"><a href="#cb50-4"></a>samples &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/sample.html">sample</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">62</span>, <span class="dv">62</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb50-5"><a href="#cb50-5"></a>new_mat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/subset">subset</a></span>(char_mat, <span class="dt">select=</span>samples)</span>
-<span id="cb50-6"><a href="#cb50-6"></a>list_of_mats[[i]] &lt;-<span class="st"> </span>new_mat</span>
-<span id="cb50-7"><a href="#cb50-7"></a>}</span></code></pre></div>
-<p>Generates a tree from each matrix</p>
-</div>
-<div id="the-bootstrap" class="section level1">
-<h1 class="hasAnchor">
-<a href="#the-bootstrap" class="anchor"></a>The bootstrap</h1>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tree1)</span></code></pre></div>
-<p><img src="TreeThinking.Rmd-figure/unnamed-chunk-32-1.png" alt="plot of chunk unnamed-chunk-32"></p>
-</div>
-<div id="paup-the-bootstrap" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-the-bootstrap" class="anchor"></a>PAUP: The bootstrap</h1>
-<pre class="paup"><code>bootstrap nreps=100 search=heuristic /addseq=random;
-savetrees from=1 to=1 savebootp=nodelabels file=results/bootstrap.tre;</code></pre>
-</div>
-<div id="paup-the-bootstrap-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-the-bootstrap-1" class="anchor"></a>PAUP: The bootstrap</h1>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a>b_tre &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/read.nexus">read.nexus</a></span>(<span class="st">"results/bootstrap.tre"</span>)</span>
-<span id="cb53-2"><a href="#cb53-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(b_tre)</span>
-<span id="cb53-3"><a href="#cb53-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/nodelabels">nodelabels</a></span>(b_tre<span class="op">$</span>node.label, <span class="dt">cex =</span> <span class="fl">3.5</span>)</span></code></pre></div>
-<p><img src="TreeThinking.Rmd-figure/unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34"></p>
-</div>
-<div id="paup-the-bootstrap-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-the-bootstrap-2" class="anchor"></a>PAUP: The bootstrap</h1>
-<pre class="paup"><code>bootstrap nreps=100 search=heuristic /addseq=random;
-savetrees from=1 to=1 savebootp=nodelabels file=results/bootstrap.tre;</code></pre>
-</div>
-<div id="paup-the-bootstrap-3" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-the-bootstrap-3" class="anchor"></a>PAUP: The bootstrap</h1>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>b_tre &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/read.nexus">read.nexus</a></span>(<span class="st">"results/bootstrap.tre"</span>)</span>
-<span id="cb55-2"><a href="#cb55-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(b_tre)</span>
-<span id="cb55-3"><a href="#cb55-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/nodelabels">nodelabels</a></span>(b_tre<span class="op">$</span>node.label)</span></code></pre></div>
-<p><img src="TreeThinking.Rmd-figure/unnamed-chunk-36-1.png" alt="plot of chunk unnamed-chunk-36"> “b_tre$nodelabels” what is this construction?</p>
-</div>
-<div id="paup-the-jacknife" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-the-jacknife" class="anchor"></a>PAUP: The jacknife</h1>
-<p>Samples without replacement</p>
-<pre class="paup"><code>jackknife nreps=100 search=heuristic /addseq=random;
-savetrees from=1 to=1 savebootp=nodelabels file=results/jackknife.tre;</code></pre>
-</div>
-<div id="paup-the-jacknife-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-the-jacknife-1" class="anchor"></a>PAUP: The jacknife</h1>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>j_tre &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/read.nexus">read.nexus</a></span>(<span class="st">"results/jackknife.tre"</span>)</span>
-<span id="cb57-2"><a href="#cb57-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(j_tre)</span>
-<span id="cb57-3"><a href="#cb57-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/ape/topics/nodelabels">nodelabels</a></span>(j_tre<span class="op">$</span>node.label)</span></code></pre></div>
-<p><img src="TreeThinking.Rmd-figure/unnamed-chunk-38-1.png" alt="plot of chunk unnamed-chunk-38"></p>
-</div>
-<div id="parsimony-some-of-these-trees-imply-homoplasy" class="section level1">
-<h1 class="hasAnchor">
-<a href="#parsimony-some-of-these-trees-imply-homoplasy" class="anchor"></a>Parsimony: Some of these trees imply homoplasy</h1>
-<p><img src="img/Ptree_enum.png" alt="Parsimony Trees"></p>
-<p>Is an answer that implies homoplasy ever the right one?</p>
-</div>
-<div id="parsimony-different-step-matrices" class="section level1">
-<h1 class="hasAnchor">
-<a href="#parsimony-different-step-matrices" class="anchor"></a>Parsimony: Different Step Matrices</h1>
-<ul>
-<li>Can make different character interchanges weigh more or less than others</li>
-<li>For example, for character 1, it might be more likely to go from 0 to 1 than the reverse</li>
-<li>Let’s try this in PAUP</li>
-</ul>
-</div>
-<div id="paup-different-step-matrices" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-different-step-matrices" class="anchor"></a>PAUP: Different Step Matrices</h1>
-<ul>
-<li>Open the bears_morphology file in a test editor. Scroll all the way to the bottom and paste in:</li>
-</ul>
-<pre class="paup"><code>begin assumptions;
- usertype my_ctype stepmatrix=2
-     0 1
- [0] . 1
- [1] 0 .
-
- ;
-end;</code></pre>
-</div>
-<div id="paup-different-step-matrices-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-different-step-matrices-1" class="anchor"></a>PAUP: Different Step Matrices</h1>
-<ul>
-<li>In the PAUP executeable:</li>
-</ul>
-<pre class="paup"><code>ctype my_ctype:1
-hsearch</code></pre>
-</div>
-<div id="paup-different-step-matrices-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#paup-different-step-matrices-2" class="anchor"></a>PAUP: Different Step Matrices</h1>
-<ul>
-<li><p>For those of you who are more familiar with likelihood and Bayesian analyses, what does this sound like?</p></li>
-<li><p>We’ll pick up tomorrow with Bayesian models</p></li>
-</ul>
+<pre><code>Error in file(file, "r") : cannot open the connection</code></pre>
 </div>
 
 

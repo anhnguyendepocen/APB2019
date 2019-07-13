@@ -3,7 +3,7 @@
 These materials can be installed as an R package:
 
 ```
-devtools::install_github("wrightaprilm/APB2018")
+devtools::install_github("wrightaprilm/APB2019")
 ```
 
 Slides are meant to be rendered in RStudio.
@@ -14,15 +14,15 @@ Slides are meant to be rendered in RStudio.
 ## Day One
 | Item | Time |
 |------|------|
-| Intro & begin installs | 9 - 9:30 |
+| Intro & [begin installs](https://wrightaprilm.github.io/APB2019/articles/R_exercises/00-installs.html) | 9 - 9:30 |
 | About Me | 9:30 - 9:45 | 
 | Intro to Phylogenetic Data | 9:45 - 10:30 |
 | Break | 10:30 - 10:45 |
 | [Phylogenetic Data Hands On](https://wrightaprilm.github.io/treesiftr/articles/02-treesiftr-advanced.html) | 10:45 - Noon |
 | Lunch | 12 - 1 | 
-| [Tree Thinking I](https://github.com/wrightaprilm/APB2018/blob/master/TreeThinking.Rmd.Rpres) | 1 - 2:30 | 
+| [Tree Thinking I](https://github.com/wrightaprilm/APB2018/blob/master/TreeThinking.Rmd.html) | 1 - 2:30 | 
 | Break | 2:30 - 2:45 | 
-| [Tree Thinking II](https://github.com/wrightaprilm/APB2018/blob/master/TreeThinking.Rmd.Rpres) | 2:45-5 | 
+| [Tree Thinking II](https://github.com/wrightaprilm/APB2018/blob/master/TreeThinking.Rmd.html) | 2:45-5 | 
 
 
 ## Day Two
@@ -51,7 +51,7 @@ Slides are meant to be rendered in RStudio.
 
 __Comments/Questions/Corrections:__ April Wright (april.wright@selu.edu)
 
-__Peer-review:__ This document is pre-review.
+__Peer-review:__ This document has been reviewed by Peter Wagner.
 
 __Note:__ This tutorial may be expanded or revised after peer-review process has been completed. The author is responsible for all conceptual and scripting errors in the current version of this document.
 
@@ -59,4 +59,4 @@ __Our Sponsors:__
 _National Science Foundation (Sedimentary Geology and Paleobiology Program)_, _National Science Foundation (Earth Rates Initiative)_, _Paleontological Society_, _Society of Vertebrate Paleontology_
  
  
-![ ](img/SponsorsLogoAPW.png)
+![ ](../img/SponsorsLogoAPW.png)
