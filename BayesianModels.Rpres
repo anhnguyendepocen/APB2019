@@ -156,6 +156,86 @@ What would be the probability of rolling 5 sixes under the first model?
 
 Under the second?
 
+Likelihood in phylogenetics
+========================================================  
+
+![](img/L1.png)
+
+Likelihood in phylogenetics
+========================================================  
+
+![](img/L2.png)
+
+
+Likelihood in phylogenetics
+========================================================  
+
+![](img/L3.png)
+
+
+Likelihood in phylogenetics
+========================================================  
+
+![](img/L4.png)
+
+Likelihood: Sequence models
+========================================================  
+
+![](img/Assumptions1.png)
+
+
+Likelihood: Sequence models
+========================================================  
+
+![](img/Q1.png)
+
+
+
+Likelihood: Sequence models
+========================================================  
+
+![](img/Q2.png)
+
+
+Likelihood: Morphology models
+========================================================  
+
+![](img/Ant1.png)
+
+
+Likelihood: Morphology models
+========================================================  
+
+![](img/Ant2.png)
+
+Likelihood: Morphology models
+========================================================  
+
+![](img/Ant3.png)
+![](img/Q2-state.png)
+
+Likelihood: Morphology models
+========================================================  
+
+![](img/Ant4.png)
+
+Likelihood: Morphology models
+========================================================  
+
+![](img/Ant5.png)
+![](img/Q4state.png)
+
+Likelihood: Morphology models
+========================================================  
+
+![](img/Ant6.png)
+
+Likelihood: Morphology models
+========================================================  
+
+![](img/Ant7.png)
+
+
 Likelihood: The Mk Model 
 ========================================================  
 
@@ -219,6 +299,7 @@ Likelihood: The Mk Model
 ========================================================  
 
 - Where do we get v from? 
+
 v = substitution rate x time
 
 Likelihood: The Mk Model 
@@ -335,7 +416,7 @@ Likelihood: The Mk Model
   - Changes can occur anywhere along the branch
   - Characters occur with equal frequency
 
-# Parsimony - minimmize the number of steps on a tree. Score trees according to their number of steps
+# Parsimony - minimize the number of steps on a tree. Score trees according to their number of steps
 
 Likelihood: The Mk Model 
 ========================================================  
@@ -347,7 +428,6 @@ Likelihood: The Mk Model
   - Changes can occur anywhere along the branch
   - Characters occur with equal frequency
 
-# Parsimony - minimize the number of steps on a tree. Score trees according to their number of steps
 # L = Pr(Data | Tree, Branch lengths, other model parameters)
 
 Likelihood: The Mk Model 
