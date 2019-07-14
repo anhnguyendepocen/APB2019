@@ -83,7 +83,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/RB_Discrete_Morphology/RB_Discrete_Morphology_Tutorial.html">RevBayes Discrete Morphology Tree Estimation</a>
+      <a href="articles/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.html">Discrete morphology - Tree Inference</a>
     </li>
     <li>
       <a href="articles/RB_Total_Evidence/RB_Total_Evidence_Tutorial.html">RevBayes Total Evidence Tree Estimation</a>
@@ -152,7 +152,7 @@ Final p-score 2 after  0 nni operations </code></pre>
 <h1 class="hasAnchor">
 <a href="#dice-rolling-activity-and-2" class="anchor"></a>Dice Rolling Activity: AND</h1>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>output_vector[[<span class="dv">1</span>]]</span></code></pre></div>
-<p><img src="BayesianModels-figure/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+<pre><code>NULL</code></pre>
 </div>
 <div id="dice-rolling-activity-or" class="section level1">
 <h1 class="hasAnchor">
@@ -162,8 +162,8 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="dice-rolling-activity-and-3" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dice-rolling-activity-and-3" class="anchor"></a>Dice Rolling Activity: AND</h1>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>output_vector[[<span class="dv">1</span>]]</span></code></pre></div>
-<p><img src="BayesianModels-figure/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>output_vector[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>NULL</code></pre>
 </div>
 <div id="dice-rolling-activity-independence" class="section level1">
 <h1 class="hasAnchor">
@@ -219,7 +219,7 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="dice-rolling-activity-non-independence-2" class="section level1">
 <h1 class="hasAnchor">
 <a href="#dice-rolling-activity-non-independence-2" class="anchor"></a>Dice Rolling Activity: Non-Independence</h1>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>output_vector[<span class="dv">2</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>output_vector[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>[[1]]</code></pre>
 <p><img src="BayesianModels-figure/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
 </div>
@@ -414,6 +414,76 @@ Final p-score 2 after  0 nni operations </code></pre>
 <p>What would be the probability of rolling 5 sixes under the first model?</p>
 <p>Under the second?</p>
 </div>
+<div id="likelihood-in-phylogenetics" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-in-phylogenetics" class="anchor"></a>Likelihood in phylogenetics</h1>
+<p><img src="img/L1.png"></p>
+</div>
+<div id="likelihood-in-phylogenetics-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-in-phylogenetics-1" class="anchor"></a>Likelihood in phylogenetics</h1>
+<p><img src="img/L2.png"></p>
+</div>
+<div id="likelihood-in-phylogenetics-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-in-phylogenetics-2" class="anchor"></a>Likelihood in phylogenetics</h1>
+<p><img src="img/L3.png"></p>
+</div>
+<div id="likelihood-in-phylogenetics-3" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-in-phylogenetics-3" class="anchor"></a>Likelihood in phylogenetics</h1>
+<p><img src="img/L4.png"></p>
+</div>
+<div id="likelihood-sequence-models" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-sequence-models" class="anchor"></a>Likelihood: Sequence models</h1>
+<p><img src="img/Assumptions1.png"></p>
+</div>
+<div id="likelihood-sequence-models-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-sequence-models-1" class="anchor"></a>Likelihood: Sequence models</h1>
+<p><img src="img/Q1.png"></p>
+</div>
+<div id="likelihood-sequence-models-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-sequence-models-2" class="anchor"></a>Likelihood: Sequence models</h1>
+<p><img src="img/Q2.png"></p>
+</div>
+<div id="likelihood-morphology-models" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-morphology-models" class="anchor"></a>Likelihood: Morphology models</h1>
+<p><img src="img/Ant1.png"></p>
+</div>
+<div id="likelihood-morphology-models-1" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-morphology-models-1" class="anchor"></a>Likelihood: Morphology models</h1>
+<p><img src="img/Ant2.png"></p>
+</div>
+<div id="likelihood-morphology-models-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-morphology-models-2" class="anchor"></a>Likelihood: Morphology models</h1>
+<p><img src="img/Ant3.png"><img src="img/Q2-state.png"></p>
+</div>
+<div id="likelihood-morphology-models-3" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-morphology-models-3" class="anchor"></a>Likelihood: Morphology models</h1>
+<p><img src="img/Ant4.png"></p>
+</div>
+<div id="likelihood-morphology-models-4" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-morphology-models-4" class="anchor"></a>Likelihood: Morphology models</h1>
+<p><img src="img/Ant5.png"><img src="img/Q4state.png"></p>
+</div>
+<div id="likelihood-morphology-models-5" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-morphology-models-5" class="anchor"></a>Likelihood: Morphology models</h1>
+<p><img src="img/Ant6.png"></p>
+</div>
+<div id="likelihood-morphology-models-6" class="section level1">
+<h1 class="hasAnchor">
+<a href="#likelihood-morphology-models-6" class="anchor"></a>Likelihood: Morphology models</h1>
+<p><img src="img/Ant7.png"></p>
+</div>
 <div id="likelihood-the-mk-model" class="section level1">
 <h1 class="hasAnchor">
 <a href="#likelihood-the-mk-model" class="anchor"></a>Likelihood: The Mk Model</h1>
@@ -511,8 +581,9 @@ Final p-score 2 after  0 nni operations </code></pre>
 <h1 class="hasAnchor">
 <a href="#likelihood-the-mk-model-6" class="anchor"></a>Likelihood: The Mk Model</h1>
 <ul>
-<li>Where do we get v from? v = substitution rate x time</li>
+<li>Where do we get v from?</li>
 </ul>
+<p>v = substitution rate x time</p>
 </div>
 <div id="likelihood-the-mk-model-7" class="section level1">
 <h1 class="hasAnchor">
@@ -687,9 +758,9 @@ Final p-score 2 after  0 nni operations </code></pre>
 </li>
 </ul>
 </div>
-<div id="parsimony---minimmize-the-number-of-steps-on-a-tree-score-trees-according-to-their-number-of-steps" class="section level1">
+<div id="parsimony---minimize-the-number-of-steps-on-a-tree-score-trees-according-to-their-number-of-steps" class="section level1">
 <h1 class="hasAnchor">
-<a href="#parsimony---minimmize-the-number-of-steps-on-a-tree-score-trees-according-to-their-number-of-steps" class="anchor"></a>Parsimony - minimmize the number of steps on a tree. Score trees according to their number of steps</h1>
+<a href="#parsimony---minimize-the-number-of-steps-on-a-tree-score-trees-according-to-their-number-of-steps" class="anchor"></a>Parsimony - minimize the number of steps on a tree. Score trees according to their number of steps</h1>
 </div>
 <div id="likelihood-the-mk-model-20" class="section level1">
 <h1 class="hasAnchor">
@@ -706,10 +777,6 @@ Final p-score 2 after  0 nni operations </code></pre>
 </li>
 </ul>
 </div>
-<div id="parsimony---minimize-the-number-of-steps-on-a-tree-score-trees-according-to-their-number-of-steps" class="section level1">
-<h1 class="hasAnchor">
-<a href="#parsimony---minimize-the-number-of-steps-on-a-tree-score-trees-according-to-their-number-of-steps" class="anchor"></a>Parsimony - minimize the number of steps on a tree. Score trees according to their number of steps</h1>
-</div>
 <div id="l--prdata--tree-branch-lengths-other-model-parameters" class="section level1">
 <h1 class="hasAnchor">
 <a href="#l--prdata--tree-branch-lengths-other-model-parameters" class="anchor"></a>L = Pr(Data | Tree, Branch lengths, other model parameters)</h1>
@@ -723,12 +790,12 @@ Final p-score 2 after  0 nni operations </code></pre>
 <div id="likelihood-gamma-distributed-rate-heterogeneity" class="section level1">
 <h1 class="hasAnchor">
 <a href="#likelihood-gamma-distributed-rate-heterogeneity" class="anchor"></a>Likelihood: Gamma-Distributed Rate Heterogeneity</h1>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
-<span id="cb7-2"><a href="#cb7-2"></a>dat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">draws =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/GammaDist">rgamma</a></span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">scale =</span> <span class="dv">18</span>),<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/GammaDist">rgamma</a></span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="fl">.5</span>, <span class="dt">scale =</span> <span class="dv">10</span>)))</span>
-<span id="cb7-3"><a href="#cb7-3"></a></span>
-<span id="cb7-4"><a href="#cb7-4"></a>d2 &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">lower =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.25</span>), <span class="dt">middle =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.5</span>), <span class="dt">seventyfive =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.75</span>), <span class="dt">upper =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.99</span>))</span>
-<span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">ggplot</a></span>(dat, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">x=</span>draws)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> lower)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> middle)) <span class="op">+</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> seventyfive)) <span class="op">+</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> upper)) </span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>dat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">draws =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/GammaDist">rgamma</a></span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="dv">2</span>, <span class="dt">scale =</span> <span class="dv">18</span>),<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/GammaDist">rgamma</a></span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="fl">.5</span>, <span class="dt">scale =</span> <span class="dv">10</span>)))</span>
+<span id="cb9-3"><a href="#cb9-3"></a></span>
+<span id="cb9-4"><a href="#cb9-4"></a>d2 &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">lower =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.25</span>), <span class="dt">middle =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.5</span>), <span class="dt">seventyfive =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.75</span>), <span class="dt">upper =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.99</span>))</span>
+<span id="cb9-5"><a href="#cb9-5"></a></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">ggplot</a></span>(dat, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">x=</span>draws)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> lower)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> middle)) <span class="op">+</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> seventyfive)) <span class="op">+</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> upper)) </span></code></pre></div>
 <p><img src="BayesianModels-figure/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
 </div>
 <div id="likelihood-gamma-distributed-rate-heterogeneity-1" class="section level1">
@@ -738,12 +805,12 @@ Final p-score 2 after  0 nni operations </code></pre>
 <li>Do you think all characters evolve at the same rate?</li>
 <li>Clarke and Middleton 2008 had a very nice exploration of this in birds</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
-<span id="cb8-2"><a href="#cb8-2"></a>dat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">draws =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/GammaDist">rgamma</a></span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="dv">6</span>, <span class="dt">scale =</span> <span class="dv">10</span>),<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/GammaDist">rgamma</a></span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="fl">.5</span>, <span class="dt">scale =</span> <span class="dv">10</span>)))</span>
-<span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a>d2 &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">lower =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.25</span>), <span class="dt">middle =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.5</span>), <span class="dt">seventyfive =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.75</span>), <span class="dt">upper =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.99</span>))</span>
-<span id="cb8-5"><a href="#cb8-5"></a></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">ggplot</a></span>(dat, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">x=</span>draws)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> lower)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> middle)) <span class="op">+</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> seventyfive)) <span class="op">+</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> upper)) </span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>dat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">draws =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/GammaDist">rgamma</a></span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="dv">6</span>, <span class="dt">scale =</span> <span class="dv">10</span>),<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/GammaDist">rgamma</a></span>(<span class="dt">n =</span> <span class="dv">500</span>, <span class="dt">shape =</span> <span class="fl">.5</span>, <span class="dt">scale =</span> <span class="dv">10</span>)))</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>d2 &lt;-<span class="st"> </span>dat <span class="op">%&gt;%</span><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span>(<span class="dt">lower =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.25</span>), <span class="dt">middle =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.5</span>), <span class="dt">seventyfive =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.75</span>), <span class="dt">upper =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/quantile">quantile</a></span>(dat<span class="op">$</span>draws, <span class="dt">probs =</span> <span class="fl">.99</span>))</span>
+<span id="cb10-5"><a href="#cb10-5"></a></span>
+<span id="cb10-6"><a href="#cb10-6"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">ggplot</a></span>(dat, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">x=</span>draws)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> lower)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> middle)) <span class="op">+</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> seventyfive)) <span class="op">+</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span>(<span class="dt">data =</span> d2, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggtree/topics/reexports">aes</a></span>(<span class="dt">xintercept =</span> upper)) </span></code></pre></div>
 <p><img src="BayesianModels-figure/unnamed-chunk-6-1.png" alt="plot of chunk unnamed-chunk-6"></p>
 <div id="less-spread--evolutionary-rates-among-characters-more-similar" class="section level2">
 <h2 class="hasAnchor">

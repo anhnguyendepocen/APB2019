@@ -1,4 +1,4 @@
-# APB2017
+# APB2019
 
 These materials can be installed as an R package:
 
@@ -28,13 +28,13 @@ Slides are meant to be rendered in RStudio.
 ## Day Two
 | Item | Time |
 |------|------|
-| [Introduction to Bayesian Models](https://github.com/wrightaprilm/APB2018/blob/master/BayesianModels.Rpres) | 9 - 10:30 |
+| [Introduction to Bayesian Models](https://github.com/wrightaprilm/APB2019/blob/master/BayesianModels.Rpres) | 9 - 10:30 |
 | Break | 10:30 - 10:45 |
-| [Models and reality](https://github.com/wrightaprilm/APB2018/blob/master/RelaxedPriorMotivation.Rpres) | 10:45 - Noon |
+| [Graphical models](https://github.com/wrightaprilm/APB2019/blob/master/ResearchAndTeachingWithRevBayes.Rpres) | 10:45 - Noon |
 | Lunch | 12 - 1 | 
-| Graphical models, on board exercise | 1 - 2:30 | 
+| [RevBayes Discrete Morphology](https://wrightaprilm.github.io/APB2019/articles/RB_Discrete_Morphology/RB_Discrete_Morphology_Tutorial.html) | 1 - 2:30 | 
 | Break | 2:30 - 2:45 | 
-| [RevBayes Dicrete Morphology](https://wrightaprilm.github.io/APB2018/articles/RB_Discrete_Morphology/RB_Discrete_Morphology_Tutorial.html) | 2:45-5 | 
+| [RevBayes Discrete Morphology](https://wrightaprilm.github.io/APB2018/articles/RB_Discrete_Morphology/RB_Discrete_Morphology_Tutorial.html) | 2:45-5 | 
 
 ## Day Three
 | Item | Time |
