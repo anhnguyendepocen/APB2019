@@ -20,15 +20,15 @@ Slides are meant to be rendered in RStudio.
 | Break | 10:30 - 10:45 |
 | [Phylogenetic Data Hands On](https://wrightaprilm.github.io/treesiftr/articles/02-treesiftr-advanced.html) | 10:45 - Noon |
 | Lunch | 12 - 1 | 
-| [Tree Thinking I](https://github.com/wrightaprilm/APB2018/blob/master/TreeThinking.Rmd.html) | 1 - 2:30 | 
+| [Tree Thinking I](https://github.com/wrightaprilm/APB2019/blob/master/articles/lectures/TreeThinking.html) | 1 - 2:30 | 
 | Break | 2:30 - 2:45 | 
-| [Tree Thinking II](https://github.com/wrightaprilm/APB2018/blob/master/TreeThinking.Rmd.html) | 2:45-5 | 
+| [Tree Thinking II](https://github.com/wrightaprilm/APB2019/blob/master/articles/lectures/TreeThinking.html) | 2:45-5 | 
 
 
 ## Day Two
 | Item | Time |
 |------|------|
-| [Introduction to Bayesian Models](https://github.com/wrightaprilm/APB2019/blob/master/BayesianModels.Rpres) | 9 - 10:30 |
+| [Introduction to Bayesian Models](https://github.com/wrightaprilm/APB2019/blob/master/articles/lectures/BayesianModels.html) | 9 - 10:30 |
 | Break | 10:30 - 10:45 |
 | [Graphical models](https://github.com/wrightaprilm/APB2019/blob/master/ResearchAndTeachingWithRevBayes.Rpres) | 10:45 - Noon |
 | Lunch | 12 - 1 | 

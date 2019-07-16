@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bayesian Models</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Bayesian Models',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            {
+        name:  'April Wright' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <link href="BayesianModels_files/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="BayesianModels_files/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="BayesianModels_files/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="BayesianModels_files/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="BayesianModels_files/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="BayesianModels_files/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="BayesianModels_files/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="BayesianModels_files/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="BayesianModels_files/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="BayesianModels_files/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    summary {
+      display: list-item;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+/* https://github.com/ropensci/plotly/pull/524#issuecomment-468142578 */
+slide:not(.current) .plotly.html-widget{
+  display: block;
+}
+
+  </style>
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">7.18.19</p>
+          </hgroup>
+  </slide>
+
+<slide class=""><hgroup><h2>Dice Rolling Activity: AND</h2></hgroup><article  id="dice-rolling-activity-and">
+
+<p>Explain AND probability rule with dice roll</p>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: AND</h2></hgroup><article  id="dice-rolling-activity-and-1">
+
+<pre class = 'prettyprint lang-r'>library(treesiftr)</pre>
+
+<pre >## Registered S3 method overwritten by &#39;treeio&#39;:
+##   method     from
+##   root.phylo ape</pre>
+
+<pre class = 'prettyprint lang-r'>library(alignfigR)</pre>
+
+<pre >## Welcome to alignfigR!</pre>
+
+<pre class = 'prettyprint lang-r'>library(phangorn)</pre>
+
+<pre >## Loading required package: ape</pre>
+
+<pre class = 'prettyprint lang-r'>library(ggtree)</pre>
+
+<pre >## ggtree v1.16.3  For help: https://yulab-smu.github.io/treedata-book/
+## 
+## If you use ggtree in published research, please cite the most appropriate paper(s):
+## 
+## [36m-[39m Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, accepted. doi: 10.1093/molbev/msy194[36m-[39m Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36, doi:10.1111/2041-210X.12628</pre>
+
+<pre >## 
+## Attaching package: &#39;ggtree&#39;</pre>
+
+<pre >## The following object is masked from &#39;package:ape&#39;:
+## 
+##     rotate</pre>
+
+<pre class = 'prettyprint lang-r'>library(ggplot2)
+aln_path &lt;- &quot;../../data/bears_fasta.fa&quot;
+bears &lt;- read_alignment(aln_path)
+tree &lt;- read.tree(&quot;../../data/starting_tree.tre&quot;)
+
+sample_df &lt;- generate_sliding(bears, start_char = 1, stop_char = 2, steps = 1)
+output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears)</pre>
+
+<pre >## Generating tree for charset:12</pre>
+
+<pre >## Final p-score 2 after  0 nni operations</pre>
+
+<pre >## Generating tree for charset:23</pre>
+
+<pre >## Final p-score 2 after  0 nni operations</pre>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: AND</h2></hgroup><article  id="dice-rolling-activity-and-2">
+
+<pre class = 'prettyprint lang-r'>output_vector[[1]]</pre>
+
+<pre >## NULL</pre>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: OR</h2></hgroup><article  id="dice-rolling-activity-or">
+
+<p>Explain OR probability rule with dice roll</p>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: AND</h2></hgroup><article  id="dice-rolling-activity-and-3">
+
+<pre class = 'prettyprint lang-r'>output_vector[[1]]</pre>
+
+<pre >## NULL</pre>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: Independence</h2></hgroup><article  id="dice-rolling-activity-independence">
+
+<p>Assumed to be independent: Probability of events rolling a 1 and rolling a 2 both occurring, if they are independent under AND:</p>
+
+<p>\(Pr(1,2) = Pr(1)Pr(2)\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: Independence</h2></hgroup><article  id="dice-rolling-activity-independence-1">
+
+<p>Assumed to be independent: Probability of events rolling a 1 and rolling a 2 both occurring, if they are independent under AND:</p>
+
+<p>\(Pr(1,2) = Pr(1)Pr(2)\)</p>
+
+<ul>
+<li>Do we expect that one dice roll is independent of the one prior to it?</li>
+<li>Do we assume the probability of observing a 0 state at a tip is independent of state 0 being at its parent node?
+
+<ul>
+<li>Does OR feel right for this situation?</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: Non-Independence</h2></hgroup><article  id="dice-rolling-activity-non-independence">
+
+<p>When one outcome impacts the probability of the next outcome<br/>- The joint probability: \(Pr(A,B)\)<br/>- The probability of the first event: \(Pr(A)\)<br/>- The probability of the second event given the first: \(Pr(A|B)\)</p>
+
+<p>??? Should be noted that this is not that dissimiliar to parsimony, since a change because pruning algorithm</p>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: Non-Independence</h2></hgroup><article  id="dice-rolling-activity-non-independence-1">
+
+<p>When one outcome impacts the probability of the next outcome - The joint probability: \(Pr(A,B)\) - The probability of the first event: \(Pr(A)\)<br/>- The probability of the second event given the first: \(Pr(B|A)\)</p>
+
+<p>\(Pr(A,B) = Pr(A)Pr(B|A)\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: Non-Independence</h2></hgroup><article  id="dice-rolling-activity-non-independence-2">
+
+<pre class = 'prettyprint lang-r'>output_vector[2]</pre>
+
+<pre >## [[1]]</pre>
+
+<p><img src="BayesianModels_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: How do we turn these terms into a model?</h2></hgroup><article  id="likelihood-how-do-we-turn-these-terms-into-a-model">
+
+<ul>
+<li>One way to think about likelihood is as a degree of surprise
+
+<ul>
+<li>Would you be surprised if you rolled ten 1s in a row?<br/></li>
+<li>When we calculate a likelihood, we search for a maximum likelihood - the value that minimizes the degree of surprise given the data</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Model expectations</h2></hgroup><article  id="likelihood-model-expectations">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Roll</th>
+<th align="left">Fair Die</th>
+<th align="left">Loaded Die</th>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">1/6</td>
+<td align="left">2/6</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">1/6</td>
+<td align="left">1/6</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">1/6</td>
+<td align="left">1/6</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">1/6</td>
+<td align="left">1/6</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">1/6</td>
+<td align="left">1/6</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">1/6</td>
+<td align="left">0</td>
+</tr>
+</table>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Model expectations</h2></hgroup><article  id="likelihood-model-expectations-1">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Roll</th>
+<th align="left">Fair Die</th>
+<th align="left">Loaded Die</th>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left"><strong>1/6</strong></td>
+<td align="left">2/6</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left"><strong>1/6</strong></td>
+<td align="left">1/6</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left"><strong>1/6</strong></td>
+<td align="left">1/6</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left"><strong>1/6</strong></td>
+<td align="left">1/6</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left"><strong>1/6</strong></td>
+<td align="left">1/6</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left"><strong>1/6</strong></td>
+<td align="left">0</td>
+</tr>
+</table>
+
+<p>==1</p>
+
+<p>Probabilities for each model will sum to 1</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Model expectations</h2></hgroup><article  id="likelihood-model-expectations-2">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Roll</th>
+<th align="left">Fair Die</th>
+<th align="left">Loaded Die</th>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">1/6</td>
+<td align="left"><strong>2/6</strong></td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">1/6</td>
+<td align="left"><strong>1/6</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">1/6</td>
+<td align="left"><strong>1/6</strong></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">1/6</td>
+<td align="left"><strong>1/6</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">1/6</td>
+<td align="left"><strong>1/6</strong></td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">1/6</td>
+<td align="left"><strong>0/6</strong></td>
+</tr>
+</table>
+
+<p>==1</p>
+
+<p>Probabilities for each model will sum to 1</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Model expectations</h2></hgroup><article  id="likelihood-model-expectations-3">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Roll</th>
+<th align="left">Fair Die</th>
+<th align="left">Loaded Die</th>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">1/6</td>
+<td align="left"><strong>2/6</strong></td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">1/6</td>
+<td align="left"><strong>1/6</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">1/6</td>
+<td align="left"><strong>1/6</strong></td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">1/6</td>
+<td align="left"><strong>1/6</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">1/6</td>
+<td align="left"><strong>1/6</strong></td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">1/6</td>
+<td align="left"><strong>0/6</strong></td>
+</tr>
+</table>
+
+<p>==1</p>
+
+<p>What would be the probability of rolling 5 sixes under the first model?</p>
+
+<p>Under the second?</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood in phylogenetics</h2></hgroup><article  id="likelihood-in-phylogenetics">
+
+<p><img src="img/L1.png" align="left" height="550" width="950" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood in phylogenetics</h2></hgroup><article  id="likelihood-in-phylogenetics-1">
+
+<p><img src="img/L2.png" align="left" height="500" width="900" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood in phylogenetics</h2></hgroup><article  id="likelihood-in-phylogenetics-2">
+
+<p><img src="img/L3.png" align="left" height="500" width="900" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood in phylogenetics</h2></hgroup><article  id="likelihood-in-phylogenetics-3">
+
+<p><img src="img/L4.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Sequence models</h2></hgroup><article  id="likelihood-sequence-models">
+
+<p><img src="img/Assumptions1.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Sequence models</h2></hgroup><article  id="likelihood-sequence-models-1">
+
+<p><img src="img/Q1.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Sequence models</h2></hgroup><article  id="likelihood-sequence-models-2">
+
+<p><img src="img/Q2.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Morphology models</h2></hgroup><article  id="likelihood-morphology-models">
+
+<p><img src="img/Ant1.png" align="middle" height="350" width="350" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Morphology models</h2></hgroup><article  id="likelihood-morphology-models-1">
+
+<p><img src="img/ant2.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Morphology models</h2></hgroup><article  id="likelihood-morphology-models-2">
+
+<p><img src="img/ant3.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Morphology models</h2></hgroup><article  id="likelihood-morphology-models-3">
+
+<p><img src="img/ant4.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Morphology models</h2></hgroup><article  id="likelihood-morphology-models-4">
+
+<p><img src="img/ant5.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Morphology models</h2></hgroup><article  id="likelihood-morphology-models-5">
+
+<p><img src="img/ant6.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Morphology models</h2></hgroup><article  id="likelihood-morphology-models-6">
+
+<p><img src="img/ant7.png" align="left" height="550" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-1">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul></li>
+<li>This, to me, is the crucial difference between likelihood-based phylogenetics and parsimony: the assumptions are explicit, they are mathematically represented, and they are <em>testable</em></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-2">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Equally likely to transition to a state as from it</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-3">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Equally likely to transition to a state as from it</li>
+</ul></li>
+</ul>
+
+<p>\(L\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-4">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Equally likely to transition to a state as from it</li>
+</ul></li>
+</ul>
+
+<p>\(L = [(1/2)]\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-5">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Changes can occur anywhere along the branch</li>
+</ul></li>
+</ul>
+
+<p>\(L = [(1/2)(1/2 + (1/2e^(-2v/1)))]\) in which v is the branch length</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-6">
+
+<ul>
+<li>Where do we get v from?</li>
+</ul>
+
+<p>v = substitution rate x time</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-7">
+
+<ul>
+<li>OK, cool</li>
+<li>How do we get the substitution rate?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-8">
+
+<ul>
+<li>Let’s say we start with a character, 0
+
+<ul>
+<li>We’re going along a branch, and we have an event</li>
+<li>We could … have an event that results in no change (still 0)</li>
+<li>We could … have an event that results in change (to 1)
+
+<ul>
+<li>This is called a substitution</li>
+</ul></li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-9">
+
+<ul>
+<li>There are only two possibilities for binary data - change or no change</li>
+<li>We often refer to the substitution rate as \(\beta\)</li>
+<li>The probability that any event happens, where it results in a change or not, is often called \(\mu\). \(\mu\) for binary data is 2*\(\beta\)</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-10">
+
+<ul>
+<li>The waiting time between substitutions is Poisson-Distributed</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-11">
+
+<ul>
+<li>\(\text{Pr(no events on branch)} = e^(-\mu*t)\)</li>
+<li>\(\text{Pr(something happens)} = 1 - e^(-\mu*t)\)</li>
+<li>\(\text{Pr(Any given event will cause us to change states)} = 1/2\)</li>
+<li>\(\text{Pr(1 at tip | 0 at node)} = (1/2)*1 - e^(-\mu*t)\)</li>
+<li>$ = (1/2)*1 - e^(-2t) $</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-12">
+
+<p>Break: treesiftr 6-10</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Branch lengths</h2></hgroup><article  id="likelihood-branch-lengths">
+
+<p>v is the number of substitutions per site<br/>- \(ν = (1/2) \mu*t = 2\beta*t\)<br/>- \(v/2 = \beta*t\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-13">
+
+<p>Break: <a href='http://phylo.bio.ku.edu/mephytis/tree-opt.html' title=''>http://phylo.bio.ku.edu/mephytis/tree-opt.html</a></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-14">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters occur with equal frequency</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-15">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters occur with equal frequency</li>
+<li>What is your probability of transitioning from 0 to 1 if all sites in your character matrix have 1 as their state?</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-16">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters occur with equal frequency</li>
+<li>What is your probability of transitioning from 0 to 1 if all sites in your character matrix have 1 as their state?</li>
+</ul></li>
+</ul>
+
+<p>\(\pi_{0}\) and \(\pi_{1}\)</p>
+
+<p>\(L = \pi_{0}[1/2 + (1/2e)^(2v/1)]\)</p>
+
+<p>This is just one branch and one character history!!!</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-17">
+
+<img src='img/Ptree_enum.png' title='fig:'/><p class='caption'>Parsimony Trees</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-18">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-19">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul></li>
+</ul>
+
+<p>Parsimony - minimize the number of steps on a tree. Score trees according to their number of steps</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-20">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul></li>
+</ul>
+
+<p>\(L = \text{Pr(Data | Tree, Branch lengths, other model parameters)}\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-21">
+
+<p>-Much about the evolutionary process assumed to have generated the data is similar betwen Mk and parsimony</p>
+
+<p>-But also differences: under parsimony, every single character can have a different tree and length</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Gamma-Distributed Rate Heterogeneity</h2></hgroup><article  id="likelihood-gamma-distributed-rate-heterogeneity">
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Gamma-Distributed Rate Heterogeneity</h2></hgroup><article  id="likelihood-gamma-distributed-rate-heterogeneity-1">
+
+<ul>
+<li>Do you think all characters evolve at the same rate?</li>
+<li>Clarke and Middleton 2008 had a very nice exploration of this in birds</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>library(dplyr)
+dat &lt;- data.frame(draws = c(rgamma(n = 500, shape = 6, scale = 10),rgamma(n = 500, shape = .5, scale = 10)))
+
+d2 &lt;- dat %&gt;%  summarize(lower = quantile(dat$draws, probs = .25), middle = quantile(dat$draws, probs = .5), seventyfive = quantile(dat$draws, probs = .75), upper = quantile(dat$draws, probs = .99))
+
+ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercept = lower)) + geom_vline(data = d2, aes(xintercept = middle)) +geom_vline(data = d2, aes(xintercept = seventyfive)) +geom_vline(data = d2, aes(xintercept = upper)) </pre>
+
+<p><img src="BayesianModels_files/figure-html/unnamed-chunk-6-1.png" width="720" /></p>
+
+<p>Less spread == evolutionary rates among characters <em>more</em> similar</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: Gamma-Distributed Rate Heterogeneity</h2></hgroup><article  id="likelihood-gamma-distributed-rate-heterogeneity-2">
+
+<p><img src="img/AIC.png" align="left" height="250" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model vs. Parsimony</h2></hgroup><article  id="likelihood-the-mk-model-vs.-parsimony">
+
+<ul>
+<li>I hope I’ve communicated to you that there are a lot of commonalities between parsimony and the most commonly used model for morphology</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model vs. Parsimony</h2></hgroup><article  id="likelihood-the-mk-model-vs.-parsimony-1">
+
+<ul>
+<li>Because I published this <img src="img/journal.pone.0109210.g003.png" align="left" height="500" width="450" margin="0 auto" /></li>
+</ul>
+
+<p>Wright and Hillis 2014</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model vs. Parsimony</h2></hgroup><article  id="likelihood-the-mk-model-vs.-parsimony-2">
+
+<ul>
+<li>You’ll notice that parsimony really struggles when the evolutionary rate is high <img src="img/journal.pone.0109210.g003.png" align="left" height="500" width="450" margin="0 auto" /></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model vs. Parsimony</h2></hgroup><article  id="likelihood-the-mk-model-vs.-parsimony-3">
+
+<ul>
+<li>That’s because of this - parsimony will always try to minimize homoplasy. Likelihood methods can model multiple changes (superimposed changes) along a branch.</li>
+</ul>
+
+<img src='img/Ptree_enum.png' title='fig:'/><p class='caption'>Parsimony Trees</p>
+
+</article></slide><slide class=""><hgroup><h2>Long-Branch Attraction</h2></hgroup><article  id="long-branch-attraction">
+
+<img src='img/felsenstein-zone-tree.png' title=''/>
+
+<p>Felsenstein 1978</p>
+
+</article></slide><slide class=""><hgroup><h2>A brief note on taxon sampling</h2></hgroup><article  id="a-brief-note-on-taxon-sampling">
+
+<p><img src='img/taxonsampling.png' title=''/> <img src='img/heathhedtke.png' title=''/></p>
+
+</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data">
+
+<p>-Paleontological datasets tend to have a lot of missing data<br/>- In an analysis I did for Wright, Lloyd and Hillis (2016), I found most datasets falling in the 50-80% range</p>
+
+</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-1">
+
+<ul>
+<li>According to some, missing data are no problem.</li>
+</ul>
+
+<img src='img/wiensMD.png' title=''/>
+
+</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-2">
+
+<ul>
+<li>According to some, missing data are no problem.</li>
+</ul>
+
+<img src='img/wiensMD.png' title=''/>
+
+</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-3">
+
+<ul>
+<li>According to others, it is</li>
+</ul>
+
+<img src='img/brownlemmon.png' title=''/>
+
+</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-4">
+
+<ul>
+<li>Who is right?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-5">
+
+<ul>
+<li>Everyone, all at once<br/><img src="img/wrightMD.png" align="left" height="500" width="450" margin="0 auto" /></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Bayesian Methods</h2></hgroup><article  id="bayesian-methods">
+
+<ul>
+<li>Can someone articulate for me a difference between a Bayesian method and a likelihood method?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Bayesian Methods</h2></hgroup><article  id="bayesian-methods-1">
+
+<ul>
+<li>Can someone articulate for me the difference between a Bayesian method and a likelihood method?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Priors</h2></hgroup><article  id="priors">
+
+<p><em>Priors reflect <em>prior</em> knowledge or work about a problem</em></p>
+
+</article></slide><slide class=""><hgroup><h2>Priors</h2></hgroup><article  id="priors-1">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+</article></slide><slide class=""><hgroup><h2>Taking a Step Back</h2></hgroup><article  id="taking-a-step-back">
+
+<ul>
+<li>What is the probability of a red head and yellow breast?<br/></li>
+<li>What is the probability of a red head and not-yellow breast?<br/></li>
+<li>What is the probability of a not-red head and yellow breast?<br/></li>
+<li>What is the probability of a not-red head and not-yellow breast?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Joint Probabilities</h2></hgroup><article  id="joint-probabilities">
+
+<p>These are termed &ldquo;joint&rdquo; probabilities.</p>
+
+<ul>
+<li>What is the probability of a red head and yellow breast?<br/></li>
+<li>What is the probability of a red head and not-yellow breast?<br/></li>
+<li>What is the probability of a not-red head and yellow breast?<br/></li>
+<li>What is the probability of a not-red head and not-yellow breast?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Conditional Probabilities</h2></hgroup><article  id="conditional-probabilities">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+<ul>
+<li>What is the probability that a manakin is yellow-breasted given that it is red-headed?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Conditional Probabilities</h2></hgroup><article  id="conditional-probabilities-1">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+<ul>
+<li>What is the probability that a manakin is yellow-breasted given that it is red-headed? 3/5</li>
+</ul>
+
+<p>** This is the conditional probability **</p>
+
+</article></slide><slide class=""><hgroup><h2>Conditional Probabilities</h2></hgroup><article  id="conditional-probabilities-2">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+<p>This is the conditional probability - It is the probability of yellow-beastedness given red-headedness,</p>
+
+<p>\(Pr(Y | R)( R )\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Conditional Probabilities</h2></hgroup><article  id="conditional-probabilities-3">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /> This is the conditional probability</p>
+
+<p>Equally, it could be \(Pr(R | Y)(Y)\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Conditional Probabilities</h2></hgroup><article  id="conditional-probabilities-4">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+<p>This is the conditional probability - It is the probability of yellow-beastedness given red-headedness,</p>
+
+<p>\(Pr(Y | R)( R )\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Conditional Probabilities</h2></hgroup><article  id="conditional-probabilities-5">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+<p>This is the conditional probability</p>
+
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}\) = \(\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Marginal Probabilities</h2></hgroup><article  id="marginal-probabilities">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+<ul>
+<li>What is the probability that a manakin is yellow-breasted?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Marginal Probabilities</h2></hgroup><article  id="marginal-probabilities-1">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+<ul>
+<li>What is the probability that a manakin is yellow-breasted? 4/7</li>
+</ul>
+
+<p>This is a marginal probability</p>
+
+</article></slide><slide class=""><hgroup><h2>Marginal Probabilities</h2></hgroup><article  id="marginal-probabilities-2">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /></p>
+
+<ul>
+<li>What is the probability that a manakin is yellow-breasted? 4/7</li>
+</ul>
+
+<p>This is a marginal probability</p>
+
+<p>\(Pr(Y) = Pr(Y, R) + Pr(Y, B)\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Marginal Probabilities</h2></hgroup><article  id="marginal-probabilities-3">
+
+<p><img src="img/manakins/manakins.001.png" align="left" height="500" width="750" margin="0 auto" /> - What is the probability that a manakin is yellow-breasted? 4/7</p>
+
+</article></slide><slide class=""><hgroup><h2>This is a marginal probability</h2></hgroup><article  id="this-is-a-marginal-probability">
+
+<p>\(Pr(Y) = Pr(Y, R) + Pr(Y, B)\)</p>
+
+<p>We’ll be coming back to this in a moment</p>
+
+</article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule">
+
+<p>How do we calculate joint probabilities in a Bayesian context:</p>
+
+<p>\(Pr(R|Y) Pr(Y) = Pr(Y|R) Pr( R )\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-1">
+
+<p>If we divide byth sides by Pr(Y), we can simplify the statement</p>
+
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}\) = \(\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Simplifies to:</p>
+
+<p>\(Pr(R|Y) = \frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+
+</article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-2">
+
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}\) = \(\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Simplifies to:</p>
+
+<p>\(_Pr(R|Y)_ = \frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Posterior Probability of red-headedness</p>
+
+</article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-3">
+
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)} = \frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Simplifies to:</p>
+
+<p>\(Pr(R|Y) = \frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Likelihood of Red-headed given Yellow-breasted</p>
+
+</article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-4">
+
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}\) = \(\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Simplifies to:</p>
+
+<p>\(Pr(R|Y) = \frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Marginal likelihood of being yellow-breasted</p>
+
+</article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-5">
+
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)} = \frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Simplifies to:</p>
+
+<p>\(Pr(R|Y) = \frac{(Pr(Y | R) Pr( R ))}{Pr(Y)}\)</p>
+
+<p>Prior probability of red-headedness</p>
+
+</article></slide><slide class=""><hgroup><h2>Priors</h2></hgroup><article  id="priors-2">
+
+<p>Priors reflect <em>prior</em> knowledge or work about a problem</p>
+
+<p>A prior can almost always be overcome by strong evidence</p>
+
+</article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-6">
+
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>In practice</h2></hgroup><article  id="in-practice">
+
+<p>$Pr(Model Hypothesis | Data) =</p>
+
+<p>\(\frac{(Pr(Data | Model Hypothesis) Pr( Model Hypothesis ))}{Pr(Data)}\)</p>
+
+<p>\(Pr(Data)\) derived via heuristics</p>
+
+</article></slide><slide class=""><hgroup><h2>Tree Searching Under ML and Bayesian Analyses</h2></hgroup><article  id="tree-searching-under-ml-and-bayesian-analyses">
+
+<img src='img/Ptree_enum.png' title='fig:'/><p class='caption'>Parsimony Trees</p>
+
+<ul>
+<li>We’ve covered that it is not practical to brute-force search trees<br/></li>
+<li>We’ve covered some heuristics<br/></li>
+<li>Parsimony heuristics can be simple - we are simply varying the topology<br/></li>
+<li>What happens when we need to vary topology, branch lengths and a bunch of model parameters?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>MCMC </h2><h3> Markov Chain Monte Carlo</h3></hgroup><article  id="mcmc-markov-chain-monte-carlo">
+
+<ul>
+<li>This sounds intimidating, but let’s break it down a little bit<br/></li>
+<li>Markov chain: Memoryless process<br/></li>
+<li>Monte Carlo: Random proposals</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>MCMC </h2><h3> Markov Chain Monte Carlo</h3></hgroup><article  id="mcmc-markov-chain-monte-carlo-1">
+
+<ul>
+<li>This sounds intimidating, but let’s break it down a little bit</li>
+<li>Markov chain: Memoryless process</li>
+<li>Monte Carlo: Random proposals</li>
+</ul>
+
+<p>Put it together: we start with some value for a parameter, and make changes to it stoachstically. Then, we evaluate the likelihood score of that new parameter. If it is good, we keep it. If it is bad, we chuck it.</p>
+
+</article></slide><slide class=""><hgroup><h2>MCMC</h2></hgroup><article  id="mcmc">
+
+<p>Put it together: we start with some value for a parameter, and make changes to it stoachstically. Then, we evaluate the likelihood score of that new parameter. If it is good, we use it to seed future searches. If it is bad, we keep our current value.</p>
+
+<ul>
+<li>Where does the lack of memory come in? And why is that a good thing?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>MCMC</h2></hgroup><article  id="mcmc-1">
+
+<pre class = 'prettyprint lang-rev'>for (i in 1:nbr){
+    br_lens[i] ~ dnExponential(br_len_lambda)
+    moves[mvi++] = mvScale(br_lens[i]) 
+}</pre>
+
+<p>Let’s think about this in plain language. - Assign a length of each branch (drawn from a gamma) - Choose how the parameter will be changed (by scaling)</p>
+
+</article></slide><slide class=""><hgroup><h2>MCMC</h2></hgroup><article  id="mcmc-2">
+
+<pre class = 'prettyprint lang-rev'>for (i in 1:nbr){
+    br_lens[i] ~ dnExponential(br_len_lambda)
+    moves[mvi++] = mvScale(br_lens[i]) 
+}</pre>
+
+<p>Let’s think about this in plain language. - A solution that is good will be hit many times</p>
+
+</article></slide><slide class=""><hgroup><h2>MCMC</h2></hgroup><article  id="mcmc-3">
+
+<pre class = 'prettyprint lang-rev'>tau ~ dnUniformTopology(names)
+moves[mvi++] = mvNNI(tau, weight=2*nbr)
+phylogeny := treeAssembly(tau, br_lens)
+moves[mvi++] = mvSPR(tau, weight=nbr)
+</pre>
+
+<blockquote>
+<p>Let’s think about this in plain language. - Build an initial tree - Change it via SPR and NNI - What is the idea of weight?</p>
+</blockquote>
+
+</article></slide><slide class=""><hgroup><h2>MCMC</h2></hgroup><article  id="mcmc-4">
+
+<ul>
+<li>Under ML: We use this to try to find a set of parameters that gives us the best model likelihood.<br/></li>
+<li>Under Bayesian: We use this to obtain a sample of models and parameters that show us the range of solutions for our data</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-7">
+
+<p>Hands On: RB_Discrete_morphology, using priors to relax Mk assumptions</p>
+
+<p>Hands On: RB_Discrete_morphology, analyzing the output Priors</p>
+
+</article></slide><slide class=""><hgroup><h2>Priors reflect <em>prior</em> knowledge or work about a problem</h2></hgroup><article  id="priors-reflect-prior-knowledge-or-work-about-a-problem">
+
+<p>We, for example, know that it is not incredibly likely to have super long branch lengths. Let’s look at that branch length prior again:</p>
+
+<pre class = 'prettyprint lang-rev'>for (i in 1:nbr){
+    br_lens[i] ~ dnExponential(br_len_lambda)
+    moves[mvi++] = mvScale(br_lens[i]) 
+}</pre></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "BayesianModels_files/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
