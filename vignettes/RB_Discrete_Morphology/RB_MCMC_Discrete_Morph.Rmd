@@ -1,5 +1,5 @@
 ---
-title: "Discrete morphology - Relaxed Mk"
+title: "Discrete morphology - Tree Inference"
 output: html_document
 author:
 - April M. Wright
