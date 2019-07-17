@@ -1,9 +1,9 @@
 # APB2019
 
-These materials can be installed as an R package:
+These materials can be downloaded here:
 
 ```
-devtools::install_github("wrightaprilm/APB2019")
+https://github.com/wrightaprilm/APB2019.git
 ```
 
 Slides are meant to be rendered in RStudio.
