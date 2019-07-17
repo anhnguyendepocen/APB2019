@@ -106,129 +106,265 @@
 
     
     
-<div id="fossil-ants" class="section level2">
+<div id="so-what-are-you-going-to-do-with-your-tree" class="section level2">
 <h2 class="hasAnchor">
-<a href="#fossil-ants" class="anchor"></a>Fossil Ants</h2>
+<a href="#so-what-are-you-going-to-do-with-your-tree" class="anchor"></a>So what are you going to do with your tree?</h2>
+</div>
+<div id="using-trees-to-understand-trait-evolution" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-trees-to-understand-trait-evolution" class="anchor"></a>Using trees to understand trait evolution</h2>
+<ul>
+<li>What is a phylogeny?
+<ul>
+<li>A model of evolutionary history<br>
+</li>
+<li>Speciation and extinction<br>
+</li>
+<li>Rates of evolution<br>
+</li>
+<li>(Maybe) absolute time</li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="using-trees-to-understand-trait-evolution-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-trees-to-understand-trait-evolution-1" class="anchor"></a>Using trees to understand trait evolution</h2>
+<ul>
+<li>But there are also special challenges to using phylogenetic trees to study the evolutionary history of traits</li>
+</ul>
+</div>
+<div id="linear-regression" class="section level2">
+<h2 class="hasAnchor">
+<a href="#linear-regression" class="anchor"></a>Linear Regression</h2>
+<p>Let’s say that in your group of organisms, you believe that arboreality is associated with lower visual acuity.</p>
+</div>
+<div id="linear-regression-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#linear-regression-1" class="anchor"></a>Linear Regression</h2>
+<p>Let’s say that in your group of organisms, you believe that arboreality is associated with lower visual acuity.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>arboreality &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(.<span class="dv">1</span>, <span class="fl">.2</span>, <span class="fl">.3</span>, <span class="fl">.4</span>, <span class="fl">.5</span>, <span class="fl">.6</span>, <span class="fl">.7</span>, <span class="fl">.8</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>vis_ac &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="fl">.8</span>, <span class="fl">.6</span>, <span class="fl">.4</span>, <span class="fl">.35</span>, <span class="fl">.3</span>, <span class="fl">.25</span>, <span class="fl">.2</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(arboreality, vis_ac)</span></code></pre></div>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
+</div>
+<div id="linear-regression-2" class="section level2">
+<h2 class="hasAnchor">
+<a href="#linear-regression-2" class="anchor"></a>Linear Regression</h2>
+<p>What is wrong with what we have done?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>arboreality &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(.<span class="dv">1</span>, <span class="fl">.2</span>, <span class="fl">.3</span>, <span class="fl">.4</span>, <span class="fl">.5</span>, <span class="fl">.6</span>, <span class="fl">.7</span>, <span class="fl">.8</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>vis_ac &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="fl">.8</span>, <span class="fl">.6</span>, <span class="fl">.4</span>, <span class="fl">.35</span>, <span class="fl">.3</span>, <span class="fl">.25</span>, <span class="fl">.2</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(arboreality, vis_ac)</span></code></pre></div>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+</div>
+<div id="linear-regression-3" class="section level2">
+<h2 class="hasAnchor">
+<a href="#linear-regression-3" class="anchor"></a>Linear Regression</h2>
+<p>What is wrong with what we have done?</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>arboreality &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(.<span class="dv">1</span>, <span class="fl">.2</span>, <span class="fl">.3</span>, <span class="fl">.4</span>, <span class="fl">.5</span>, <span class="fl">.6</span>, <span class="fl">.7</span>, <span class="fl">.8</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a>vis_ac &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="fl">.8</span>, <span class="fl">.6</span>, <span class="fl">.4</span>, <span class="fl">.35</span>, <span class="fl">.3</span>, <span class="fl">.25</span>, <span class="fl">.2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(arboreality, vis_ac)</span></code></pre></div>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p>These are not independent datapoints!</p>
+</div>
+<div id="linear-regression-4" class="section level2">
+<h2 class="hasAnchor">
+<a href="#linear-regression-4" class="anchor"></a>Linear Regression</h2>
+<p>What is the problem with what we’ve done?</p>
 <div class="figure">
-<img src="img/spheco.jpeg" alt=""><p class="caption">Steve Shattuck</p>
+<img src="img/fels1.png" alt=""><p class="caption">Felsenstein Phylogenies and the Comparative Method, 1985</p>
 </div>
+<p>These are not independent datapoints!</p>
 </div>
-<div id="fossil-ants-1" class="section level2">
+<div id="linear-regression-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#fossil-ants-1" class="anchor"></a>Fossil Ants</h2>
-{#margins}
-<style> #margins > p { margin-top: -100px; } </style>
-<div class="figure">
-<img src="img/Fig2.png" alt=""><p class="caption">ants</p>
+<a href="#linear-regression-5" class="anchor"></a>Linear Regression</h2>
+<p>Does this mean we simply can’t make these comparsions?</p>
 </div>
-</div>
-<div id="fossil-ants-2" class="section level2">
+<div id="linear-regression-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#fossil-ants-2" class="anchor"></a>Fossil Ants</h2>
-<p><img src="img/colorsymmetry.png"></p>
+<a href="#linear-regression-6" class="anchor"></a>Linear Regression</h2>
+<p>Does this mean we simply can’t make these comparsions?</p>
+<p>No! But we <em>must</em> account for the effect of shared heritage.</p>
 </div>
-<div id="fossil-ants-3" class="section level2">
+<div id="brownian-motion" class="section level2">
 <h2 class="hasAnchor">
-<a href="#fossil-ants-3" class="anchor"></a>Fossil Ants</h2>
-<p><img src="img/bigmat.png"></p>
-<p>##State Frequenies</p>
-<p><span class="math display">\[Q_{JC69} = \begin{pmatrix} 
-{*} &amp; \frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} \\ 
-\frac{1}{3} &amp; {*} &amp; \frac{1}{3} &amp; \frac{1}{3} \\ 
-\frac{1}{3} &amp; \frac{1}{3} &amp; {*} &amp; \frac{1}{3} \\ 
-\frac{1}{3} &amp; \frac{1}{3} &amp; \frac{1}{3} &amp; {*}  
-\end{pmatrix} \mbox{  ,}\]</span></p>
+<a href="#brownian-motion" class="anchor"></a>Brownian Motion</h2>
+<ul>
+<li><p>Based on the random movement of particles in fluid</p></li>
+<li><p>The idea is that sucessive movements are independent of each other.</p></li>
+</ul>
 </div>
-<div id="state-frequenies" class="section level2">
+<div id="brownian-motion-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#state-frequenies" class="anchor"></a>State Frequenies</h2>
-<p><span class="math display">\[Q = \begin{pmatrix} -(k-1)\mu &amp; \mu &amp; \mu &amp; \mu \\
-\mu &amp; -(k-1)\mu  &amp; \mu &amp; \mu \\
-\mu &amp; \mu &amp; -(k-1)\mu  &amp; \mu \\
-\mu &amp; \mu &amp; \mu &amp; -(k-1)\mu \\
-\end{pmatrix} \mbox{  ,}\]</span></p>
-<p>Pr(01) = Rate at which we expect 0-&gt;1 * probability of 0</p>
+<a href="#brownian-motion-1" class="anchor"></a>Brownian Motion</h2>
+<ul>
+<li><p>Under this model, traits evolve due to a continuous random walk.</p></li>
+<li><p>The difference (contrast) between the traits possessed by any two tips on the tree will be normally distributed. The mean of the normal will be 0, and the variance will be proportional to the time since common ancestor.</p></li>
+</ul>
 </div>
-<div id="state-frequenies-1" class="section level2">
+<div id="brownian-motion-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#state-frequenies-1" class="anchor"></a>State Frequenies</h2>
-<p><span class="math display">\[Q = \begin{pmatrix} -(k-1)\mu &amp; \mu\pi &amp; \mu\pi &amp; \mu\pi \\
-\mu\pi_{1} &amp; -(k-1)\mu  &amp; \mu\pi_{1} &amp; \mu\pi_{1} \\
-\mu\pi_{2} &amp; \mu\pi_{2} &amp; -(k-1)\mu  &amp; \mu\pi_{2} \\
-\mu_{3} &amp; \mu\pi_{3} &amp; \mu_{3} &amp; -(k-1)\mu \\
-\end{pmatrix} \mbox{  ,}\]</span></p>
-<p>Pr(01) = Rate at which we expect 0-&gt;1 * probability of 0<br>
-Pr(01) = .75 * .5<br>
-Pr(01) = 0.375</p>
+<a href="#brownian-motion-2" class="anchor"></a>Brownian Motion</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="op">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="dt">length=</span><span class="dv">100</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>norms &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">dnorm</a></span>(x, <span class="dt">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(norms)</span></code></pre></div>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 </div>
-<div id="a-prior-on-state-frequenies" class="section level2">
+<div id="brownian-motion-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-prior-on-state-frequenies" class="anchor"></a>A Prior On State Frequenies</h2>
-<p>But … maybe every character in the dataset does not have the same equilibrium character frequency</p>
+<a href="#brownian-motion-3" class="anchor"></a>Brownian Motion</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>steps &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">50</span>  </span>
+<span id="cb5-2"><a href="#cb5-2"></a>var &lt;-<span class="st"> </span><span class="fl">0.01</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(steps) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">sd =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">sqrt</a></span>(var))</span>
+<span id="cb5-4"><a href="#cb5-4"></a>x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cumsum">cumsum</a></span>(x))</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(steps, x, <span class="dt">type =</span> <span class="st">"line"</span>)</span></code></pre></div>
+<pre><code>## Warning in plot.xy(xy, type, ...): plot type 'line' will be truncated to
+## first character</code></pre>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
 </div>
-<div id="a-prior-on-state-frequencies" class="section level2">
+<div id="brownian-motion-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-prior-on-state-frequencies" class="anchor"></a>A Prior On State Frequencies</h2>
-<p><img src="img/Prior1.png"></p>
+<a href="#brownian-motion-4" class="anchor"></a>Brownian Motion</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>steps &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">50</span>  </span>
+<span id="cb7-2"><a href="#cb7-2"></a>var &lt;-<span class="st"> </span><span class="fl">0.01</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>n_sims &lt;-<span class="st"> </span><span class="dv">50</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>sim_mat &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">matrix</a></span>(<span class="dv">0</span>, n_sims, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(steps))</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_sims) {</span>
+<span id="cb7-8"><a href="#cb7-8"></a>  sim_mat[i, ] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/cumsum">cumsum</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Normal">rnorm</a></span>(<span class="dt">n =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(steps) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">sd =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/MathFun">sqrt</a></span>(var))))</span>
+<span id="cb7-9"><a href="#cb7-9"></a>}</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(steps, sim_mat[<span class="dv">1</span>, ], <span class="dt">type =</span> <span class="st">"line"</span>, <span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">2</span>, <span class="dv">-2</span>)) <span class="co">#when you scale var, you may need to adjust the axis!</span></span></code></pre></div>
+<pre><code>## Warning in plot.xy(xy, type, ...): plot type 'line' will be truncated to
+## first character</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n_sims) {</span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/lines">lines</a></span>(steps, sim_mat[i, ])</span>
+<span id="cb9-3"><a href="#cb9-3"></a>}</span></code></pre></div>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
-<div id="a-prior-on-state-frequencies-1" class="section level2">
+<div id="phylogenetically-independent-contrasts" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-prior-on-state-frequencies-1" class="anchor"></a>A Prior On State Frequencies</h2>
-<p><img src="img/Prior2.png"></p>
+<a href="#phylogenetically-independent-contrasts" class="anchor"></a>Phylogenetically Independent Contrasts</h2>
+<p><img src="img/fels3.png"></p>
+<p>1, 2, 3, 4 are not independent. But the difference between 1 &amp; 2 is independent of the difference between 3 &amp; 4.</p>
 </div>
-<div id="a-prior-on-state-frequencies-2" class="section level2">
+<div id="phylogenetically-independent-contrasts-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-prior-on-state-frequencies-2" class="anchor"></a>A Prior On State Frequencies</h2>
-<p><img src="img/Prior3.png"></p>
+<a href="#phylogenetically-independent-contrasts-1" class="anchor"></a>Phylogenetically Independent Contrasts</h2>
+<p><img src="img/fels4.png"></p>
+<p>Contrasts usually standardized by the variance</p>
 </div>
-<div id="a-prior-on-state-frequenies-1" class="section level2">
+<div id="brownian-motion-on-a-tree" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-prior-on-state-frequenies-1" class="anchor"></a>A Prior On State Frequenies</h2>
-<p><img src="img/Prior4.png"></p>
+<a href="#brownian-motion-on-a-tree" class="anchor"></a>Brownian Motion on a Tree</h2>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(phytools)</span></code></pre></div>
+<pre><code>## Loading required package: ape</code></pre>
+<pre><code>## Loading required package: maps</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>tree &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/pbtree">pbtree</a></span>(<span class="dt">n=</span><span class="dv">20</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/fastBM">fastBM</a></span>(tree, <span class="dt">sig2 =</span> var, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>x</span></code></pre></div>
+<pre><code>##          t17          t18           t3           t4          t11 
+## -0.264792459 -0.173781946 -0.413265655 -0.207943395 -0.253240480 
+##          t12           t1           t2           t5           t6 
+## -0.360026077 -0.216532009  0.025894595  0.130650957 -0.008919495 
+##           t8          t19          t20          t15          t16 
+## -0.139843222 -0.101329888 -0.078297988 -0.159640098 -0.196444611 
+##           t7           t9          t10          t13          t14 
+##  0.069387578  0.070220856  0.089750098  0.006900901 -0.028488026 
+##           21           22           23           24           25 
+##  0.000000000 -0.038575992 -0.094382514 -0.148173796 -0.229004410 
+##           26           27           28           29           30 
+## -0.275277294 -0.292753971 -0.261647848 -0.072709904 -0.078814242 
+##           31           32           33           34           35 
+## -0.045169370 -0.107796191 -0.145221692 -0.107492762 -0.186954201 
+##           36           37           38           39 
+##  0.058164202  0.037419156  0.036045086  0.002497652</code></pre>
 </div>
-<div id="a-prior-on-state-frequenies-2" class="section level2">
+<div id="brownian-motion-on-a-tree-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-prior-on-state-frequenies-2" class="anchor"></a>A Prior On State Frequenies</h2>
-<p><img src="img/Prior5.png"></p>
+<a href="#brownian-motion-on-a-tree-1" class="anchor"></a>Brownian Motion on a Tree</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>tree &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/pbtree">pbtree</a></span>(<span class="dt">n=</span><span class="dv">20</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/fastBM">fastBM</a></span>(tree, <span class="dt">sig2 =</span> var, <span class="dt">internal =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/phenogram">phenogram</a></span>(tree, x)</span></code></pre></div>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
-<div id="a-prior-on-state-frequencies-3" class="section level2">
+<div id="brownian-motion-on-a-tree-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-prior-on-state-frequencies-3" class="anchor"></a>A Prior On State Frequencies</h2>
-<p><img src="img/Prior7.png"></p>
+<a href="#brownian-motion-on-a-tree-2" class="anchor"></a>Brownian Motion on a Tree</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/fastBM">fastBM</a></span>(tree, <span class="dt">sig2 =</span> var, <span class="dt">internal =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>contrasts &lt;-<span class="st"> </span><span class="kw">pic</span>(x, tree, <span class="dt">scaled=</span><span class="ot">FALSE</span>)</span>
+<span id="cb16-3"><a href="#cb16-3"></a>contrasts</span></code></pre></div>
+<pre><code>##           21           22           23           24           25 
+## -0.527833858 -0.181408083 -0.066054913 -0.027386182  0.107757008 
+##           26           27           28           29           30 
+## -0.073053338  0.068870061  0.123975861 -0.035974215 -0.086696879 
+##           31           32           33           34           35 
+## -0.012884844  0.003306994 -0.034941284  0.105577509 -0.038794335 
+##           36           37           38           39 
+## -0.063180163 -0.016952661  0.007659031 -0.053301550</code></pre>
 </div>
-<div id="a-prior-on-state-frequencies-4" class="section level2">
+<div id="brownian-motion-on-a-tree-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#a-prior-on-state-frequencies-4" class="anchor"></a>A Prior On State Frequencies</h2>
-<p><img src="img/Prior8.png"></p>
+<a href="#brownian-motion-on-a-tree-3" class="anchor"></a>Brownian Motion on a Tree</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(tree)</span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">nodelabels</span>(contrasts)</span></code></pre></div>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>
-<div id="the-symmetric-beta" class="section level2">
+<div id="brownian-motion-on-a-tree-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-symmetric-beta" class="anchor"></a>The Symmetric Beta</h2>
-<p><img src="img/onesym.png"></p>
+<a href="#brownian-motion-on-a-tree-4" class="anchor"></a>Brownian Motion on a Tree</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>important_environmental_factor &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">19</span>, <span class="dt">by =</span> <span class="dv">1</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(contrasts, important_environmental_factor)</span></code></pre></div>
+<p><img src="CompMethods_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 </div>
-<div id="the-symmetric-beta-1" class="section level2">
+<div id="two-implications" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-symmetric-beta-1" class="anchor"></a>The Symmetric Beta</h2>
-<p><img src="img/symbeta.png"></p>
+<a href="#two-implications" class="anchor"></a>Two Implications</h2>
+<ul>
+<li>Ancestral state estimation</li>
+<li>Models, and model assumptions</li>
+</ul>
 </div>
-<div id="the-beta-model" class="section level2">
+<div id="ancestral-state-reconstruction" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-beta-model" class="anchor"></a>The Beta Model</h2>
-<p><img src="img/morpho_gm-eps-converted-to.png"></p>
+<a href="#ancestral-state-reconstruction" class="anchor"></a>Ancestral State Reconstruction</h2>
+<p>Phylogenetic independent contrasts assume we can estimate the value of the trait possessed by an ancestor through Brownian motion</p>
 </div>
-<div id="the-symmetric-beta-2" class="section level2">
+<div id="ancestral-state-reconstruction-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-symmetric-beta-2" class="anchor"></a>The Symmetric Beta</h2>
-<p><span class="math inline">\(\alpha\)</span> = <span class="math inline">\(\beta\)</span> <img src="img/symbeta.png"></p>
+<a href="#ancestral-state-reconstruction-1" class="anchor"></a>Ancestral State Reconstruction</h2>
+<ul>
+<li>But we’ve already seen ancestral state estimation
+<ul>
+<li>Recall the AND/OR rule discussions from day one<br>
+</li>
+<li>Conditional probabilities - What is the likelihood of a state at the tips given the state at the nodes<br>
+</li>
+<li>Ancestral state reconstruction allows us to apply this logic to external traits</li>
+</ul>
+</li>
+</ul>
 </div>
-<div id="site-heterogeneous-discrete-morphology-model" class="section level2">
+<div id="ancestral-state-reconstruction-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#site-heterogeneous-discrete-morphology-model" class="anchor"></a>Site Heterogeneous Discrete Morphology Model</h2>
-<p><span class="math inline">\(\alpha\)</span> != <span class="math inline">\(\beta\)</span> <img src="img/catlike.png"></p>
+<a href="#ancestral-state-reconstruction-2" class="anchor"></a>Ancestral State Reconstruction</h2>
+<ul>
+<li>Ancestral state reconstruction can vary in its complexity
+<ul>
+<li>The first applications came from parsimony (Swofford and Maddison 1987)</li>
+</ul>
+</li>
+</ul>
 </div>
-<div id="does-it-matter" class="section level2">
+<div id="ancestral-state-reconstruction-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#does-it-matter" class="anchor"></a>Does it matter?</h2>
+<a href="#ancestral-state-reconstruction-3" class="anchor"></a>Ancestral State Reconstruction</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(phangorn)</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(phytools)</span>
+<span id="cb20-3"><a href="#cb20-3"></a>tree_<span class="dv">20</span> &lt;-<span class="st"> </span>phytools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/pbtree">pbtree</a></span>(<span class="dt">n=</span><span class="dv">20</span>)</span>
+<span id="cb20-4"><a href="#cb20-4"></a>trait &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/phytools/topics/fastBM">fastBM</a></span>(tree_<span class="dv">20</span>)</span></code></pre></div>
 </div>
   </div>
 
@@ -237,26 +373,33 @@ Pr(01) = 0.375</p>
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#fossil-ants">Fossil Ants</a></li>
-      <li><a href="#fossil-ants-1">Fossil Ants</a></li>
-      <li><a href="#fossil-ants-2">Fossil Ants</a></li>
-      <li><a href="#fossil-ants-3">Fossil Ants</a></li>
-      <li><a href="#state-frequenies">State Frequenies</a></li>
-      <li><a href="#state-frequenies-1">State Frequenies</a></li>
-      <li><a href="#a-prior-on-state-frequenies">A Prior On State Frequenies</a></li>
-      <li><a href="#a-prior-on-state-frequencies">A Prior On State Frequencies</a></li>
-      <li><a href="#a-prior-on-state-frequencies-1">A Prior On State Frequencies</a></li>
-      <li><a href="#a-prior-on-state-frequencies-2">A Prior On State Frequencies</a></li>
-      <li><a href="#a-prior-on-state-frequenies-1">A Prior On State Frequenies</a></li>
-      <li><a href="#a-prior-on-state-frequenies-2">A Prior On State Frequenies</a></li>
-      <li><a href="#a-prior-on-state-frequencies-3">A Prior On State Frequencies</a></li>
-      <li><a href="#a-prior-on-state-frequencies-4">A Prior On State Frequencies</a></li>
-      <li><a href="#the-symmetric-beta">The Symmetric Beta</a></li>
-      <li><a href="#the-symmetric-beta-1">The Symmetric Beta</a></li>
-      <li><a href="#the-beta-model">The Beta Model</a></li>
-      <li><a href="#the-symmetric-beta-2">The Symmetric Beta</a></li>
-      <li><a href="#site-heterogeneous-discrete-morphology-model">Site Heterogeneous Discrete Morphology Model</a></li>
-      <li><a href="#does-it-matter">Does it matter?</a></li>
+<li><a href="#so-what-are-you-going-to-do-with-your-tree">So what are you going to do with your tree?</a></li>
+      <li><a href="#using-trees-to-understand-trait-evolution">Using trees to understand trait evolution</a></li>
+      <li><a href="#using-trees-to-understand-trait-evolution-1">Using trees to understand trait evolution</a></li>
+      <li><a href="#linear-regression">Linear Regression</a></li>
+      <li><a href="#linear-regression-1">Linear Regression</a></li>
+      <li><a href="#linear-regression-2">Linear Regression</a></li>
+      <li><a href="#linear-regression-3">Linear Regression</a></li>
+      <li><a href="#linear-regression-4">Linear Regression</a></li>
+      <li><a href="#linear-regression-5">Linear Regression</a></li>
+      <li><a href="#linear-regression-6">Linear Regression</a></li>
+      <li><a href="#brownian-motion">Brownian Motion</a></li>
+      <li><a href="#brownian-motion-1">Brownian Motion</a></li>
+      <li><a href="#brownian-motion-2">Brownian Motion</a></li>
+      <li><a href="#brownian-motion-3">Brownian Motion</a></li>
+      <li><a href="#brownian-motion-4">Brownian Motion</a></li>
+      <li><a href="#phylogenetically-independent-contrasts">Phylogenetically Independent Contrasts</a></li>
+      <li><a href="#phylogenetically-independent-contrasts-1">Phylogenetically Independent Contrasts</a></li>
+      <li><a href="#brownian-motion-on-a-tree">Brownian Motion on a Tree</a></li>
+      <li><a href="#brownian-motion-on-a-tree-1">Brownian Motion on a Tree</a></li>
+      <li><a href="#brownian-motion-on-a-tree-2">Brownian Motion on a Tree</a></li>
+      <li><a href="#brownian-motion-on-a-tree-3">Brownian Motion on a Tree</a></li>
+      <li><a href="#brownian-motion-on-a-tree-4">Brownian Motion on a Tree</a></li>
+      <li><a href="#two-implications">Two Implications</a></li>
+      <li><a href="#ancestral-state-reconstruction">Ancestral State Reconstruction</a></li>
+      <li><a href="#ancestral-state-reconstruction-1">Ancestral State Reconstruction</a></li>
+      <li><a href="#ancestral-state-reconstruction-2">Ancestral State Reconstruction</a></li>
+      <li><a href="#ancestral-state-reconstruction-3">Ancestral State Reconstruction</a></li>
       </ul>
 </div>
       </div>
