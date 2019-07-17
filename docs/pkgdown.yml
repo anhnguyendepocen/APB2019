@@ -1,5 +1,16 @@
 pandoc: 2.7.3
 pkgdown: 1.3.0
 pkgdown_sha: ~
-articles: []
+articles:
+  RB_MCMC_Discrete_Morph: RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.html
+  RB_MCMC_Extended_Morph: RB_Extended_morph/RB_MCMC_Extended_Morph.html
+  RB_Total_Evidence_Tutorial: RB_Total_Evidence/RB_Total_Evidence_Tutorial.html
+  00-installs: R_exercises/00-installs.html
+  01-treesiftr: R_exercises/01-treesiftr.html
+  02-treesiftr-advanced: R_exercises/02-treesiftr-advanced.html
+  03-FossilSim: R_exercises/03-FossilSim.html
+  BayesianModels: lectures/BayesianModels.html
+  CompMethods: lectures/CompMethods.html
+  ExtendedMorph: lectures/ExtendedMorph.html
+  TreeThinking: lectures/TreeThinking.html
 

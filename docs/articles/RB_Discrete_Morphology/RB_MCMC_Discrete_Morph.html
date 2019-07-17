@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Discrete morphology - Tree Inference • apb2019</title>
+<title>Discrete morphology - Relaxed Mk • apb2019</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
-<script src="../../pkgdown.js"></script><meta property="og:title" content="Discrete morphology - Tree Inference">
+<script src="../../pkgdown.js"></script><meta property="og:title" content="Discrete morphology - Relaxed Mk">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -53,7 +53,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../../articles/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.html">Discrete morphology - Tree Inference</a>
+      <a href="../../articles/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.html">Discrete morphology - Relaxed Mk</a>
+    </li>
+    <li>
+      <a href="../../articles/RB_Extended_morph/RB_MCMC_Extended_Morph.html">Discrete morphology - Tree Inference</a>
     </li>
     <li>
       <a href="../../articles/RB_Total_Evidence/RB_Total_Evidence_Tutorial.html">RevBayes Total Evidence Tree Estimation</a>
@@ -77,6 +80,9 @@
       <a href="../../articles/lectures/CompMethods.html">Extended Morphology Models</a>
     </li>
     <li>
+      <a href="../../articles/lectures/ExtendedMorph.html">Extended Morphology Models</a>
+    </li>
+    <li>
       <a href="../../articles/lectures/TreeThinking.html">Tree Thinking</a>
     </li>
   </ul>
@@ -94,7 +100,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Discrete morphology - Tree Inference</h1>
+      <h1>Discrete morphology - Relaxed Mk</h1>
                         <h4 class="author">April M. Wright</h4>
                         <h4 class="author">Michael J. Landis</h4>
                         <h4 class="author">Sebastian Höhna</h4>
@@ -174,16 +180,16 @@
 <p>In this section you will begin the file and write the Rev commands for loading in the taxon list and managing the data matrices. Then, starting in section Mk Model, you will move on to specifying each of the model components. Once the model specifications are complete, you will complete the script with the instructions given in section</p>
 <p><strong>Load Data Matrices</strong></p>
 <p>RevBayes uses the function <code>readDiscreteCharacterData()</code> to load a data matrix to the workspace from a formatted file. This function can be used for both molecular sequences and discrete morphological characters. Import the morphological character matrix and assign it to the variable <code>morpho</code>. We will be using a matrix of extant and fossil data from Abella (2012).</p>
-<pre><code>    morpho &lt;- readDiscreteCharacterData("data/ants.nex")</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>    morpho &lt;-<span class="st"> </span><span class="kw">readDiscreteCharacterData</span>(<span class="st">"vignettes/RB_Discrete_Morphology/data/bears_morphology.nex"</span>)</span></code></pre></div>
 <p><strong>Create Helper Variables</strong></p>
 <p>Before we begin writing the Rev scripts for each of the models, we need to instantiate a couple “helper variables” that will be used by downstream parts of our model specification.</p>
 <p>Create a new constant node called <code>num_taxa</code> that is equal to the number of species in our analysis (41) and a constant node called <code>num_branches</code> representing the number of branches in the tree. We will also create a constant node of the taxon names. This list will be used to initialize the tree.</p>
-<pre><code>    taxa &lt;- morpho.names()
-    num_taxa &lt;- morpho.size() 
-    num_branches &lt;- 2 * num_taxa - 2</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>    taxa &lt;-<span class="st"> </span><span class="kw">morpho.names</span>()</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    num_taxa &lt;-<span class="st"> </span><span class="kw">morpho.size</span>() </span>
+<span id="cb3-3"><a href="#cb3-3"></a>    num_branches &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>num_taxa <span class="op">-</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <p>Next, create two workspace variables called <code>mvi</code> and <code>mni</code>. These variable are iterators that will build a vector containing all of the MCMC moves used to propose new states for every stochastic node in the model graph. Each time a new move is added to the vector, <code>mvi</code> will be incremented by a value of <code>1</code>.</p>
-<pre><code>    mvi = 1
-    mni = 1</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>    mvi =<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>    mni =<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>One important distinction here is that <code>mvi</code> is part of the RevBayes workspace and not the hierarchical model. Thus, we use the workspace assignment operator <code>=</code> instead of the constant node assignment <code>&lt;-</code>.</p>
 </div>
 </div>
@@ -191,19 +197,19 @@
 <h2 class="hasAnchor">
 <a href="#the-mk-model-1" class="anchor"></a>The Mk Model</h2>
 <p>First, we will create a joint prior on the branch lengths and tree topology. This should be familiar from the {% page_ref ctmc %}</p>
-<pre><code>    br_len_lambda ~ dnExp(0.2)
-    moves[mvi++] = mvScale(br_len_lambda, weight=2)
-
-    phylogeny ~ dnUniformTopologyBranchLength(taxa, branchLengthDistribution=dnExponential(br_len_lambda))
-    moves[mvi++] = mvNNI(phylogeny, weight=num_branches/2.0)
-    moves[mvi++] = mvSPR(phylogeny, weight=num_branches/10.0)
-    moves[mvi++] = mvBranchLengthScale(phylogeny, weight=num_branches)
-    
-    tree_length := phylogeny.treeLength()</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>    br_len_lambda <span class="op">~</span><span class="st"> </span><span class="kw">dnExp</span>(<span class="fl">0.2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvScale</span>(br_len_lambda, <span class="dt">weight=</span><span class="dv">2</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>    phylogeny <span class="op">~</span><span class="st"> </span><span class="kw">dnUniformTopologyBranchLength</span>(taxa, <span class="dt">branchLengthDistribution=</span><span class="kw">dnExponential</span>(br_len_lambda))</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvNNI</span>(phylogeny, <span class="dt">weight=</span>num_branches<span class="op">/</span><span class="fl">2.0</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvSPR</span>(phylogeny, <span class="dt">weight=</span>num_branches<span class="op">/</span><span class="fl">10.0</span>)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvBranchLengthScale</span>(phylogeny, <span class="dt">weight=</span>num_branches)</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9"></a>    tree_length <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">phylogeny.treeLength</span>()</span></code></pre></div>
 <p>Next, we will create a <span class="math inline">\(Q\)</span> matrix. Recall that the Mk model is simply a generalization of the JC model. Therefore, we will create a 2x2 <span class="math inline">\(Q\)</span> matrix using <code>fnJC</code>, which initializes Q-matrices with equal transition probabilities between all states.</p>
-<pre><code>    Q_morpho &lt;- fnJC(2)</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>    Q_morpho &lt;-<span class="st"> </span><span class="kw">fnJC</span>(<span class="dv">2</span>)</span></code></pre></div>
 <p>Now that we have the basics of the model specified, we will add Gamma-distributed rate variation and specify moves on the parameter to the Gamma distribution.</p>
-<pre><code>Q_morpho</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>Q_morpho</span></code></pre></div>
 <pre><code>   [ [ -1.0000, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 ] ,
      0.1667, -1.0000, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 ] ,
      0.1667, 0.1667, -1.0000, 0.1667, 0.1667, 0.1667, 0.1667 ] ,
@@ -211,52 +217,53 @@
      0.1667, 0.1667, 0.1667, 0.1667, -1.0000, 0.1667, 0.1667 ] ,
      0.1667, 0.1667, 0.1667, 0.1667, 0.1667, -1.0000, 0.1667 ] ,
      0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, -1.0000 ] ]</code></pre>
-<pre><code>    alpha_morpho ~ dnUniform( 0, 1E6 )
-    rates_morpho := fnDiscretizeGamma( alpha_morpho, alpha_morpho, 4 )
-    #Moves on the parameters to the Gamma distribution.
-    moves[mvi++] = mvScale(alpha_morpho, lambda=1, weight=2.0)</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>    alpha_morpho <span class="op">~</span><span class="st"> </span><span class="kw">dnUniform</span>( <span class="dv">0</span>, <span class="fl">1E6</span> )</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    rates_morpho <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="kw">fnDiscretizeGamma</span>( alpha_morpho, alpha_morpho, <span class="dv">4</span> )</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="co">#Moves on the parameters to the Gamma distribution.</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>    moves[mvi<span class="op">++</span>] =<span class="st"> </span><span class="kw">mvScale</span>(alpha_morpho, <span class="dt">lambda=</span><span class="dv">1</span>, <span class="dt">weight=</span><span class="fl">2.0</span>)</span></code></pre></div>
 <p>Lastly, we set up the CTMC.</p>
 <p>We see some familiar pieces: tree, <span class="math inline">\(Q\)</span> matrix and site_rates. We also have two new keywords: data type and coding. The data type argument specifies the type of data - in our case, “Standard”, the specification for morphology.</p>
-<pre><code>    phyMorpho ~ dnPhyloCTMC(tree=phylogeny, siteRates=rates_morpho, Q=Q_morpho, type="Standard")
-    phyMorpho.clamp(morpho)</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>    phyMorpho <span class="op">~</span><span class="st"> </span><span class="kw">dnPhyloCTMC</span>(<span class="dt">tree=</span>phylogeny, <span class="dt">siteRates=</span>rates_morpho, <span class="dt">Q=</span>Q_morpho, <span class="dt">type=</span><span class="st">"Standard"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="kw">phyMorpho.clamp</span>(morpho)</span></code></pre></div>
 <p>All of the components of the model are now specified.</p>
 <div id="complete-mcmc-analysis" class="section level3">
 <h3 class="hasAnchor">
 <a href="#complete-mcmc-analysis" class="anchor"></a>Complete MCMC Analysis</h3>
 <p><strong>Create Model Object</strong></p>
 <p>We can now create our workspace model variable with our fully specified model DAG. We will do this with the <code>model()</code> function and provide a single node in the graph (<code>phylogeny</code>).</p>
-<pre><code>    mymodel = model(phylogeny)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>    mymodel =<span class="st"> </span><span class="kw">model</span>(phylogeny)</span></code></pre></div>
 <p>The object <code>mymodel</code> is a wrapper around the entire model graph and allows us to pass the model to various functions that are specific to our MCMC analysis.</p>
 <p><strong>Specify Monitors and Output Filenames</strong></p>
 <p>The next important step for our Rev-script is to specify the monitors and output file names. For this, we create a vector called <code>monitors</code> that will each sample and record or output our MCMC.</p>
 <p>The first monitor we will create will monitor every named random variable in our model graph. This will include every stochastic and deterministic node using the <code>mnModel</code> monitor. The only parameter that is not included in the <code>mnModel</code> is the tree topology. Therefore, the parameters in the file written by this monitor are all numerical parameters written to a tab-separated text file that can be opened by accessory programs for evaluating such parameters. We will also name the output file for this monitor and indicate that we wish to sample our MCMC every 10 cycles.</p>
-<pre><code>    monitors[mni++] = mnModel(filename="output/mk_gamma.log", printgen=10)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>    monitors[mni<span class="op">++</span>] =<span class="st"> </span><span class="kw">mnModel</span>(<span class="dt">filename=</span><span class="st">"output/mk_gamma.log"</span>, <span class="dt">printgen=</span><span class="dv">10</span>)</span></code></pre></div>
 <p>The <code>mnFile</code> monitor writes any parameter we specify to file. Thus, if we only cared about the branch lengths and nothing else (this is not a typical or recommended attitude for an analysis this complex) we wouldn’t use the <code>mnModel</code> monitor above and just use the <code>mnFile</code> monitor to write a smaller and simpler output file. Since the tree topology is not included in the <code>mnModel</code> monitor (because it is not numerical), we will use <code>mnFile</code> to write the tree to file by specifying our <code>phylogeny</code> variable in the arguments.</p>
-<pre><code>    monitors[mni++] = mnFile(filename="output/mk_gamma.trees", printgen=10, phylogeny)</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>    monitors[mni<span class="op">++</span>] =<span class="st"> </span><span class="kw">mnFile</span>(<span class="dt">filename=</span><span class="st">"output/mk_gamma.trees"</span>, <span class="dt">printgen=</span><span class="dv">10</span>, phylogeny)</span></code></pre></div>
 <p>The third monitor we will add to our analysis will print information to the screen. Like with <code>mnFile</code> we must tell <code>mnScreen</code> which parameters we’d like to see updated on the screen.</p>
-<pre><code>    monitors[mni++] = mnScreen(printgen=100)</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>    monitors[mni<span class="op">++</span>] =<span class="st"> </span><span class="kw">mnScreen</span>(<span class="dt">printgen=</span><span class="dv">100</span>)</span></code></pre></div>
 </div>
 <div id="set-up-the-mcmc" class="section level3">
 <h3 class="hasAnchor">
 <a href="#set-up-the-mcmc" class="anchor"></a>Set-Up the MCMC</h3>
 <p>Once we have set up our model, moves, and monitors, we can now create the workspace variable that defines our MCMC run. We do this using the <code>mcmc()</code> function that simply takes the three main analysis components as arguments.</p>
-<pre><code>    mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>    mymcmc =<span class="st"> </span><span class="kw">mcmc</span>(mymodel, monitors, moves, <span class="dt">nruns=</span><span class="dv">2</span>, <span class="dt">combine=</span><span class="st">"mixed"</span>)</span></code></pre></div>
 <p>The MCMC object that we named <code>mymcmc</code> has a member method called <code>.run()</code>. This will execute our analysis and we will set the chain length to <code>10000</code> cycles using the <code>generations</code> option.</p>
-<pre><code>    mymcmc.run(generations=10000, tuningInterval=200)</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>    <span class="kw">mymcmc.run</span>(<span class="dt">generations=</span><span class="dv">10000</span>, <span class="dt">tuningInterval=</span><span class="dv">200</span>)</span></code></pre></div>
 <p>Once our Markov chain has terminated, we will want RevBayes to close. Tell the program to quit using the <code><a href="https://www.rdocumentation.org/packages/base/topics/quit">q()</a></code> function.</p>
-<pre><code><a href="https://www.rdocumentation.org/packages/base/topics/quit">    q()</a></code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/quit">q</a></span>()</span></code></pre></div>
 </div>
 </div>
 <div id="you-made-it-save-all-of-your-files-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#you-made-it-save-all-of-your-files-" class="anchor"></a>You made it! Save all of your files.</h2>
 <p>With all the parameters specified and all analysis components in place, you are now ready to run your analysis. RevBayes cannot run inside the RStudio window. So we will need to copy our code out of RStudio. Luckily, the knitr package makes this very easy. Run the following in the console:</p>
-<pre><code><a href="https://www.rdocumentation.org/packages/knitr/topics/knit">knitr::purl(RB_MCMC_Discrete_Morph.Rmd)</a></code></pre>
+<pre><code><a href="https://www.rdocumentation.org/packages/knitr/topics/knit">knitr::purl("vignettes/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.Rmd")</a></code></pre>
 <p>This will create a .R file containing our analysis script. Move it into the <code>scripts</code> folder and rename it to mk_gamma.Rev</p>
 <blockquote>
 <p>Begin by running the RevBayes executable. In Unix systems, type the following in your terminal (if the RevBayes binary is in your path): rb</p>
 </blockquote>
-<p>Provided that you started RevBayes from the correct directory (<code>4 - April Wright</code>), you can then use the <code><a href="https://www.rdocumentation.org/packages/base/topics/source">source()</a></code> function to feed RevBayes your Rev-script file (<code>mk_gamma.Rev</code>).</p>
+<p>Provided that you started RevBayes from the correct directory, you can then use the <code><a href="https://www.rdocumentation.org/packages/base/topics/source">source()</a></code> function to feed RevBayes your Rev-script file (<code>mk_gamma.Rev</code>).</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1"></a>    <span class="bu">source</span>(<span class="st">"scripts/mk_gamma.Rev"</span>)</span></code></pre></div>
 <p>When the analysis is complete, RevBayes will quit and you will have a new directory called <code>output</code> that will contain all of the files you specified with the monitors.</p>
 <div id="lognormally-distributed-among-character-rate-variation" class="section level4">
 <h4 class="hasAnchor">

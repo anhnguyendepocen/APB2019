@@ -10,117 +10,207 @@ output:
     slide_level: 1
 ---
 
-## Fossil Ants
-
-![Steve Shattuck](img/spheco.jpeg)
+## So what are you going to do with your tree?
 
 
-## Fossil Ants 
-{#margins} <style> #margins > p { margin-top: -100px; } </style>
+## Using trees to understand trait evolution
 
-![ants](img/Fig2.png)
+- What is a phylogeny?  
+  - A model of evolutionary history  
+  - Speciation and extinction  
+  - Rates of evolution  
+  - (Maybe) absolute time  
+  
+## Using trees to understand trait evolution
 
+- But there are also special challenges to using phylogenetic trees to study the evolutionary history of traits
 
-## Fossil Ants
+## Linear Regression
 
-![](img/colorsymmetry.png)
-
-## Fossil Ants
-
-![](img/bigmat.png)
-
-##State Frequenies
-
-$$Q_{JC69} = \begin{pmatrix} 
-{*} & \frac{1}{3} & \frac{1}{3} & \frac{1}{3} \\ 
-\frac{1}{3} & {*} & \frac{1}{3} & \frac{1}{3} \\ 
-\frac{1}{3} & \frac{1}{3} & {*} & \frac{1}{3} \\ 
-\frac{1}{3} & \frac{1}{3} & \frac{1}{3} & {*}  
-\end{pmatrix} \mbox{  ,}$$
+Let's say that in your group of organisms, you believe that arboreality is associated with lower visual acuity. 
 
 
-## State Frequenies
+## Linear Regression
 
-$$Q = \begin{pmatrix} -(k-1)\mu & \mu & \mu & \mu \\
-\mu & -(k-1)\mu  & \mu & \mu \\
-\mu & \mu & -(k-1)\mu  & \mu \\
-\mu & \mu & \mu & -(k-1)\mu \\
-\end{pmatrix} \mbox{  ,}$$
-
-Pr(01) = Rate at which we expect 0->1 * probability of 0
-
-## State Frequenies
-
-$$Q = \begin{pmatrix} -(k-1)\mu & \mu\pi & \mu\pi & \mu\pi \\
-\mu\pi_{1} & -(k-1)\mu  & \mu\pi_{1} & \mu\pi_{1} \\
-\mu\pi_{2} & \mu\pi_{2} & -(k-1)\mu  & \mu\pi_{2} \\
-\mu_{3} & \mu\pi_{3} & \mu_{3} & -(k-1)\mu \\
-\end{pmatrix} \mbox{  ,}$$
-
-Pr(01) = Rate at which we expect 0->1 * probability of 0  
-Pr(01) = .75 * .5  
-Pr(01) = 0.375
-
-## A Prior On State Frequenies
+Let's say that in your group of organisms, you believe that arboreality is associated with lower visual acuity. 
 
 
-But ... maybe every character in the dataset does not have the same equilibrium character frequency
-
-## A Prior On State Frequencies
-
-![](img/Prior1.png)
-
-## A Prior On State Frequencies
-
-![](img/Prior2.png)
-
-## A Prior On State Frequencies
-
-![](img/Prior3.png)
-
-## A Prior On State Frequenies
-
-![](img/Prior4.png)
-
-## A Prior On State Frequenies
-
-![](img/Prior5.png)
-
-## A Prior On State Frequencies
-
-![](img/Prior7.png)
-
-## A Prior On State Frequencies
-
-![](img/Prior8.png)
-
-## The Symmetric Beta
-
-![](img/onesym.png)
-
-## The Symmetric Beta
-
-![](img/symbeta.png)
-
-## The Beta Model
-
-![](img/morpho_gm-eps-converted-to.png)
+```{r}
+arboreality <- c(.1, .2, .3, .4, .5, .6, .7, .8)
+vis_ac <- c(1, .8, .6, .4, .35, .3, .25, .2)
+plot(arboreality, vis_ac)
+```
 
 
-## The Symmetric Beta
+## Linear Regression
 
-$\alpha$ = $\beta$
-![](img/symbeta.png)
+What is wrong with what we have done? 
 
-
-## Site Heterogeneous Discrete Morphology Model
-
-$\alpha$ != $\beta$
-  ![](img/catlike.png)
-
+```{r}
+arboreality <- c(.1, .2, .3, .4, .5, .6, .7, .8)
+vis_ac <- c(1, .8, .6, .4, .35, .3, .25, .2)
+plot(arboreality, vis_ac)
+```
 
 
-## Does it matter?
+## Linear Regression
 
+What is wrong with what we have done? 
+
+```{r}
+arboreality <- c(.1, .2, .3, .4, .5, .6, .7, .8)
+vis_ac <- c(1, .8, .6, .4, .35, .3, .25, .2)
+plot(arboreality, vis_ac)
+```
+
+These are not independent datapoints!
+
+
+## Linear Regression
+
+What is the problem with what we've done? 
+
+![Felsenstein Phylogenies and the Comparative Method, 1985](img/fels1.png)
+
+These are not independent datapoints!
+
+## Linear Regression
+
+Does this mean we simply can't make these comparsions?
+
+## Linear Regression
+
+Does this mean we simply can't make these comparsions?  
+
+No! But we _must_ account for the effect of shared heritage.
+
+## Brownian Motion
+
+
+- Based on the random movement of particles in fluid
+
+- The idea is that sucessive movements are independent of each other.
+
+## Brownian Motion
+
+- Under this model, traits evolve due to a continuous random walk. 
+
+- The difference (contrast) between the traits possessed by any two tips on the tree will be normally distributed. The mean of the normal will be 0, and the variance will be proportional to the time since common ancestor. 
+
+## Brownian Motion
+
+```{r}
+x <- seq(-4, 4, length=100)
+norms <- dnorm(x, sd = 1)
+plot(norms)
+```
+
+## Brownian Motion
+
+
+```{r}
+steps <- 0:50  
+var <- 0.01
+x <- rnorm(n = length(steps) - 1, sd = sqrt(var))
+x <- c(0, cumsum(x))
+plot(steps, x, type = "line")
+```
+
+## Brownian Motion
+```{r}
+steps <- 0:50  
+var <- 0.01
+n_sims <- 50
+sim_mat <- matrix(0, n_sims, length(steps))
+
+
+for (i in 1:n_sims) {
+  sim_mat[i, ] <- c(0, cumsum(rnorm(n = length(steps) - 1, sd = sqrt(var))))
+}
+
+plot(steps, sim_mat[1, ], type = "line", ylim = c(2, -2)) #when you scale var, you may need to adjust the axis!
+
+for (i in 1:n_sims) {
+  lines(steps, sim_mat[i, ])
+}
+```
+
+## Phylogenetically Independent Contrasts
+
+![](img/fels3.png)
+
+1, 2, 3, 4 are not independent. But the difference between 1 & 2 is independent of the difference between 3 & 4.
+
+## Phylogenetically Independent Contrasts
+
+![](img/fels4.png)
+
+Contrasts usually standardized by the variance
+
+## Brownian Motion on a Tree
+```{r}
+library(phytools)
+tree <- pbtree(n=20)
+x <- fastBM(tree, sig2 = var, internal = TRUE)
+x
+```
+
+## Brownian Motion on a Tree
+```{r}
+tree <- pbtree(n=20)
+x <- fastBM(tree, sig2 = var, internal = TRUE)
+phenogram(tree, x)
+```
+
+## Brownian Motion on a Tree
+```{r}
+x <- fastBM(tree, sig2 = var, internal = FALSE)
+contrasts <- pic(x, tree, scaled=FALSE)
+contrasts
+```
+
+## Brownian Motion on a Tree
+```{r}
+plot(tree)
+nodelabels(contrasts)
+```
+
+## Brownian Motion on a Tree
+
+```{r}
+important_environmental_factor <- seq(from = 1, to = 19, by = 1)
+plot(contrasts, important_environmental_factor)
+```
+
+## Two Implications
+
+- Ancestral state estimation
+- Models, and model assumptions
+
+## Ancestral State Reconstruction
+
+Phylogenetic independent contrasts assume we can estimate the value of the trait possessed by an ancestor through Brownian motion
+
+
+## Ancestral State Reconstruction
+
+- But we've already seen ancestral state estimation  
+  - Recall the AND/OR rule discussions from day one  
+  - Conditional probabilities - What is the likelihood of a state at the tips given the state at the nodes  
+  - Ancestral state reconstruction allows us to apply this logic to external traits  
+  
+## Ancestral State Reconstruction
+
+- Ancestral state reconstruction can vary in its complexity  
+  - The first applications came from parsimony (Swofford and Maddison 1987)
+  
+## Ancestral State Reconstruction
+```{r}
+library(phangorn)
+library(phytools)
+tree_20 <- phytools::pbtree(n=20)
+trait <- fastBM(tree_20)
+
+```
 
 
