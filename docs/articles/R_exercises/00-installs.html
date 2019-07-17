@@ -56,6 +56,9 @@
       <a href="../../articles/RB_Discrete_Morphology/RB_MCMC_Discrete_Morph.html">Discrete morphology - Tree Inference</a>
     </li>
     <li>
+      <a href="../../articles/RB_Extended_morph/RB_MCMC_Extended_Morph.html">Discrete morphology - Relaxed Mk</a>
+    </li>
+    <li>
       <a href="../../articles/RB_Total_Evidence/RB_Total_Evidence_Tutorial.html">RevBayes Total Evidence Tree Estimation</a>
     </li>
     <li>
@@ -75,6 +78,9 @@
     </li>
     <li>
       <a href="../../articles/lectures/CompMethods.html">Extended Morphology Models</a>
+    </li>
+    <li>
+      <a href="../../articles/lectures/ExtendedMorph.html">Extended Morphology Models</a>
     </li>
     <li>
       <a href="../../articles/lectures/TreeThinking.html">Tree Thinking</a>
@@ -107,16 +113,20 @@
     
     
 <p>In RStudio:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"wrightaprilm/treesiftr"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"sjspielman/alignfigR"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"phangorn"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"phytools"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"ggtree"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"FossilSim"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/source">source</a></span>(<span class="st">"https://bioconductor.org/biocLite.R"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># biocLite("BiocUpgrade") # you may need this</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="kw">biocLite</span>(<span class="st">"ggtree"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="kw">biocLite</span>(<span class="st">"Biostrings"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"BiocManager"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>BiocManager<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/BiocManager/topics/install">install</a></span>(<span class="st">"ggtree"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"wrightaprilm/treesiftr"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8"></a>devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"sjspielman/alignfigR"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"phangorn"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"phytools"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"ggtree"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"FossilSim"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/source">source</a></span>(<span class="st">"https://bioconductor.org/biocLite.R"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># biocLite("BiocUpgrade") # you may need this</span></span></code></pre></div>
 <p>In browser:</p>
 <ul>
 <li>Choose a <strong>command-line binary</strong> of PAUP for your system <a href="http://phylosolutions.com/paup-test/">here</a>
