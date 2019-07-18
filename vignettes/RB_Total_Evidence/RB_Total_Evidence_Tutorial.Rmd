@@ -71,7 +71,7 @@ estimated from a total-evidence analysis. This example shows the
 complete tree (Fig. 2A) and the sampled or
 reconstructed tree (Fig. 2B). Importantly, we are
 interested in estimating the topology, divergence times, and fossil
-sample times of the *reconstructed tree* (Fig. 2B).
+sample times of the *reconstructed tree* (Fig. 2B).
 We will describe the distinction between these two trees in the section Intro to FBD.
 
 
@@ -275,7 +275,7 @@ morphological data, we will instead use a “strict clock” model
 [@Zuckerkandl1962], in which the rate of discrete character change is
 assumed to be constant throughout the tree. The strict clock is the
 simplest morphological branch rate model we can construct (graphical
-model shown in Fig. 6.
+model shown in Fig. 6.
 
 ![](figures/tikz/morph_clock_gm-eps-converted-to.png)
 

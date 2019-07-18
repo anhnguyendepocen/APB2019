@@ -108,68 +108,7 @@ slide:not(.current) .plotly.html-widget{
 
 <p>Explain AND probability rule with dice roll</p>
 
-</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: AND</h2></hgroup><article  id="dice-rolling-activity-and-1">
-
-<pre class = 'prettyprint lang-r'>library(treesiftr)</pre>
-
-<pre >## Registered S3 method overwritten by &#39;treeio&#39;:
-##   method     from
-##   root.phylo ape</pre>
-
-<pre class = 'prettyprint lang-r'>library(alignfigR)</pre>
-
-<pre >## Welcome to alignfigR!</pre>
-
-<pre class = 'prettyprint lang-r'>library(phangorn)</pre>
-
-<pre >## Loading required package: ape</pre>
-
-<pre class = 'prettyprint lang-r'>library(ggtree)</pre>
-
-<pre >## ggtree v1.16.3  For help: https://yulab-smu.github.io/treedata-book/
-## 
-## If you use ggtree in published research, please cite the most appropriate paper(s):
-## 
-## [36m-[39m Guangchuang Yu, Tommy Tsan-Yuk Lam, Huachen Zhu, Yi Guan. Two methods for mapping and visualizing associated data on phylogeny using ggtree. Molecular Biology and Evolution 2018, accepted. doi: 10.1093/molbev/msy194[36m-[39m Guangchuang Yu, David Smith, Huachen Zhu, Yi Guan, Tommy Tsan-Yuk Lam. ggtree: an R package for visualization and annotation of phylogenetic trees with their covariates and other associated data. Methods in Ecology and Evolution 2017, 8(1):28-36, doi:10.1111/2041-210X.12628</pre>
-
-<pre >## 
-## Attaching package: &#39;ggtree&#39;</pre>
-
-<pre >## The following object is masked from &#39;package:ape&#39;:
-## 
-##     rotate</pre>
-
-<pre class = 'prettyprint lang-r'>library(ggplot2)
-aln_path &lt;- &quot;../../data/bears_fasta.fa&quot;
-bears &lt;- read_alignment(aln_path)
-tree &lt;- read.tree(&quot;../../data/starting_tree.tre&quot;)
-
-sample_df &lt;- generate_sliding(bears, start_char = 1, stop_char = 2, steps = 1)
-output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears)</pre>
-
-<pre >## Generating tree for charset:12</pre>
-
-<pre >## Final p-score 2 after  0 nni operations</pre>
-
-<pre >## Generating tree for charset:23</pre>
-
-<pre >## Final p-score 2 after  0 nni operations</pre>
-
-</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: AND</h2></hgroup><article  id="dice-rolling-activity-and-2">
-
-<pre class = 'prettyprint lang-r'>output_vector[[1]]</pre>
-
-<pre >## NULL</pre>
-
 </article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: OR</h2></hgroup><article  id="dice-rolling-activity-or">
-
-<p>Explain OR probability rule with dice roll</p>
-
-</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: AND</h2></hgroup><article  id="dice-rolling-activity-and-3">
-
-<pre class = 'prettyprint lang-r'>output_vector[[1]]</pre>
-
-<pre >## NULL</pre>
 
 </article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: Independence</h2></hgroup><article  id="dice-rolling-activity-independence">
 
@@ -203,14 +142,6 @@ output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =        
 <p>When one outcome impacts the probability of the next outcome - The joint probability: \(Pr(A,B)\) - The probability of the first event: \(Pr(A)\)<br/>- The probability of the second event given the first: \(Pr(B|A)\)</p>
 
 <p>\(Pr(A,B) = Pr(A)Pr(B|A)\)</p>
-
-</article></slide><slide class=""><hgroup><h2>Dice Rolling Activity: Non-Independence</h2></hgroup><article  id="dice-rolling-activity-non-independence-2">
-
-<pre class = 'prettyprint lang-r'>output_vector[2]</pre>
-
-<pre >## [[1]]</pre>
-
-<p><img src="BayesianModels_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>Likelihood: How do we turn these terms into a model?</h2></hgroup><article  id="likelihood-how-do-we-turn-these-terms-into-a-model">
 
@@ -587,19 +518,15 @@ output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =        
 <li>$ = (1/2)*1 - e^(-2t) $</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-12">
-
-<p>Break: treesiftr 6-10</p>
-
 </article></slide><slide class=""><hgroup><h2>Likelihood: Branch lengths</h2></hgroup><article  id="likelihood-branch-lengths">
 
 <p>v is the number of substitutions per site<br/>- \(ν = (1/2) \mu*t = 2\beta*t\)<br/>- \(v/2 = \beta*t\)</p>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-13">
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-12">
 
 <p>Break: <a href='http://phylo.bio.ku.edu/mephytis/tree-opt.html' title=''>http://phylo.bio.ku.edu/mephytis/tree-opt.html</a></p>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-14">
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-13">
 
 <ul>
 <li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
@@ -610,7 +537,7 @@ output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =        
 </ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-15">
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-14">
 
 <ul>
 <li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
@@ -622,7 +549,7 @@ output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =        
 </ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-16">
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-15">
 
 <ul>
 <li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
@@ -640,9 +567,23 @@ output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =        
 
 <p>This is just one branch and one character history!!!</p>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-17">
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-16">
 
 <img src='img/Ptree_enum.png' title='fig:'/><p class='caption'>Parsimony Trees</p>
+
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-17">
+
+<ul>
+<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
+<li>Assumptions:
+
+<ul>
+<li>Characters are always in one of <em>k</em> states</li>
+<li>Equally likely to transition to a state as from it</li>
+<li>Changes can occur anywhere along the branch</li>
+<li>Characters occur with equal frequency</li>
+</ul></li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-18">
 
@@ -658,23 +599,9 @@ output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =        
 </ul></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-19">
-
-<ul>
-<li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
-<li>Assumptions:
-
-<ul>
-<li>Characters are always in one of <em>k</em> states</li>
-<li>Equally likely to transition to a state as from it</li>
-<li>Changes can occur anywhere along the branch</li>
-<li>Characters occur with equal frequency</li>
-</ul></li>
-</ul>
-
 <p>Parsimony - minimize the number of steps on a tree. Score trees according to their number of steps</p>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-20">
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-19">
 
 <ul>
 <li>The main way morphological data is modeled in Bayesian and likelihood analysis is via the Mk model</li>
@@ -690,7 +617,7 @@ output_vector &lt;- generate_tree_vis(sample_df = sample_df, alignment =        
 
 <p>\(L = \text{Pr(Data | Tree, Branch lengths, other model parameters)}\)</p>
 
-</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-21">
+</article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model</h2></hgroup><article  id="likelihood-the-mk-model-20">
 
 <p>-Much about the evolutionary process assumed to have generated the data is similar betwen Mk and parsimony</p>
 
@@ -712,7 +639,7 @@ d2 &lt;- dat %&gt;%  summarize(lower = quantile(dat$draws, probs = .25), middle 
 
 ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercept = lower)) + geom_vline(data = d2, aes(xintercept = middle)) +geom_vline(data = d2, aes(xintercept = seventyfive)) +geom_vline(data = d2, aes(xintercept = upper)) </pre>
 
-<p><img src="BayesianModels_files/figure-html/unnamed-chunk-6-1.png" width="720" /></p>
+<p><img src="BayesianModels_files/figure-html/unnamed-chunk-2-1.png" width="720" /></p>
 
 <p>Less spread == evolutionary rates among characters <em>more</em> similar</p>
 
@@ -743,20 +670,18 @@ ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercep
 </article></slide><slide class=""><hgroup><h2>Likelihood: The Mk Model vs. Parsimony</h2></hgroup><article  id="likelihood-the-mk-model-vs.-parsimony-3">
 
 <ul>
-<li>That’s because of this - parsimony will always try to minimize homoplasy. Likelihood methods can model multiple changes (superimposed changes) along a branch.</li>
+<li>That’s because of this - parsimony will always try to minimize homoplasy. Likelihood methods can model multiple changes (superimposed changes) along a branch. <img src="img/Ptree_enum.png" align="left" height="500" width="450" margin="0 auto" /></li>
 </ul>
-
-<img src='img/Ptree_enum.png' title='fig:'/><p class='caption'>Parsimony Trees</p>
 
 </article></slide><slide class=""><hgroup><h2>Long-Branch Attraction</h2></hgroup><article  id="long-branch-attraction">
 
-<img src='img/felsenstein-zone-tree.png' title=''/>
-
-<p>Felsenstein 1978</p>
+<p><img src="img/felsenstein-zone-tree.png" align="center" height="500" width="650" margin="0 auto" /> Felsenstein 1978</p>
 
 </article></slide><slide class=""><hgroup><h2>A brief note on taxon sampling</h2></hgroup><article  id="a-brief-note-on-taxon-sampling">
 
-<p><img src='img/taxonsampling.png' title=''/> <img src='img/heathhedtke.png' title=''/></p>
+<p><img src="img/taxonsampling.png" align="left" height="250" width="500" margin="0 auto" /></p>
+
+<p><img src="img/heathhedtke.png" align="right" height="250" width="500" margin="0 auto" /></p>
 
 </article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data">
 
@@ -765,34 +690,22 @@ ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercep
 </article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-1">
 
 <ul>
-<li>According to some, missing data are no problem.</li>
+<li>According to some, missing data are no problem. <img src="img/wiensMD.png" align="center" height="250" width="500" margin="0 auto" /></li>
 </ul>
-
-<img src='img/wiensMD.png' title=''/>
 
 </article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-2">
 
 <ul>
-<li>According to some, missing data are no problem.</li>
+<li>According to others, it is <img src="img/brownlemmon.png)" align="center" height="250" width="500" margin="0 auto" /></li>
 </ul>
-
-<img src='img/wiensMD.png' title=''/>
 
 </article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-3">
-
-<ul>
-<li>According to others, it is</li>
-</ul>
-
-<img src='img/brownlemmon.png' title=''/>
-
-</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-4">
 
 <ul>
 <li>Who is right?</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-5">
+</article></slide><slide class=""><hgroup><h2>A brief note on missing data</h2></hgroup><article  id="a-brief-note-on-missing-data-4">
 
 <ul>
 <li>Everyone, all at once<br/><img src="img/wrightMD.png" align="left" height="500" width="450" margin="0 auto" /></li>
@@ -884,7 +797,7 @@ ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercep
 
 <p>This is the conditional probability</p>
 
-<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}\) = \(\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)} = \frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
 
 </article></slide><slide class=""><hgroup><h2>Marginal Probabilities</h2></hgroup><article  id="marginal-probabilities">
 
@@ -936,7 +849,7 @@ ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercep
 
 <p>If we divide byth sides by Pr(Y), we can simplify the statement</p>
 
-<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}\) = \(\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)} = \frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
 
 <p>Simplifies to:</p>
 
@@ -944,7 +857,7 @@ ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercep
 
 </article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-2">
 
-<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}\) = \(\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)} = \frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
 
 <p>Simplifies to:</p>
 
@@ -964,7 +877,7 @@ ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercep
 
 </article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-4">
 
-<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)}\) = \(\frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
+<p>\(\frac{(Pr(R | Y)Pr(Y))}{Pr(Y)} = \frac{(Pr(Y | R)Pr( R ))}{Pr(Y)}\)</p>
 
 <p>Simplifies to:</p>
 
@@ -990,11 +903,9 @@ ggplot(dat, aes(x=draws)) + geom_density() + geom_vline(data = d2, aes(xintercep
 
 </article></slide><slide class=""><hgroup><h2>Bayes Rule</h2></hgroup><article  id="bayes-rule-6">
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>In practice</h2></hgroup><article  id="in-practice">
+<p>In practice</p>
 
-<p>$Pr(Model Hypothesis | Data) =</p>
-
-<p>\(\frac{(Pr(Data | Model Hypothesis) Pr( Model Hypothesis ))}{Pr(Data)}\)</p>
+<p>\(Pr(Model Hypothesis | Data) = \frac{(Pr(Data | Model Hypothesis) Pr( Model Hypothesis ))}{Pr(Data)}\)</p>
 
 <p>\(Pr(Data)\) derived via heuristics</p>
 

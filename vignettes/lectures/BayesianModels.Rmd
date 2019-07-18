@@ -15,44 +15,8 @@ output:
 
 Explain AND probability rule with dice roll
 
-## Dice Rolling Activity: AND
-
-
-
-```{r}
-library(treesiftr)
-library(alignfigR)
-library(phangorn)
-library(ggtree)
-library(ggplot2)
-aln_path <- "../../data/bears_fasta.fa"
-bears <- read_alignment(aln_path)
-tree <- read.tree("../../data/starting_tree.tre")
-
-sample_df <- generate_sliding(bears, start_char = 1, stop_char = 2, steps = 1)
-output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears)
-```
-
-
-## Dice Rolling Activity: AND
-
-
-```{r}
-output_vector[[1]]
-```
 
 ## Dice Rolling Activity: OR
-
-
-Explain OR probability rule with dice roll
-
-## Dice Rolling Activity: AND
-
-
-```{r}
-output_vector[[1]]
-```
-
 
 
 ## Dice Rolling Activity: Independence 
@@ -93,14 +57,6 @@ When one outcome impacts the probability of the next outcome
 - The probability of the second event given the first: $Pr(B|A)$
 
  $Pr(A,B) = Pr(A)Pr(B|A)$
-
-## Dice Rolling Activity: Non-Independence 
-
-
-```{r}
-output_vector[2]
-```
-
 
 
 ## Likelihood: How do we turn these terms into a model?
@@ -344,11 +300,6 @@ v = substitution rate x time
  - $\text{Pr(1 at tip | 0 at node)} = (1/2)*1 - e^(-\mu*t)$ 
  - $\text{Pr(1 at tip | 0 at node)} = (1/2)*1 - e^(-2\beta*t) $
     
-## Likelihood: The Mk Model 
-  
-
-Break: treesiftr 6-10  
-    
     
 ## Likelihood: Branch lengths 
   
@@ -448,6 +399,7 @@ $L = \text{Pr(Data | Tree, Branch lengths, other model parameters)}$
 
 ```{r, include=FALSE}
 library(dplyr)
+library(ggplot2)
 dat <- data.frame(draws = c(rgamma(n = 500, shape = 2, scale = 18),rgamma(n = 500, shape = .5, scale = 10)))
 
 d2 <- dat %>%  summarize(lower = quantile(dat$draws, probs = .25), middle = quantile(dat$draws, probs = .5), seventyfive = quantile(dat$draws, probs = .75), upper = quantile(dat$draws, probs = .99))
@@ -500,19 +452,16 @@ Wright and Hillis 2014
 ## Likelihood: The Mk Model vs. Parsimony
  
 - That's because of this - parsimony will always try to minimize homoplasy. Likelihood methods can model multiple changes (superimposed changes) along a branch.
-
-![Parsimony Trees](img/Ptree_enum.png)
+  <img src="img/Ptree_enum.png" align="left" height="500" width="450" margin="0 auto" />
 
 ## Long-Branch Attraction
- 
-![](img/felsenstein-zone-tree.png)
-
+  <img src="img/felsenstein-zone-tree.png" align="center" height="500" width="650" margin="0 auto" />
 Felsenstein 1978
 
 ## A brief note on taxon sampling
- 
-![Zwickl Hillis](img/taxonsampling.png)
-![heath hedtke](img/heathhedtke.png)
+   <img src="img/taxonsampling.png" align="left" height="250" width="500" margin="0 auto" />
+   
+ <img src="img/heathhedtke.png" align="right" height="250" width="500" margin="0 auto" />
 
 ## A brief note on missing data
  
@@ -523,21 +472,14 @@ Felsenstein 1978
 ## A brief note on missing data
  
 - According to some, missing data are no problem.
+ <img src="img/wiensMD.png" align="center" height="250" width="500" margin="0 auto" />
 
-![](img/wiensMD.png)
 
-
-## A brief note on missing data
- 
-- According to some, missing data are no problem.
-
-![](img/wiensMD.png)
 
 ## A brief note on missing data
- 
 - According to others, it is
+ <img src="img/brownlemmon.png)" align="center" height="250" width="500" margin="0 auto" />
 
-![](img/brownlemmon.png)
 
 ## A brief note on missing data
  
@@ -681,7 +623,6 @@ $Pr(Y) = Pr(Y, R) + Pr(Y, B)$
 
 ## Bayes Rule
 
-
 How do we calculate joint probabilities in a Bayesian context:
 
 $Pr(R|Y) Pr(Y) = Pr(Y|R) Pr( R )$
@@ -746,11 +687,10 @@ A prior can almost always be overcome by strong evidence
 
 ## Bayes Rule
 
-# In practice
+In practice
 
 $Pr(Model Hypothesis | Data) = 
-
-$\frac{(Pr(Data | Model Hypothesis)  Pr( Model Hypothesis ))}{Pr(Data)}$
+\frac{(Pr(Data | Model Hypothesis)  Pr( Model Hypothesis ))}{Pr(Data)}$
 
 $Pr(Data)$ derived via heuristics
 

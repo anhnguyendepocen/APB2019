@@ -236,19 +236,6 @@ Divergence time estimation
 ========================================================
 - Strict clock
 
-
-```r
-library(phangorn)
-library(ggtree)
-library(ggplot2)
-aln_path <- 'data/bears_fasta.fa'
-sample_df <- generate_sliding(bears, start_char = 1, stop_char = 2, steps = 10)
-output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears)
-output_vector[[1]]
-```
-
-![plot of chunk unnamed-chunk-4](DivTime-figure/unnamed-chunk-4-1.png)
-
 If we know the rate of sequence divergence is 1% per million years, we can date the tree by extrapolating from the amount of divergence.
 
 Branch Rates
@@ -278,13 +265,18 @@ pb$edge.length <- rates
 plotBranchbyTrait(pb, rates, mode = "edges")
 ```
 
-![plot of chunk unnamed-chunk-5](DivTime-figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-4](DivTime-figure/unnamed-chunk-4-1.png)
 
 Branch Rates
 ========================================================
 - Relaxed clock
 ![](img/uexp_gm-eps-converted-to.png)
 
+
+Branch Rates
+========================================================
+
+![](img/Distributions.png)
 
 Branch Rates
 ========================================================
@@ -310,7 +302,7 @@ tree <- sim.fbd.taxa(n=10, numbsim=1, lambda=3, mu=2, psi=2)
 plot(tree[[1]])
 ```
 
-![plot of chunk unnamed-chunk-6](DivTime-figure/unnamed-chunk-6-1.png)
+![plot of chunk unnamed-chunk-5](DivTime-figure/unnamed-chunk-5-1.png)
 
 - Fundamental: In order to know something about the time since divergence, we need to know something about the rate at which differences accumulate
 

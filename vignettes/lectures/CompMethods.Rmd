@@ -157,8 +157,6 @@ x
 
 ## Brownian Motion on a Tree
 ```{r}
-tree <- pbtree(n=20)
-x <- fastBM(tree, sig2 = var, internal = TRUE)
 phenogram(tree, x)
 ```
 
@@ -206,11 +204,15 @@ Phylogenetic independent contrasts assume we can estimate the value of the trait
   
 ## Ancestral State Reconstruction
 ```{r}
-library(phangorn)
-library(phytools)
-tree_20 <- phytools::pbtree(n=20)
 trait <- fastBM(tree_20)
-
+phenogram(tree_20, trait)
+anc_states <-anc.ML(tree_20, trait)
 ```
 
+## Exporting annotations
 
+```{r}
+tree_20$tip.states <- trait
+tree_20$node.labels <- anc_states$ace
+write.tree(tree_20, file = "annotated.tre")
+```

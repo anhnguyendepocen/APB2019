@@ -7,6 +7,12 @@ output: html_document
 In RStudio:
 
 ```{r eval=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+
+
+BiocManager::install("ggtree")
 devtools::install_github("wrightaprilm/treesiftr")
 devtools::install_github("sjspielman/alignfigR")
 install.packages("phangorn")
@@ -15,8 +21,7 @@ install.packages("ggtree")
 install.packages("FossilSim")
 source("https://bioconductor.org/biocLite.R")
 # biocLite("BiocUpgrade") # you may need this
-biocLite("ggtree")
-biocLite("Biostrings")
+
 ```
 
 In browser: 

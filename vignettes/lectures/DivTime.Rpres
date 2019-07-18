@@ -179,16 +179,6 @@ Divergence time estimation
 ========================================================
 - Strict clock
 
-```{r message=FALSE, results = FALSE}
-library(phangorn)
-library(ggtree)
-library(ggplot2)
-aln_path <- 'data/bears_fasta.fa'
-sample_df <- generate_sliding(bears, start_char = 1, stop_char = 2, steps = 10)
-output_vector <- generate_tree_vis(sample_df = sample_df, alignment =                                         aln_path, tree = tree, phy_mat = bears)
-output_vector[[1]]
-```
-
 If we know the rate of sequence divergence is 1% per million years, we can date the tree by extrapolating from the amount of divergence.
 
 Branch Rates
@@ -222,6 +212,11 @@ Branch Rates
 - Relaxed clock
 ![](img/uexp_gm-eps-converted-to.png)
 
+
+Branch Rates
+========================================================
+
+![](img/Distributions.png)
 
 Branch Rates
 ========================================================

@@ -125,7 +125,7 @@ getMRCA(tree, c("t1", "t2"))
 ## Tree Terms: branch
 
 
-```r
+```{r}
 #plot(tree, cex = 3.5, no.margin = TRUE, edge.width = 1.5)
 tree$edge
 ```
@@ -198,6 +198,7 @@ nodelabels(cex = 3.5)
 
 ```{r}
 rotateNodes(tree, c(7, 8))
+plot(tree)
 ```
 
 ```
@@ -404,8 +405,9 @@ image via Ask a biologist, Mike Hagelberg
 
 ```{r}
 library(ggplot2)
+library(alignfigR)
 colors <- c("blue", "purple","white")
-plot_alignment(char_data, colors, taxon_labels = TRUE) + theme(text = element_text(size=40))
+plot_alignment(char_data, colors, taxon_labels = TRUE)
 ```
 
 
@@ -447,9 +449,10 @@ RStudio --or--Shiny
 
 ```{r}
 library(treesiftr)
-aln_path <- "../../data/bears_fasta.fa"
+library(alignfigR)
+aln_path <- "data/bears_fasta.fa"
 bears <- read_alignment(aln_path)
-bear_tree <- multi2di(read.tree("../../data/starting_tree.tre"))
+bear_tree <- multi2di(read.tree("data/starting_tree.tre"))
 sample_df <- generate_sliding(bears, start_char = 1, stop_char = 5, steps = 1)
 print(sample_df)
 ```
@@ -471,9 +474,9 @@ print(sample_df)
 library(phangorn)
 library(ggtree)
 
-output_vector <- generate_tree_vis(sample_df = sample_df,                                        alignment = aln_path, 
-                                   tree = bear_tree, 
-                                   phy_mat = bears,                                              pscore = TRUE)
+generate_tree_vis(sample_df = sample_df,                                        alignment = aln_path, 
+                      tree = bear_tree, 
+                      phy_mat = bears,                                                           pscore = TRUE)
 ```
 
 
