@@ -653,7 +653,7 @@ moves[mvi++] = mvSlide(origin_time, delta=1,    weight=5.0)</code></pre>
 <div id="subsub:Exercise-FBD-dnFBD" class="section level3">
 <h3>The FBD Distribution Object</h3>
 <p>All the parameters of the FBD process have now been specified. The next step is to use these parameters to define the FBD tree prior distribution, which we will call <span><span><code>fbd_dist</code></span></span>.</p>
-<pre><code>fbd_dist = dnFBDP(origin=origin_time, lambda=speciation_rate, mu=extinction_rate, psi=psi, rho=rho, taxa=taxa)</code></pre>
+<pre><code>fbd_dist = dnFBDP(origin=origin_time, lambda=speciation_rate, mu=extinction_rate, phi=psi, r=rho, taxa=taxa)</code></pre>
 </div>
 <div id="subsub:Exercise-FBD-Constraints" class="section level3">
 <h3>Clade Constraints</h3>
