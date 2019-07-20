@@ -204,9 +204,11 @@ Phylogenetic independent contrasts assume we can estimate the value of the trait
   
 ## Ancestral State Reconstruction
 ```{r}
+tree_20 <- pbtree(n=20)
 trait <- fastBM(tree_20)
 phenogram(tree_20, trait)
 anc_states <-anc.ML(tree_20, trait)
+plotBranchbyTrait(tree_20, trait)
 ```
 
 ## Exporting annotations
@@ -216,3 +218,67 @@ tree_20$tip.states <- trait
 tree_20$node.labels <- anc_states$ace
 write.tree(tree_20, file = "annotated.tre")
 ```
+
+## Ancestral State Reconstruction: Discrete Traits
+
+We're going back to RevBayes for this.
+
+
+## Avoiding point estimation
+
+These methods all assume the tree you tell it is the true tree
+
+## Avoiding point estimation
+
+These methods all assume the tree you tell it is the true tree
+
+![](img/ViviparityVerts.png)
+
+## Avoiding point estimation
+
+These methods all assume the tree you tell it is the true tree
+
+![](img/VivTree1.png)
+
+## Avoiding point estimation
+
+These methods all assume the tree you tell it is the true tree
+
+![](img/VivTree2.png)
+
+## Avoiding point estimation
+
+These methods all assume the tree you tell it is the true tree
+
+![](img/VivTable.png)
+
+
+## Avoiding point estimation
+
+These methods all assume the tree you tell it is the true tree
+
+![](img/VivHeatmap.png)
+
+## Avoiding point estimation
+
+- Use multiple estimates from different points in tree space
+  - Use your posterior sample
+
+## Using a posterior sample
+
+- Trees will be sampled in accordance with their posterior
+
+## Avoiding point estimation
+
+- Use multiple estimates from different points in tree space
+  - Use your posterior sample
+  - Joint estimation
+
+
+## More sophisticated modeling methods 
+
+- BiSSE
+- BAMM
+- 
+
+

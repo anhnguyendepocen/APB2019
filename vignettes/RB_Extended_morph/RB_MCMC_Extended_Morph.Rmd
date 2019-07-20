@@ -165,7 +165,7 @@ Import the morphological character matrix and assign it to the variable
 `morpho`.
 
 ```{r, include=TRUE, eval=FALSE}
-morpho <- readDiscreteCharacterData("data/bears.nex")
+morpho <- readDiscreteCharacterData("~/Users/april/Documents/APW2019/vignettes/RB_Extended_morph/data/bears_morphology.nex")
 ```
 
 ## Create Helper Variables

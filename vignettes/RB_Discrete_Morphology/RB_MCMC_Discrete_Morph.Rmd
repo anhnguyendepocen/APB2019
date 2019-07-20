@@ -90,7 +90,7 @@ All command-line text, including all Rev syntax, are given in
 `monotype font`. Furthermore, blocks of Rev code that are needed to build the model, specify the analysis, or execute the run are given in separate shaded boxes. For example, we will instruct you to create a constant node called `example` that is equal to `1.0` using the `<-` operator like this:
 
 
-```{r eval=FALSE}
+```{r eval = FALSE}
     example <- 1.0
 ```
 
@@ -118,7 +118,7 @@ In this section you will begin the file and write the Rev commands for loading i
 RevBayes uses the function `readDiscreteCharacterData()` to load a data matrix to the workspace from a formatted file. This function can be used for both molecular sequences and discrete morphological characters. Import the morphological character matrix and assign it to the variable `morpho`. We will be using a matrix of extant and fossil data from Abella (2012). 
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     morpho <- readDiscreteCharacterData("vignettes/RB_Discrete_Morphology/data/bears_morphology.nex")
 ```
 
@@ -129,7 +129,7 @@ Before we begin writing the Rev scripts for each of the models, we need to insta
 Create a new constant node called `num_taxa` that is equal to the number of species in our analysis (41) and a constant node called `num_branches` representing the number of branches in the tree. We will also create a constant node of the taxon names. This list will be used to initialize the tree.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     taxa <- morpho.names()
     num_taxa <- morpho.size() 
     num_branches <- 2 * num_taxa - 2
@@ -139,7 +139,7 @@ Next, create two workspace variables called `mvi` and `mni`. These variable are 
 value of `1`.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     mvi = 1
     mni = 1
 ```
@@ -152,7 +152,7 @@ One important distinction here is that `mvi` is part of the RevBayes workspace a
 First, we will create a joint prior on the branch lengths and tree topology.  This should be familiar from the {% page_ref ctmc %}
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     br_len_lambda ~ dnExp(0.2)
     moves[mvi++] = mvScale(br_len_lambda, weight=2)
 
@@ -167,14 +167,14 @@ First, we will create a joint prior on the branch lengths and tree topology.  Th
 Next, we will create a $Q$ matrix. Recall that the Mk model is simply a generalization of the JC model. Therefore, we will create a 2x2 $Q$ matrix using `fnJC`, which initializes Q-matrices with equal transition probabilities between all states.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     Q_morpho <- fnJC(2)
 ```
 
 Now that we have the basics of the model specified, we will add Gamma-distributed rate variation and specify moves on the parameter to the Gamma distribution.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
 Q_morpho
 ```
 
@@ -188,7 +188,7 @@ Q_morpho
 
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     alpha_morpho ~ dnUniform( 0, 1E6 )
     rates_morpho := fnDiscretizeGamma( alpha_morpho, alpha_morpho, 4 )
     #Moves on the parameters to the Gamma distribution.
@@ -201,7 +201,7 @@ We see some familiar pieces: tree, $Q$ matrix and site_rates.
 We also have two new keywords: data type and coding. The data type argument specifies the type of data - in our case, “Standard”, the specification for morphology.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     phyMorpho ~ dnPhyloCTMC(tree=phylogeny, siteRates=rates_morpho, Q=Q_morpho, type="Standard")
     phyMorpho.clamp(morpho)
 ```
@@ -215,7 +215,7 @@ All of the components of the model are now specified.
 We can now create our workspace model variable with our fully specified model DAG. We will do this with the `model()` function and provide a single node in the graph (`phylogeny`).
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     mymodel = model(phylogeny)
 ```
 
@@ -231,7 +231,7 @@ The first monitor we will create will monitor every named random variable in our
 output file for this monitor and indicate that we wish to sample our MCMC every 10 cycles.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     monitors[mni++] = mnModel(filename="output/mk_gamma.log", printgen=10)
 ```
 
@@ -239,14 +239,14 @@ The `mnFile` monitor writes any parameter we specify to file. Thus, if we only c
 our `phylogeny` variable in the arguments.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     monitors[mni++] = mnFile(filename="output/mk_gamma.trees", printgen=10, phylogeny)
 ```
 
 The third monitor we will add to our analysis will print information to the screen. Like with `mnFile` we must tell `mnScreen` which parameters we'd like to see updated on the screen.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     monitors[mni++] = mnScreen(printgen=100)
 ```
 
@@ -254,21 +254,21 @@ The third monitor we will add to our analysis will print information to the scre
 
 Once we have set up our model, moves, and monitors, we can now create the workspace variable that defines our MCMC run. We do this using the `mcmc()` function that simply takes the three main analysis components as arguments.
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
 ```
 
 The MCMC object that we named `mymcmc` has a member method called `.run()`. This will execute our analysis and we will set the chain length to `10000` cycles using the `generations` option.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     mymcmc.run(generations=10000, tuningInterval=200)
 ```
 
 Once our Markov chain has terminated, we will want RevBayes to close. Tell the program to quit using the `q()` function.
 
 
-```{r, include=TRUE, eval=FALSE}
+```{r, include=TRUE, eval = FALSE}
     q()
 ```
 
@@ -293,7 +293,7 @@ Provided that you started RevBayes from the correct directory, you can then use 
 function to feed RevBayes your Rev-script file (`mk_gamma.Rev`).
 
 
-```{bash eval=FALSE, include=TRUE}
+```{bash eval = FALSE, include=TRUE}
     source("scripts/mk_gamma.Rev")
 ```
 
