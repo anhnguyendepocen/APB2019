@@ -1,5 +1,5 @@
 ---
-title: "Extended Morphology Models"
+title: "Comparative Methods"
 author: April Wright
 date: 7.18.19
 output: 
